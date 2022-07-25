@@ -58,7 +58,7 @@
                     <div id="submenu-2" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.customers') }}">Customers</a></li>
-                            {{-- <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.pengguna') }}">Pengguna</a></li> --}}
+                            <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.pengguna') }}">Pengguna</a></li>
                         </ul>
                     </div>
                 </li><!--//nav-item-->
@@ -81,9 +81,9 @@
                             </svg>
                          </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
-                    <div id="submenu-3" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+                    <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
-                            <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.pengguna') }}">Pengguna</a></li>
+                            <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.customers') }}">Customer sales</a></li>
                         </ul>
                     </div>
                 </li><!--//nav-item-->

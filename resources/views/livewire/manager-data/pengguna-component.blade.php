@@ -229,7 +229,7 @@
                                 <th class="cell">Email</th>
                                 <th class="cell">Nama</th>
                                 <th class="cell">Jabatan</th>
-                                {{-- <th class="cell">Aksi</th> --}}
+                                <th class="cell">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -248,11 +248,11 @@
                                         {{ $peng->utype }}
                                     </td>
 
-                                    {{-- <td>
-                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_lihat_password({{ $peng->id }})" class="btn btn-sm btn-warning" href="#">Lihat Password</a>
-                                        <a data-bs-toggle="modal" data-bs-target="#update-data-modal" wire:click="pengguna_edit({{ $peng->id }})" class="btn btn-sm btn-info" href="#">Edit</a>
-                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_destroy({{ $peng->id }})" class="btn btn-sm btn-danger" href="#">Delete</a>
-                                    </td> --}}
+                                    <td>
+                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_lihat_password({{ $peng->id }})" class="btn btn-md btn-warning" href="#"><i class="fa-solid fa-eye"></i></a>
+                                        <a data-bs-toggle="modal" data-bs-target="#update-data-modal" wire:click="pengguna_edit({{ $peng->id }})" class="btn btn-md btn-info" href="#"><i class="fa-solid fa-pen-clip"></i></a>
+                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_destroy({{ $peng->id }})" class="btn btn-md btn-danger" href="#"><i class="fa-solid fa-trash-arrow-up"></i></a>
+                                    </td>
                                 </tr>
                             @empty
                                 <td>

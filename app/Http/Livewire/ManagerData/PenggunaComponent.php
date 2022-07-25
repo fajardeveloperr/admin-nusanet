@@ -14,6 +14,8 @@ class PenggunaComponent extends Component
     use WithPagination;
     protected $paginationTheme = "bootstrap";
 
+    public $pengguna_search;
+
     public $nama_pengguna_create,
     $email_pengguna_create,
     $password_pengguna_create,
@@ -34,7 +36,6 @@ class PenggunaComponent extends Component
     $utype_pengguna_delete,
     $id_pengguna_delete;
 
-    public $pengguna_search;
 
     public function create_pengguna()
     {
@@ -126,63 +127,61 @@ class PenggunaComponent extends Component
     //     }
     // }
 
-    // public function pengguna_destroy($id)
-    // {
-    //     $pengguna = User::find($id);
-    //     $this->nama_pengguna_delete = $pengguna->name;
-    //     $this->email_pengguna_delete = $pengguna->email;
-    //     $this->utype_pengguna_delete = $pengguna->utype;
-    //     $this->id = $pengguna->id;
+    public function pengguna_destroy($id)
+    {
+        $pengguna = User::find($id);
+        $this->nama_pengguna_delete = $pengguna->name;
+        $this->email_pengguna_delete = $pengguna->email;
+        $this->utype_pengguna_delete = $pengguna->utype;
+        $this->password_pengguna_delete = $pengguna->password;
+        $this->konfirmasi_password_pengguna_delete = $pengguna->password;
+        $this->id_pengguna_destroy = $pengguna->id;
 
-    //     $this->dispatchBrowserEvent('swal',[
-    //         'position'=> 'top-right',
-    //         'icon'=> 'success',
-    //         'title'=> 'Pilar berhasil terdeteksi!',
-    //         'showConfirmButton'=> false,
-    //         'timer'=> 1500
-    //     ]);
-    // }
+        $this->dispatchBrowserEvent('swal',[
+            'position'=> 'top-right',
+            'icon'=> 'success',
+            'title'=> 'Pengguna berhasil terdeteksi!',
+            'showConfirmButton'=> false,
+            'timer'=> 1500
+        ]);
+    }
 
-    // public function delete_pengguna()
-    // {
-    //     try {
-    //         $this->validate([
-    //             'kode_pilar_delete'=>'required|string',
-    //             'nama_pilar_delete'=>'required|string'
-    //         ]);
+    public function delete_pengguna()
+    {
+        try {
+            $this->validate([
+                'nama_pengguna_delete'=>'required|string',
+                'email_pengguna_delete'=>'required|string',
+                'utype_pengguna_delete'=>'required|string',
+                'password_pengguna_delete'=>'required|string',
 
-    //         $pilar_delete = Pilar::where('id',$this->id_pilar_delete)->first();
-    //         $pilar_delete->delete();
+            ]);
 
-    //         $this->dispatchBrowserEvent('swal',[
-    //             'position'=> 'centered',
-    //             'icon'=> 'success',
-    //             'title'=> 'Pilar berhasil terhapus!',
-    //             'showConfirmButton'=> false,
-    //             'timer'=> 1500
-    //         ]);
+            $delete_pengguna = User::where('id',$this->id_delete_pengguna)->first();
+            $delete_pengguna->delete();
 
-    //         $this->reset([
-    //             'nama_pilar_create'
-    //         ]);
+            $this->dispatchBrowserEvent('swal',[
+                'position'=> 'centered',
+                'icon'=> 'success',
+                'title'=> 'Pengguna berhasil terhapus!',
+                'showConfirmButton'=> false,
+                'timer'=> 1500
+            ]);
 
-    //         $kodeOtomatis = Pilar::max('kode');
-    //         $urutan = (int) substr($kodeOtomatis, 6, 6);
-    //         $urutan++;
-    //         $huruf = "Pilar.";
-    //         $kodeGenerate = $huruf.sprintf("%06s",$urutan);
-    //         $this->kode_pilar_create = $kodeGenerate;
+            $this->reset([
+                'nama_pengguna_delete'
+            ]);
 
-    //     } catch (\Throwable) {
-    //         $this->dispatchBrowserEvent('swal',[
-    //             'position'=> 'centered',
-    //             'icon'=> 'error',
-    //             'title'=> 'Pilar gagal terhapus!',
-    //             'showConfirmButton'=> false,
-    //             'timer'=> 1500
-    //         ]);
-    //     }
-    // }
+        } catch (\Throwable) {
+            $this->dispatchBrowserEvent('swal',[
+                'position'=> 'centered',
+                'icon'=> 'error',
+                'title'=> 'Pengguna gagal terhapus!',
+                'showConfirmButton'=> false,
+                'timer'=> 1500
+            ]);
+        }
+    }
 
     public function pengguna_download()
     {
@@ -211,7 +210,11 @@ class PenggunaComponent extends Component
     public function render()
     {
 
-        $pengguna = User::paginate(10);
+        $pengguna = User::where('name', 'like', '%'.$this->pengguna_search.'%')
+        ->orwhere('email', 'like', '%'.$this->pengguna_search.'%')
+        ->orwhere('name', 'like', '%'.$this->pengguna_search.'%')
+        ->orwhere('utype', 'like', '%'.$this->pengguna_search.'%')
+        ->paginate(10);
 
         return view('livewire.manager-data.pengguna-component',compact(
             'pengguna'
