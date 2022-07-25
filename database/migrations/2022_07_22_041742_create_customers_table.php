@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('customer_id');
             $table->string('name');
             $table->text('address');
+            $table->text('geolocation');
             $table->enum('class', ['Personal', 'Bussiness']);
             $table->string('email');
             $table->string('identity_number');
