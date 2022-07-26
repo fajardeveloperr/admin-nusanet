@@ -220,7 +220,7 @@
                                     <div class="col-sm-12">
                                         <div class="input-group mb-0 flex justify-content-between">
                                             <a href="{{ route('register') }}">Belum punya akun?</a>
-                                            <button type="submit" class="btn btn-dark btn-sm rounded text-center">Masuk</button>
+                                            <button type="submit" class="btn btn-success btn-sm rounded text-center">Masuk</button>
                                         </div>
                                     </div>
                                 </div>

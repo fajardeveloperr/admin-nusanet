@@ -147,7 +147,7 @@
                                     <div class="col-sm-12">
                                         <div class="input-group mb-0 flex justify-content-between">
                                             <a href="{{ route('login') }}">Sudah punya akun?</a>
-                                            <button type="submit" class="btn btn-dark btn-sm rounded text-center">Daftar</button>
+                                            <button type="submit" class="btn btn-success btn-sm rounded text-center">Daftar</button>
                                         </div>
                                     </div>
                                 </div>

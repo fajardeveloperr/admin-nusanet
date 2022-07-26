@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -31,4 +31,68 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+<x-guest-layout>
+    <head>
+        <!-- Basic Page Info -->
+        <meta charset="utf-8">
+        <title>Pertamina</title>
+
+        <!-- Site favicon -->
+        <link rel="icon" type="image" sizes="16x16" href="{{ asset('vendors/images/pertamina/logo.ico')}}">
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+        <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+        <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+    </head>
+
+    <body class="login-page">
+        <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="vendors/images/forgot-password.png" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="login-box bg-white box-shadow border-radius-10">
+                            <div class="login-title">
+                                <h2 class="text-center text-primary">Lupa Password</h2>
+                            </div>
+                            <x-jet-validation-errors class="mb-4" />
+                            <form method="POST" action="{{ route('password.email') }}">
+                                @csrf
+                                <div class="input-group custom">
+                                    <input class="form-control form-control-lg" id="email" type="email" name="email" :value="old('email')" placeholder="Masukkan Email" required autofocus>
+                                    <div class="input-group-append custom">
+                                        <span class="input-group-text"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="input-group mb-0 flex justify-content-between">
+                                            <a href="{{ route('login') }}">Ingat password?</a>
+                                            <button type="submit" class="btn btn-primary btn-sm rounded text-center">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- js -->
+    </body>
+    </x-guest-layout>
+
+
+
+
+

@@ -11,10 +11,10 @@
                     <div class="row gx-5 gy-3">
                         <div class="col-12 col-lg-9">
 
-                            <div class="text-white">Nusanet Bisa</div>
+                            <div class="text-white">Nusanet Jaya</div>
                         </div><!--//col-->
                     </div><!--//row-->
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
                 </div><!--//app-card-body-->
 
             {{-- </div><!--//inner--> --}}
