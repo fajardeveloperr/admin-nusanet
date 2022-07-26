@@ -1,10 +1,10 @@
 <table class="table app-table-hover mb-0 text-left">
     <thead>
         <tr>
-            <th class="text-black" style="font-weight:bold; background-color:#90EE90;">Nama</th>
-            <th class="text-black" style="font-weight:bold; background-color:#90EE90;">Email</th>
-            <th class="text-black" style="font-weight:bold; background-color:#90EE90;">Jabatan</th>
-            <th class="text-black" style="font-weight:bold; background-color:#90EE90;">Detail</th>
+            <th class="text-black" style="font-weight:bold; background-color:#3CB371;">Nama</th>
+            <th class="text-black" style="font-weight:bold; background-color:#3CB371;">Email</th>
+            <th class="text-black" style="font-weight:bold; background-color:#3CB371;">Jabatan</th>
+            <th class="text-black" style="font-weight:bold; background-color:#3CB371;">Detail</th>
         </tr>
     </thead>
     <tbody>

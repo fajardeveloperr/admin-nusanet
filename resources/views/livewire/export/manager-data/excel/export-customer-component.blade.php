@@ -1,18 +1,18 @@
 <table class="table app-table-hover mb-0 text-left">
     <thead>
         <tr>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Customer ID</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Name</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Class</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Email</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Identity Number</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Phone Number</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Company Name</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Company Address</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Company Npwp</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Company Phone_Number</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Company Employees</th>
-            <th class="text-black" style="font-weight: bold; background-color:#90EE90;">Detail</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Customer ID</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Name</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Class</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Email</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Identity Number</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Phone Number</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Company Name</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Company Address</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Company Npwp</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Company Phone_Number</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Company Employees</th>
+            <th class="text-black" style="font-weight: bold; background-color:#3CB371;">Detail</th>
         </tr>
     </thead>
     <tbody>
