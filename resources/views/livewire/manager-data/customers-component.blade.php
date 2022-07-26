@@ -62,7 +62,7 @@
                             @endforeach
                         </nav>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" width="100%">
                         <div class="tab-content" id="orders-table-tab-content">
                             @foreach ($class as $item)
                                 <div class="tab-pane fade show {{ $item == 'Personal' ? 'active' : null }}"
@@ -504,19 +504,14 @@
                                                                                             <div class="col-sm-6">
                                                                                                 <select name="utype"
                                                                                                     id="utype"
-                                                                                                    class="form-control form-control-sm">
+                                                                                                    class="form-control form-control-sm" wire:click="changeEvent($event.target.value)">
                                                                                                     <option
                                                                                                         value="#">
                                                                                                         Pilih Status :
                                                                                                     </option>
-                                                                                                    <option
-                                                                                                        value="#">
-                                                                                                        Approved
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                        value="#">
-                                                                                                        Rejected
-                                                                                                    </option>
+                                                                                                    {{-- @foreach ($utypes as $utype) --}}
+                                                                                                        <option value=""></option>
+                                                                                                    {{-- @endforeach --}}
                                                                                                 </select>
                                                                                             </div>
                                                                                         </div>

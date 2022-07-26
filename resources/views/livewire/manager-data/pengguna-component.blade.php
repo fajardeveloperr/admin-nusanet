@@ -225,34 +225,38 @@
                     <table class="table app-table-hover mb-0 text-left">
                         <thead>
                             <tr class="text-center">
-                                <th class="cell">Tersimpan</th>
-                                <th class="cell">Email</th>
+                                <th class="cell">No.</th>
                                 <th class="cell">Nama</th>
+                                <th class="cell">Email</th>
                                 <th class="cell">Jabatan</th>
-                                <th class="cell">Aksi</th>
+                                <th class="cell">Tersimpan</th>
+                                {{-- <th class="cell">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($pengguna as $peng)
                                 <tr class="text-center">
                                     <td>
-                                        {{ $peng->created_at }}
-                                    </td>
-                                    <td>
-                                        {{ $peng->email }}
+                                        {{ $peng->id }}
                                     </td>
                                     <td>
                                         {{ $peng->name }}
                                     </td>
                                     <td>
+                                        {{ $peng->email }}
+                                    </td>
+                                    <td>
                                         {{ $peng->utype }}
                                     </td>
-
                                     <td>
+                                        {{ $peng->created_at }}
+                                    </td>
+
+                                    {{-- <td>
                                         <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_lihat_password({{ $peng->id }})" class="btn btn-md btn-warning" href="#"><i class="fa-solid fa-eye"></i></a>
                                         <a data-bs-toggle="modal" data-bs-target="#update-data-modal" wire:click="pengguna_edit({{ $peng->id }})" class="btn btn-md btn-info" href="#"><i class="fa-solid fa-pen-clip"></i></a>
                                         <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_destroy({{ $peng->id }})" class="btn btn-md btn-danger" href="#"><i class="fa-solid fa-trash-arrow-up"></i></a>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @empty
                                 <td>
