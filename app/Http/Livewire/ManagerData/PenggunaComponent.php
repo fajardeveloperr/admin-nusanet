@@ -82,60 +82,74 @@ class PenggunaComponent extends Component
         }
     }
 
-    // public function pengguna_destroy()
-    // {
-    //     try {
-    //         $this->validate([
-    //             'nama_pengguna_delete'=>'required|min:3|max:50',
-    //             'email_pengguna_delete' => 'required|email|unique:users,email',
-    //             'password_pengguna_delete'=>'min:6|required_with:konfirmasi_password_pengguna_create|same:konfirmasi_password_pengguna_create',
-    //             'konfirmasi_password_pengguna_delete'=>'min:6',
-    //             'utype_pengguna_delete'=>'required|string',
+    public function pengguna_edit($id)
+    {
+        $pengguna_edit = User::find($id);
+        $this->nama_pengguna_set = $pengguna_edit->name;
+        $this->email_pengguna_set = $pengguna_edit->email;
+        $this->password_pengguna_set = $pengguna_edit->password;
+        $this->password_pengguna_set = $pengguna_edit->password;
+        $this-> konfirmasi_password_pengguna_set = $pengguna_edit->password;
+        $this->utype_pengguna_set = $pengguna_edit->utype;
+        $this->id_pengguna_set = $pengguna_edit->id;
 
-    //         ]);
+        $this->dispatchBrowserEvent('swal',[
+            'position'=> 'top-right',
+            'icon'=> 'success',
+            'title'=> 'Pengguna berhasil terdeteksi!',
+            'showConfirmButton'=> false,
+            'timer'=> 1500
+        ]);
+    }
 
-    //         $delete_pengguna = new User();
-    //         $delete_pengguna->name = $this->nama_pengguna_delete;
-    //         $delete_pengguna->email = $this->email_pengguna_delete;
-    //         $delete_pengguna->password = Hash::make($this->password_pengguna_delete);
-    //         $delete_pengguna->utype = $this->utype_pengguna_delete;
-    //         $delete_pengguna->save();
+    public function set_pengguna()
+    {
+        try {
+            $this->validate([
+                'nama_pengguna_set' => 'required|string',
+                'email_pengguna_set' => 'required|string',
+                'utype_pengguna_set' => 'required|string',
+                'password_pengguna_set' => 'required|string',
+                'konfirmasi_password_pengguna_set' => 'required|string'
 
-    //         $this->dispatchBrowserEvent('swal',[
-    //             'position'=> 'centered',
-    //             'icon'=> 'success',
-    //             'title'=> 'Pengguna Berhasil di Hapus!',
-    //             'showConfirmButton'=> false,
-    //             'timer'=> 1500
-    //         ]);
+            ]);
 
-    //         $this->reset([
-    //             'nama_pengguna_create',
-    //             'email_pengguna_create',
-    //             'password_pengguna_create',
-    //             'konfirmasi_password_pengguna_create',
-    //             'utype_pengguna_create',
-    //         ]);
-    //     } catch (\Throwable) {
-    //         $this->dispatchBrowserEvent('swal',[
-    //             'position'=> 'centered',
-    //             'icon'=> 'error',
-    //             'title'=> 'Pengguna gagal tersimpan!',
-    //             'showConfirmButton'=> false,
-    //             'timer'=> 1500
-    //         ]);
-    //     }
-    // }
+            $set_pengguna = User::where('id',$this->id_pengguna_set)->first();
+            $set_pengguna->name = $this->nama_pengguna_set;
+            $set_pengguna->email = $this->email_pengguna_set;
+            $set_pengguna->password = $this->password_pengguna_set;
+            $set_pengguna->utype = $this->utype_pengguna_set;
+            $set_pengguna->save();
+
+            $this->dispatchBrowserEvent('swal',[
+                'position'=> 'centered',
+                'icon'=> 'success',
+                'title'=> 'Pengguna berhasil tersimpan!',
+                'showConfirmButton'=> false,
+                'timer'=> 1500
+            ]);
+
+        } catch (\Throwable) {
+            $this->dispatchBrowserEvent('swal',[
+                'position'=> 'centered',
+                'icon'=> 'error',
+                'title'=> 'Pengguna gagal tersimpan!',
+                'showConfirmButton'=> false,
+                'timer'=> 1500
+            ]);
+        }
+
+    }
 
     public function pengguna_destroy($id)
     {
-        $pengguna = User::find($id);
-        $this->nama_pengguna_delete = $pengguna->name;
-        $this->email_pengguna_delete = $pengguna->email;
-        $this->utype_pengguna_delete = $pengguna->utype;
-        $this->password_pengguna_delete = $pengguna->password;
-        $this->konfirmasi_password_pengguna_delete = $pengguna->password;
-        $this->id_pengguna_destroy = $pengguna->id;
+        $pengguna_destroy = User::find($id);
+        $this->nama_pengguna_delete = $pengguna_destroy->name;
+        $this->email_pengguna_delete = $pengguna_destroy->email;
+        $this->password_pengguna_delete = $pengguna_destroy->password;
+        $this->konfirmasi_password_pengguna_delete = $pengguna_destroy->password;
+        $this->utype_pengguna_delete = $pengguna_destroy->utype;
+        $this->id_pengguna_delete = $pengguna_destroy->id;
 
         $this->dispatchBrowserEvent('swal',[
             'position'=> 'top-right',
@@ -148,16 +162,8 @@ class PenggunaComponent extends Component
 
     public function delete_pengguna()
     {
-        try {
-            $this->validate([
-                'nama_pengguna_delete'=>'required|string',
-                'email_pengguna_delete'=>'required|string',
-                'utype_pengguna_delete'=>'required|string',
-                'password_pengguna_delete'=>'required|string',
-
-            ]);
-
-            $delete_pengguna = User::where('id',$this->id_delete_pengguna)->first();
+       try {
+            $delete_pengguna = User::where('id',$this->id_pengguna_delete)->first();
             $delete_pengguna->delete();
 
             $this->dispatchBrowserEvent('swal',[
@@ -167,12 +173,11 @@ class PenggunaComponent extends Component
                 'showConfirmButton'=> false,
                 'timer'=> 1500
             ]);
-
             $this->reset([
                 'nama_pengguna_delete'
             ]);
 
-        } catch (\Throwable) {
+       } catch (\Throwable) {
             $this->dispatchBrowserEvent('swal',[
                 'position'=> 'centered',
                 'icon'=> 'error',
@@ -180,7 +185,7 @@ class PenggunaComponent extends Component
                 'showConfirmButton'=> false,
                 'timer'=> 1500
             ]);
-        }
+       }
     }
 
     public function pengguna_download()

@@ -1,4 +1,4 @@
-<header class="app-header fixed-top">
+<header class="app-header fixed-top ">
     <div class="app-header-inner">
         <div class="container-fluid py-2">
             <div class="app-header-content">

@@ -15,8 +15,6 @@ use Livewire\WithPagination;
 class CustomersComponent extends Component
 {
 
-    public $id_approved;
-
     use WithPagination;
     protected $paginationTheme = "bootstrap";
 

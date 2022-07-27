@@ -218,13 +218,13 @@
                 </div>
             </div>
         </div>
-        <div class="app-card app-card-orders-table shadow-sm mb-5">
+        <div class="app-card app-card-orders-table shadow-sm mb-5 mt-2">
             <div class="app-card-body">
                 <div class="table-responsive">
                     <table class="table app-table-hover mb-0 text-left">
                         <thead>
                             <tr class="text-center">
-                                <th class="cell">No.</th>
+                                <th class="cell">No</th>
                                 <th class="cell">Nama</th>
                                 <th class="cell">Email</th>
                                 <th class="cell">Jabatan</th>
@@ -252,9 +252,9 @@
                                     </td>
 
                                     <td>
-                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_lihat_password({{ $peng->id }})" class="btn btn-md btn-warning" href="#"><i class="fa-solid fa-eye"></i></a>
-                                        <a data-bs-toggle="modal" data-bs-target="#update-data-modal" wire:click="pengguna_edit({{ $peng->id }})" class="btn btn-md btn-info" href="#"><i class="fa-solid fa-pen-clip"></i></a>
-                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_destroy({{ $peng->id }})" class="btn btn-md btn-danger" href="#"><i class="fa-solid fa-trash-arrow-up"></i></a>
+                                        {{-- <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_lihat_password({{ $peng->id }})" class="btn btn-md btn-warning mb-2" href="#"><i class="fa-solid fa-eye"></i></a> --}}
+                                        <a data-bs-toggle="modal" data-bs-target="#update-data-modal" wire:click="pengguna_edit({{ $peng->id }})" class="btn btn-md btn-info mb-2" href="#"><i class="fa-solid fa-pen-clip"></i></a>
+                                        <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_destroy({{ $peng->id }})" class="btn btn-md btn-danger mb-2" href="#"><i class="fa-solid fa-trash-arrow-up"></i></a>
                                     </td>
                                 </tr>
                             @empty
