@@ -36,7 +36,7 @@ class PenggunaComponent extends Component
         $utype_pengguna_delete,
         $id_pengguna_delete;
 
-
+    // Create User//
     public function create_pengguna()
     {
         try {
@@ -82,6 +82,7 @@ class PenggunaComponent extends Component
         }
     }
 
+    //Edit User//
     public function pengguna_edit($id)
     {
         $pengguna_edit = User::find($id);
@@ -139,6 +140,7 @@ class PenggunaComponent extends Component
         }
     }
 
+    //Delete User//
     public function pengguna_destroy($id)
     {
         $pengguna_destroy = User::find($id);
@@ -179,29 +181,6 @@ class PenggunaComponent extends Component
                 'position' => 'centered',
                 'icon' => 'error',
                 'title' => 'Pengguna gagal terhapus!',
-                'showConfirmButton' => false,
-                'timer' => 1500
-            ]);
-        }
-    }
-
-    public function pengguna_download()
-    {
-        try {
-            $this->dispatchBrowserEvent('swal', [
-                'position' => 'centered',
-                'icon' => 'success',
-                'title' => 'Pengguna Berhasil Terdownload!',
-                'showConfirmButton' => false,
-                'timer' => 1500
-            ]);
-
-            return Excel::download(new ExportPengguna, 'DataPengguna.xlsx');
-        } catch (\Throwable) {
-            $this->dispatchBrowserEvent('swal', [
-                'position' => 'centered',
-                'icon' => 'error',
-                'title' => 'Pengguna gagal terdownload!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);

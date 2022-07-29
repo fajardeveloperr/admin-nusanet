@@ -4,23 +4,24 @@ namespace App\Http\Livewire\ManagerData;
 
 use Livewire\Component;
 
-use App\Exports\ManagerData\ExportCustomer;
-
-use Excel;
-
 use App\Models\Customer;
+use App\Models\Approval;
 
 use Livewire\WithPagination;
 
 class CustomersComponent extends Component
 {
 
+    public $message= '';
+    public $user_id= '';
+
+
     use WithPagination;
     protected $paginationTheme = "bootstrap";
-
     public $search;
 
 
+    //Delete Customer//
     public function delete_personal($id)
     {
 
@@ -36,28 +37,33 @@ class CustomersComponent extends Component
         ]);
     }
 
-
-    public function customer_download()
+    //rejected//
+    public function approved()
     {
-        try {
-            $this->dispatchBrowserEvent('swal',[
-                'position'=> 'centered',
-                'icon'=> 'success',
-                'title'=> 'Customer Berhasil Terdownload!',
-                'showConfirmButton'=> false,
-                'timer'=> 1500
-            ]);
+        $this->message = "Approved";
 
-           return Excel::download(new ExportCustomer,'DataCustomer.xlsx');
-        } catch (\Throwable) {
-            $this->dispatchBrowserEvent('swal',[
-                'position'=> 'centered',
-                'icon'=> 'error',
-                'title'=> 'Customer gagal terdownload!',
-                'showConfirmButton'=> false,
-                'timer'=> 1500
-            ]);
-        }
+
+        $this->dispatchBrowserEvent('swal',[
+            'position'=> 'centered',
+            'icon'=> 'success',
+            'title'=> 'Approved Customer telah berhasil!',
+            'showConfirmButton'=> false,
+            'timer'=> 1500
+        ]);
+    }
+
+    //approved//
+    public function rejected()
+    {
+        $this->message = 'Rejected';
+
+        $this->dispatchBrowserEvent('swal',[
+            'position'=> 'centered',
+            'icon'=> 'success',
+            'title'=> 'Rejected Customer telah berhasil!',
+            'showConfirmButton'=> false,
+            'timer'=> 1500
+        ]);
     }
 
     public function render()

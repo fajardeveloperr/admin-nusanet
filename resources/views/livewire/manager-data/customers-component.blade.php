@@ -16,25 +16,22 @@
                                         <div class="col-auto">
                                             <input wire:model="search" type="text" id="search-orders"
                                                 name="searchorders" class="form-control search-orders"
-                                                placeholder="Search">
+                                                placeholder="Search ....">
                                         </div>
                                     </form>
                                 </div>
                                 <!--//col-->
+                                <div class="col-auto">
+								    <select class="form-select w-auto" >
+										  <option selected value="option-1">All Status</option>
+										  <option value="option-2">Approved</option>
+										  <option value="option-3">Rejected</option>
+									</select>
+							    </div>
 
                                 <div class="col-auto">
-                                    <a class="btn app-btn-primary" wire:click.prefetch='customer_download'>
-                                        <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                            class="bi bi-download me-1" fill="currentColor"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                                            <path fill-rule="evenodd"
-                                                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                                        </svg>
-                                        Download
-                                    </a>
-                                </div>
+								    <input type="date" class="form-control" name="start_date">
+							    </div>
                             </div>
                             <!--//row-->
                         </div>
@@ -75,11 +72,9 @@
                                                 <thead class="bg-primary">
                                                     <tr class="text-center">
                                                         <th class="cell text-white align-middle text-center">No.</th>
-                                                        <th class="cell text-white align-middle text-center">ID
-                                                            Pelanggan
-                                                        </th>
-                                                        <th class="cell text-white align-middle text-center">Nama
-                                                            Lengkap</th>
+                                                        <th class="cell text-white align-middle text-center">Nama Lengkap</th>
+                                                        <th class="cell text-white align-middle text-center">Email</th>
+                                                        <th class="cell text-white align-middle text-center">Alamat </th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
                                                         <th class="cell text-white align-middle text-center">Aksi
                                                         </th>
@@ -97,28 +92,39 @@
                                                                     {{ $id }}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->customer_id }}</td>
-                                                                <td class="align-middle text-center text-secondary">
                                                                     {{ $custome->name }}</td>
                                                                 <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->status == null ? '-' : $custome->status }}
+                                                                    {{ $custome->email }}</td>
+                                                                <td class="align-middle text-center text-secondary">
+                                                                    {{ $custome->address }}</td>
+                                                                {{-- <td class="align-middle text-center text-secondary">
+                                                                    {{ $custome-> == null ? '-' : $custome->status }}
+                                                                </td> --}}
+                                                                <td class="align-middle text-center text-white badge bg-success mt-3">
+                                                                    -{{ $message}}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary">
                                                                     <a wire:click="{{ $custome->id ? null : $custome->id }}"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#detail-data{{ $item }}-modal{{ $id }}"
-                                                                        class="btn btn-md btn-success" href="#"><i
+                                                                        class="btn btn-md btn-success mb-2" href="#"><i
                                                                             class="fa-solid fa-eye text-white"></i></a>
                                                                     {{-- <a data-bs-toggle="modal"
                                                                             data-bs-target="#edit-data-modal"
                                                                             class="btn btn-md btn-warning" href="#"><i
                                                                                 class="fa-solid fa-edit"></i></a> --}}
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         wire:click="delete_personal(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-danger"><i
                                                                             class="fa-solid fa-trash text-white"></i>
-                                                                    </a>
+                                                                    </a> --}}
+
+                                                                    <a wire:click="approved"
+                                                                        class="btn btn-md btn-success text-white mb-2" href="#"><i class="fa-solid fa-circle-check"></i></a>
+                                                                    <a wire:click="rejected"
+                                                                        class="btn btn-md btn-danger text-white mb-2" href="#"><i class="fa-solid fa-ban"></i></a>
                                                                 </td>
+
                                                             </tr>
 
                                                             <!-- Modal view -->
@@ -488,44 +494,12 @@
                                                                                     <div class="col-sm-6"></div>
                                                                                 </div>
 
-                                                                                <div
-                                                                                    class="row border rounded py-2 mx-2 mb-2">
-                                                                                    <p
-                                                                                        class="p-0 m-0 ps-2 fw-bold mb-3">
-                                                                                        *)
-                                                                                        Data
-                                                                                        {{ $item == 'Personal' ? 'Status' : 'Status' }}
-                                                                                    </p>
-                                                                                    <div class="col-sm-6">
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Status
-                                                                                                :</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <select name="utype"
-                                                                                                    id="utype"
-                                                                                                    class="form-control form-control-sm"  wire:model="status_approved">
-                                                                                                    <option
-                                                                                                        value="#">
-                                                                                                        Pilih Status :
-                                                                                                    </option>
-                                                                                                        <option value="">Approved</option>
-                                                                                                        <option value="">Rejected</option>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                <div>
                                                                                     <div class="col-sm-6"></div>
                                                                                 </div>
                                                                                 <!-- End Template Row and Column -->
                                                                             </div>
                                                                         </div>
-
-                                                                        <div
-                                                                            class="modal-footer d-flex justify-content-end">
-                                                                            <button type="submit"class="btn btn-primary btn-lg rounded text-center">Confirm</button>
-                                                                        </div>
-
                                                                     </div>
                                                                 </div>
                                                             </div>
