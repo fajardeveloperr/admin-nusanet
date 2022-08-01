@@ -261,10 +261,10 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0 flex justify-content-center">
-                                        {{-- <a href="{{ route('register') }}">Belum punya akun?</a> --}}
+                                        <a href="{{ route('register') }}">Belum punya akun?</a>
                                         <button type="submit"
                                         class="btn btn-success btn-md btn-block rounded text-center">Masuk</button>
-                                        
+
                                     </div>
                                 </div>
                             </div>

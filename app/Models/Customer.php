@@ -37,4 +37,14 @@ class Customer extends Model
     {
         return $this->hasOne(Technical::class, 'id', 'id');
     }
+
+    public function approval()
+    {
+        return $this->hasOne(Approval::class, 'id', 'id');
+    }
+
+    public function service()
+    {
+        return $this->hasOne(Service::class, 'id', 'id');
+    }
 }

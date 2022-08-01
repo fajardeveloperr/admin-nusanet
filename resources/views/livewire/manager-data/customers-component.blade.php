@@ -22,16 +22,16 @@
                                 </div>
                                 <!--//col-->
                                 <div class="col-auto">
-								    <select class="form-select w-auto" >
-										  <option selected value="option-1">All Status</option>
-										  <option value="option-2">Approved</option>
-										  <option value="option-3">Rejected</option>
-									</select>
-							    </div>
+                                    <select class="form-select w-auto">
+                                        <option selected value="option-1">All Status</option>
+                                        <option value="option-2">Approved</option>
+                                        <option value="option-3">Rejected</option>
+                                    </select>
+                                </div>
 
                                 <div class="col-auto">
-								    <input type="date" class="form-control" name="start_date">
-							    </div>
+                                    <input type="date" class="form-control" name="start_date">
+                                </div>
                             </div>
                             <!--//row-->
                         </div>
@@ -72,9 +72,11 @@
                                                 <thead class="bg-primary">
                                                     <tr class="text-center">
                                                         <th class="cell text-white align-middle text-center">No.</th>
-                                                        <th class="cell text-white align-middle text-center">Nama Lengkap</th>
+                                                        <th class="cell text-white align-middle text-center">Nama
+                                                            Lengkap</th>
                                                         <th class="cell text-white align-middle text-center">Email</th>
-                                                        <th class="cell text-white align-middle text-center">Alamat </th>
+                                                        <th class="cell text-white align-middle text-center">Alamat
+                                                        </th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
                                                         <th class="cell text-white align-middle text-center">Aksi
                                                         </th>
@@ -97,18 +99,32 @@
                                                                     {{ $custome->email }}</td>
                                                                 <td class="align-middle text-center text-secondary">
                                                                     {{ $custome->address }}</td>
-                                                                {{-- <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome-> == null ? '-' : $custome->status }}
-                                                                </td> --}}
-                                                                <td class="align-middle text-center text-white badge bg-success mt-3">
-                                                                    -{{ $message}}
+                                                                <td class="align-middle text-center">
+                                                                    <span class="badge bg-success text-white">
+                                                                        {{ $custome->approval->isApproved ? 'Approved' : 'Rejected' }}
+                                                                    </span>
                                                                 </td>
+
                                                                 <td class="align-middle text-center text-secondary">
                                                                     <a wire:click="{{ $custome->id ? null : $custome->id }}"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#detail-data{{ $item }}-modal{{ $id }}"
-                                                                        class="btn btn-md btn-success mb-2" href="#"><i
-                                                                            class="fa-solid fa-eye text-white"></i></a>
+                                                                        class="btn btn-md btn-success mb-2"
+                                                                        href="#"><i
+                                                                        class="fa-solid fa-eye text-white"></i>
+                                                                    </a>
+
+                                                                    <a wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                        class="btn btn-md btn-success text-white mb-2"><i
+                                                                        class="fa-solid fa-circle-check"></i>
+                                                                    </a>
+
+                                                                    <a wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                        class="btn btn-md btn-danger text-white mb-2"
+                                                                        href="#"><i
+                                                                        class="fa-solid fa-ban"></i>
+                                                                    </a>
+
                                                                     {{-- <a data-bs-toggle="modal"
                                                                             data-bs-target="#edit-data-modal"
                                                                             class="btn btn-md btn-warning" href="#"><i
@@ -119,12 +135,7 @@
                                                                             class="fa-solid fa-trash text-white"></i>
                                                                     </a> --}}
 
-                                                                    <a wire:click="approved"
-                                                                        class="btn btn-md btn-success text-white mb-2" href="#"><i class="fa-solid fa-circle-check"></i></a>
-                                                                    <a wire:click="rejected"
-                                                                        class="btn btn-md btn-danger text-white mb-2" href="#"><i class="fa-solid fa-ban"></i></a>
                                                                 </td>
-
                                                             </tr>
 
                                                             <!-- Modal view -->
@@ -461,7 +472,7 @@
                                                                                                     readonly
                                                                                                     class="form-control-plaintext"
                                                                                                     id="staticEmail"
-                                                                                                    value="">
+                                                                                                    value="{{ $custome->service_package }}">
                                                                                             </div>
                                                                                         </div>
 
