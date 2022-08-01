@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('billings', function (Blueprint $table) {
+        Schema::create('approvals', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('billing_name');
-            $table->string('billing_contact');
-            $table->string('billing_email');
+            $table->boolean('isApproved');
+            $table->boolean('isRejected');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billings');
+        Schema::dropIfExists('approvals');
     }
 };
