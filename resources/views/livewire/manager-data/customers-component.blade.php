@@ -83,6 +83,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-dark">
+
                                                     @php
                                                         $id = 1;
                                                     @endphp
@@ -101,7 +102,8 @@
                                                                     {{ $custome->address }}</td>
                                                                 <td class="align-middle text-center">
                                                                     <span class="badge bg-success text-white">
-                                                                        {{ $custome->approval->isApproved ? 'Approved' : 'Rejected' }}
+                                                                        {{ $custome->approval->isApproved ? 'Approved' : '' }}
+                                                                        {{ $custome->approval->isRejected ? 'Rejected' : '' }}
                                                                     </span>
                                                                 </td>
 
@@ -134,7 +136,6 @@
                                                                         class="btn btn-md btn-danger"><i
                                                                             class="fa-solid fa-trash text-white"></i>
                                                                     </a> --}}
-
                                                                 </td>
                                                             </tr>
 
@@ -518,6 +519,7 @@
                                                             @php
                                                                 $id++;
                                                             @endphp
+
                                                         @endif
                                                     @endforeach
                                                 </tbody>
