@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTableServiceMenus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('technicals', function (Blueprint $table) {
+        Schema::create('service_menus', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('technicals_name');
-            $table->string('technicals_contact');
-            $table->string('technicals_email');
+            $table->string('service_name');
+            $table->string('service_price');
+            $table->string('discount');
+            $table->dateTime('started_at');
+            $table->dateTime('expired_at');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('technicals');
+        Schema::dropIfExists('service_menus');
     }
-};
+}
