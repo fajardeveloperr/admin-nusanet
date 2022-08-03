@@ -113,18 +113,17 @@
                                                                         data-bs-target="#detail-data{{ $item }}-modal{{ $id }}"
                                                                         class="btn btn-md btn-success mb-2"
                                                                         href="#"><i
-                                                                        class="fa-solid fa-eye text-white"></i>
+                                                                            class="fa-solid fa-eye text-white"></i>
                                                                     </a>
 
                                                                     <a wire:click="approved_status(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-success text-white mb-2"><i
-                                                                        class="fa-solid fa-circle-check"></i>
+                                                                            class="fa-solid fa-circle-check"></i>
                                                                     </a>
 
                                                                     <a wire:click="rejected_status(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-danger text-white mb-2"
-                                                                        href="#"><i
-                                                                        class="fa-solid fa-ban"></i>
+                                                                        href="#"><i class="fa-solid fa-ban"></i>
                                                                     </a>
 
                                                                     {{-- <a data-bs-toggle="modal"
@@ -519,7 +518,6 @@
                                                             @php
                                                                 $id++;
                                                             @endphp
-
                                                         @endif
                                                     @endforeach
                                                 </tbody>
@@ -539,7 +537,6 @@
                         </div>
                         <!--//tab-content-->
 
-
                     </div>
                 </div>
             </div>
@@ -549,3 +546,10 @@
     </div>
 
 </div>
+@include('includes.data-table')
+<script>
+    $(document).ready( function () {
+        $('.table').DataTable();
+    } );
+</script>
+
