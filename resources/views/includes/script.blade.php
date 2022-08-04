@@ -16,4 +16,5 @@
         Swal.fire(e.detail);
     });
 </script>
+
 @livewireScripts

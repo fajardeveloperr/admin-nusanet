@@ -5,15 +5,19 @@ namespace App\Http\Livewire\ManagerData;
 use Livewire\Component;
 
 use App\Models\Customer;
+
 use App\Models\Approval;
+
+use Carbon\Carbon;
+
+use Illuminate\Http\Request;
 
 use Livewire\WithPagination;
 
 class CustomersComponent extends Component
 {
 
-    public $message = '';
-    public $user_id = '';
+
 
 
     use WithPagination;
@@ -71,6 +75,8 @@ class CustomersComponent extends Component
             'timer' => 1500
         ]);
     }
+
+
 
     public function render()
     {

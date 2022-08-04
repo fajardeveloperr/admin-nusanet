@@ -30,7 +30,7 @@
                                 </div>
 
                                 <div class="col-auto">
-                                    <input type="date" class="form-control" name="start_date">
+                                    <input  type="date" class="form-control text-center " name="start_date" width="100%" placeholder="Date-Time">
                                 </div>
                             </div>
                             <!--//row-->
@@ -43,6 +43,7 @@
 
                 @php
                     $class = ['Personal', 'Bussiness'];
+                    $status = ['Approved', 'Rejected'];
                 @endphp
 
                 <div class="card">
@@ -58,16 +59,16 @@
                                     aria-selected="true">{{ $cls }}</a>
                             @endforeach
                         </nav>
-                    </div>
-                    <div class="card-body" width="100%">
+                    </div
+                    <div class="card-body">
                         <div class="tab-content" id="orders-table-tab-content">
                             @foreach ($class as $item)
                                 <div class="tab-pane fade show {{ $item == 'Personal' ? 'active' : null }}"
                                     id="orders-{{ $item }}" role="tablist"
                                     aria-labelledby="orders-{{ $item }}-tab">
                                     <div class="app-card app-card-orders-table">
-                                        <div class="app-card-body">
-                                            <table class="table table-responsive text-left pt-2"
+                                        <div class="app-card-body table-responsive">
+                                            <table class="table text-left pt-2"
                                                 id="datatables-{{ $item }}" style="width: 100%;">
                                                 <thead class="bg-primary">
                                                     <tr class="text-center">
@@ -110,9 +111,9 @@
                                                                             Rejected
                                                                         </span>
                                                                     @else
-                                                                    <span class="badge bg-secondary text-white">
-                                                                        -
-                                                                    </span>
+                                                                        <span class="badge bg-secondary text-white">
+                                                                            -
+                                                                        </span>
                                                                     @endif
 
                                                                 </td>
