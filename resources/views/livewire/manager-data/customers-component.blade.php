@@ -101,10 +101,20 @@
                                                                 <td class="align-middle text-center text-secondary">
                                                                     {{ $custome->address }}</td>
                                                                 <td class="align-middle text-center">
-                                                                    <span class="badge bg-success text-white">
-                                                                        {{ $custome->approval->isApproved ? 'Approved' : '' }}
-                                                                        {{ $custome->approval->isRejected ? 'Rejected' : '' }}
+                                                                    @if ($custome->approval->isApproved)
+                                                                        <span class="badge bg-success text-white">
+                                                                            Approved
+                                                                        </span>
+                                                                    @elseif ($custome->approval->isRejected)
+                                                                        <span class="badge bg-danger text-white">
+                                                                            Rejected
+                                                                        </span>
+                                                                    @else
+                                                                    <span class="badge bg-secondary text-white">
+                                                                        -
                                                                     </span>
+                                                                    @endif
+
                                                                 </td>
 
                                                                 <td class="align-middle text-center text-secondary">
@@ -548,8 +558,7 @@
 </div>
 @include('includes.data-table')
 <script>
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('.table').DataTable();
-    } );
+    });
 </script>
-
