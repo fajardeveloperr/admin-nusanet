@@ -30,7 +30,8 @@
                                 </div>
 
                                 <div class="col-auto">
-                                    <input wire:model="date_picker" type="date" class="form-control text-center " name="start_date" width="100%">
+                                    <input wire:model="date_picker" type="date" class="form-control text-center "
+                                        name="start_date" width="100%">
 
                                 </div>
                             </div>
@@ -59,507 +60,444 @@
                                     aria-selected="true">{{ $cls }}</a>
                             @endforeach
                         </nav>
-                    </div
-                    <div class="card-body">
-                        <div class="tab-content" id="orders-table-tab-content">
-                            @foreach ($class as $item)
-                                <div class="tab-pane fade show {{ $item == 'Personal' ? 'active' : null }}"
-                                    id="orders-{{ $item }}" role="tablist"
-                                    aria-labelledby="orders-{{ $item }}-tab">
-                                    <div class="app-card app-card-orders-table">
-                                        <div class="app-card-body table-responsive">
-                                            <table class="table text-left pt-2"
-                                                id="datatables-{{ $item }}" style="width: 100%;">
-                                                <thead class="bg-primary">
-                                                    <tr class="text-center">
-                                                        <th class="cell text-white align-middle text-center">No.</th>
-                                                        <th class="cell text-white align-middle text-center">Name</th>
-                                                        <th class="cell text-white align-middle text-center">Email</th>
-                                                        <th class="cell text-white align-middle text-center">Address</th>
-                                                        <th class="cell text-white align-middle text-center">Created_At</th>
-                                                        <th class="cell text-white align-middle text-center">Status</th>
-                                                        <th class="cell text-white align-middle text-center">Aksi
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="bg-dark">
+                    </div <div class="card-body">
+                    <div class="tab-content p-3" id="orders-table-tab-content">
+                        @foreach ($class as $item)
+                            <div class="tab-pane fade show {{ $item == 'Personal' ? 'active' : null }}"
+                                id="orders-{{ $item }}" role="tablist"
+                                aria-labelledby="orders-{{ $item }}-tab">
+                                <div class="app-card app-card-orders-table">
+                                    <div class="app-card-body table-responsive">
+                                        <table class="table text-left pt-2 table-bordered table-striped"
+                                            id="datatables-{{ $item }}" style="width: 100%;">
+                                            <colgroup>
+                                                <col style="width: 5%;">
+                                                <col style="width: 13%;">
+                                                <col style="width: 13%;">
+                                                <col style="width: 28%;">
+                                                <col style="width: 13%;">
+                                                <col style="width: 13%;">
+                                                <col style="width: 15%;">
+                                            </colgroup>
+                                            <thead class="bg-primary bg-gradient">
+                                                <tr class="text-center">
+                                                    <th class="cell text-white align-middle text-center">No.</th>
+                                                    <th class="cell text-white align-middle text-center">Name</th>
+                                                    <th class="cell text-white align-middle text-center">Email</th>
+                                                    <th class="cell text-white align-middle text-center">Address</th>
+                                                    <th class="cell text-white align-middle text-center">Created_At</th>
+                                                    <th class="cell text-white align-middle text-center">Status</th>
+                                                    <th class="cell text-white align-middle text-center">Aksi
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-light bg-gradient">
+                                                @php
+                                                    $id = 1;
+                                                @endphp
+                                                @foreach ($customers as $custome)
+                                                    @if ($custome->class == $item)
+                                                        <tr class="text-black" style="text-align: center;">
+                                                            <td class="align-middle text-center text-secondary">
+                                                                {{ $id }}
+                                                            </td>
+                                                            <td class="align-middle text-center text-secondary">
+                                                                {{ $custome->name }}
+                                                            </td>
+                                                            <td class="align-middle text-center text-secondary">
+                                                                {{ $custome->email }}
+                                                            </td>
+                                                            <td class="align-middle text-secondary">
+                                                                <p style="text-align: justify;">{{ $custome->address }}
+                                                                </p>
+                                                            </td>
+                                                            <td class="align-middle text-center text-secondary">
+                                                                {{ $custome->created_at }}
+                                                            </td>
+                                                            <td class="align-middle text-center">
+                                                                @if ($custome->approval->isApproved)
+                                                                    <span class="badge bg-success text-white">
+                                                                        Approved
+                                                                    </span>
+                                                                @elseif ($custome->approval->isRejected)
+                                                                    <span class="badge bg-danger text-white">
+                                                                        Rejected
+                                                                    </span>
+                                                                @else
+                                                                    <span class="badge bg-secondary text-white">
+                                                                        -
+                                                                    </span>
+                                                                @endif
 
-                                                    @php
-                                                        $id = 1;
-                                                    @endphp
-
-                                                    @foreach ($customers as $custome)
-                                                        @if ($custome->class == $item)
-                                                            <tr style="text-align: center;">
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    {{ $id }}
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->name }}
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->email }}
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->address }}
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->created_at }}
-                                                                </td>
-                                                                <td class="align-middle text-center">
-                                                                    @if ($custome->approval->isApproved)
-                                                                        <span class="badge bg-success text-white">
-                                                                            Approved
-                                                                        </span>
-                                                                    @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge bg-danger text-white">
-                                                                            Rejected
-                                                                        </span>
-                                                                    @else
-                                                                        <span class="badge bg-secondary text-white">
-                                                                            -
-                                                                        </span>
-                                                                    @endif
-
-                                                                </td>
-
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    <a wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                            </td>
+                                                            <td class="align-middle text-center text-secondary">
+                                                                <div class="btn-group" role="group"
+                                                                    aria-label="Basic example">
+                                                                    <button type="button"
+                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                        class="btn btn-md btn-success"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}"
-                                                                        class="btn btn-md btn-success mb-2"
-                                                                        href="#"><i
-                                                                            class="fa-solid fa-eye text-white"></i>
-                                                                    </a>
+                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                        <i class="fa-solid fa-eye text-white"></i>
+                                                                    </button>
+                                                                    <button type="button"
+                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                        class="btn btn-md btn-success text-white">
+                                                                        <i class="fa-solid fa-circle-check"></i>
+                                                                    </button>
+                                                                    <button type="button"
+                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                        class="btn btn-md btn-danger text-white">
+                                                                        <i class="fa-solid fa-ban"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
 
-                                                                    <a wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                        class="btn btn-md btn-success text-white mb-2"><i
-                                                                            class="fa-solid fa-circle-check"></i>
-                                                                    </a>
-
-                                                                    <a wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                        class="btn btn-md btn-danger text-white mb-2"
-                                                                        href="#"><i class="fa-solid fa-ban"></i>
-                                                                    </a>
-
-                                                                    {{-- <a data-bs-toggle="modal"
-                                                                            data-bs-target="#edit-data-modal"
-                                                                            class="btn btn-md btn-warning" href="#"><i
-                                                                                class="fa-solid fa-edit"></i></a> --}}
-                                                                    {{-- <a href="#"
-                                                                        wire:click="delete_personal(`{{ $custome->id }}`)"
-                                                                        class="btn btn-md btn-danger"><i
-                                                                            class="fa-solid fa-trash text-white"></i>
-                                                                    </a> --}}
-                                                                </td>
-                                                            </tr>
-
-                                                            <!-- Modal view -->
-                                                            <div wire:ignore.self class="modal fade"
-                                                                id="detail-data{{ $item }}-modal{{ $id }}"
-                                                                tabindex="-1" role="dialog"
-                                                                aria-labelledby="exampleModalCenterTitle"
-                                                                aria-hidden="true">
-                                                                <div
-                                                                    class="modal-dialog modal-dialog-scrollable modal-lg">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title text-success"
-                                                                                id="exampleModalLongTitle">Informasi
-                                                                                Data
-
-                                                                                {{ $item == 'Personal' ? 'Personal' : 'Bussiness' }}
-                                                                            </h5>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div class="pd-20 card-box height-20-p">
-                                                                                <p
-                                                                                    class="h4 text-primary text-center mb-5">
-                                                                                    Form Registrasi Internet
-                                                                                </p>
-                                                                                <!-- Start Template Row and Column -->
+                                                        <!-- Modal view -->
+                                                        <div wire:ignore.self class="modal fade"
+                                                            id="detail-data{{ $item }}-modal{{ $id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalCenterTitle"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-success"
+                                                                            id="exampleModalLongTitle">Informasi
+                                                                            Data
+                                                                            {{ $item == 'Personal' ? 'Personal' : 'Bussiness' }}
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body p-3">
+                                                                        <div
+                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            <p
+                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                *) Data
+                                                                                {{ $item == 'Personal' ? 'Personal' : 'Penanggung Jawab' }}
+                                                                            </p>
+                                                                            <div
+                                                                                class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
                                                                                 <div
-                                                                                    class="row border rounded py-2 mx-2 mb-2">
-                                                                                    <p
-                                                                                        class="p-0 m-0 ps-2 fw-bold mb-3">
-                                                                                        *)
-                                                                                        Data
-                                                                                        {{ $item == 'Personal' ? 'Personal' : 'Penanggung Jawab' }}
-                                                                                    </p>
-                                                                                    <div
-                                                                                        class="{{ $item == 'Personal' ? 'col-sm-12' : 'col-sm-6' }}">
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Name
-                                                                                                :</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->name }}">
-                                                                                            </div>
+                                                                                    class="{{ $item == 'Personal' ? 'col-sm-12' : 'col-sm-6' }}">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="customer_id"
+                                                                                            class="form-label text-secondary">No.
+                                                                                            ID Pelanggan</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control text-secondary"
+                                                                                            id="customer_id"
+                                                                                            value="{{ $custome->customer_id }}">
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="customer_name"
+                                                                                            class="form-label text-secondary">Nama
+                                                                                            Lengkap</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control text-secondary"
+                                                                                            id="customer_name"
+                                                                                            value="{{ $custome->name }}">
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="address"
+                                                                                            class="form-label text-secondary">Alamat
+                                                                                            Lengkap</label>
+                                                                                        <textarea class="form-control text-secondary" name="address" id="address" rows="3"
+                                                                                            style="text-align: justify; height:100%;" readonly>{{ $custome->address }}</textarea>
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="email_address"
+                                                                                            class="form-label text-secondary">Email</label>
+                                                                                        <input type="email" readonly
+                                                                                            class="form-control text-secondary"
+                                                                                            id="email_address"
+                                                                                            value="{{ $custome->email }}">
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="identity_number"
+                                                                                            class="form-label text-secondary">No.
+                                                                                            Identitas</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control text-secondary"
+                                                                                            id="identity_number"
+                                                                                            value="{{ $custome->identity_number }}">
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="phone_number"
+                                                                                            class="form-label text-secondary">No.
+                                                                                            HP/WA yang aktif</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control text-secondary"
+                                                                                            id="phone_number"
+                                                                                            value="{{ $custome->phone_number }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                @if ($item == 'Bussiness')
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="mb-3">
+                                                                                            <label for="company_name"
+                                                                                                class="form-label text-secondary">Nama
+                                                                                                Perusahaan</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="company_name"
+                                                                                                value="{{ $custome->company_name }}">
                                                                                         </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">No.Identity</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->identity_number }}">
-                                                                                            </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="company_address"
+                                                                                                class="form-label text-secondary">Alamat
+                                                                                                Perusahaan</label>
+                                                                                            <textarea class="form-control text-secondary" id="company_address" rows="3"
+                                                                                                style="height: 100%; text-align: justify;" readonly>{{ $custome->company_address }}</textarea>
                                                                                         </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Email</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->email }}">
-                                                                                            </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label for="company_npwp"
+                                                                                                class="form-label text-secondary">No.
+                                                                                                NPWP
+                                                                                                Perusahaan</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="company_npwp"
+                                                                                                value="{{ $custome->company_npwp }}">
                                                                                         </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Phone
-                                                                                                Number</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->phone_number }}">
-                                                                                            </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="company_phone_number"
+                                                                                                class="form-label text-secondary">No.
+                                                                                                Telepon
+                                                                                                Perusahaan</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="company_phone_number"
+                                                                                                value="{{ $custome->company_phone_number }}">
                                                                                         </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Address</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->address }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Reference
-                                                                                                ID</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->reference_id }}">
-                                                                                            </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="company_employees"
+                                                                                                class="form-label text-secondary">Jumlah
+                                                                                                Karyawan
+                                                                                                Perusahaan</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="company_employees"
+                                                                                                value="{{ $custome->company_employees }}">
                                                                                         </div>
                                                                                     </div>
-                                                                                    @if ($item == 'Bussiness')
-                                                                                        <div class="col-sm-6">
-                                                                                            <div class="mb-3 row">
-                                                                                                <label
-                                                                                                    for="company_name"
-                                                                                                    class="col-sm-6 col-form-label">Nama
-                                                                                                    Perusahaan</label>
-                                                                                                <div class="col-sm-6">
-                                                                                                    <input
-                                                                                                        type="text"
-                                                                                                        readonly
-                                                                                                        class="form-control-plaintext"
-                                                                                                        id="company_name"
-                                                                                                        value=": {{ $custome->company_name }}">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="mb-3 row">
-                                                                                                <label
-                                                                                                    for="company_address"
-                                                                                                    class="col-sm-6 col-form-label">Alamat
-                                                                                                    Perusahaan</label>
-                                                                                                <div class="col-sm-6">
-                                                                                                    <input
-                                                                                                        type="text"
-                                                                                                        readonly
-                                                                                                        class="form-control-plaintext"
-                                                                                                        id="company_address"
-                                                                                                        value=": {{ $custome->company_address }}">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="mb-3 row">
-                                                                                                <label
-                                                                                                    for="company_npwp"
-                                                                                                    class="col-sm-6 col-form-label">No.
-                                                                                                    NPWP
-                                                                                                    Perusahaan</label>
-                                                                                                <div class="col-sm-6">
-                                                                                                    <input
-                                                                                                        type="text"
-                                                                                                        readonly
-                                                                                                        class="form-control-plaintext"
-                                                                                                        id="company_npwp"
-                                                                                                        value=": {{ $custome->company_npwp }}">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="mb-3 row">
-                                                                                                <label
-                                                                                                    for="company_phone_number"
-                                                                                                    class="col-sm-6 col-form-label">No.
-                                                                                                    Telepon
-                                                                                                    Perusahaan</label>
-                                                                                                <div class="col-sm-6">
-                                                                                                    <input
-                                                                                                        type="text"
-                                                                                                        readonly
-                                                                                                        class="form-control-plaintext"
-                                                                                                        id="company_phone_number"
-                                                                                                        value=": {{ $custome->company_phone_number }}">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="mb-3 row">
-                                                                                                <label
-                                                                                                    for="company_employees"
-                                                                                                    class="col-sm-6 col-form-label">Jumlah
-                                                                                                    Karyawan</label>
-                                                                                                <div class="col-sm-6">
-                                                                                                    <input
-                                                                                                        type="text"
-                                                                                                        readonly
-                                                                                                        class="form-control-plaintext"
-                                                                                                        id="company_employees"
-                                                                                                        value=": {{ $custome->company_employees }}">
-                                                                                                </div>
-                                                                                            </div>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            <p
+                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                *) Data Billing
+                                                                            </p>
+                                                                            <div
+                                                                                class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                <div class="mb-3">
+                                                                                    <label for="billing_name"
+                                                                                        class="form-label text-secondary">Nama
+                                                                                        Billing</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control text-secondary"
+                                                                                        id="billing_name"
+                                                                                        value="{{ $custome->billing->billing_name }}">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="billing_contact"
+                                                                                        class="form-label text-secondary">Kontak
+                                                                                        Billing</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control text-secondary"
+                                                                                        id="billing_contact"
+                                                                                        value="{{ $custome->billing->billing_contact }}">
+                                                                                </div>
+                                                                                @php
+                                                                                    $bil = 1;
+                                                                                @endphp
+                                                                                @foreach (json_decode($custome->billing->billing_email) as $billingEmail)
+                                                                                    @if ($bil == 1)
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="billing_email_{{ $bil }}"
+                                                                                                class="form-label text-secondary">Email
+                                                                                                Billing</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="billing_email_{{ $bil }}"
+                                                                                                value="{{ $billingEmail }}">
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="alternate_billing_email_{{ $bil }}"
+                                                                                                class="form-label text-secondary">Alternatif
+                                                                                                Email
+                                                                                                Billing
+                                                                                                {{ $bil - 1 }}</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="alternate_billing_email_{{ $bil }}"
+                                                                                                value="{{ $billingEmail }}">
                                                                                         </div>
                                                                                     @endif
+                                                                                    @php
+                                                                                        $bil++;
+                                                                                    @endphp
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            <p
+                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                *) Data Technical
+                                                                            </p>
+                                                                            <div
+                                                                                class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                <div class="mb-3">
+                                                                                    <label for="billing_name"
+                                                                                        class="form-label text-secondary">Nama
+                                                                                        Teknikal</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control text-secondary"
+                                                                                        id="billing_name"
+                                                                                        value="{{ $custome->technical->technical_name }}">
                                                                                 </div>
-
-                                                                                <div
-                                                                                    class="row border rounded py-2 mx-2 mb-2">
-                                                                                    <p
-                                                                                        class="p-0 m-0 ps-2 fw-bold mb-3">
-                                                                                        *)
-                                                                                        Data
-                                                                                        {{ $item == 'Personal' ? 'Billing' : 'Billing' }}
-                                                                                    </p>
-                                                                                    <div class="col-sm-6">
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Name
-                                                                                                :</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->name }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Phone
-                                                                                                Number</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->phone_number }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Email</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->email }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Email
-                                                                                                Alternatif 1</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": fajarofficial1511@gmail.com">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Email
-                                                                                                Alternatif 2</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": fajar@gmail.com">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-sm-6"></div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="billing_contact"
+                                                                                        class="form-label text-secondary">Kontak
+                                                                                        Teknikal</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control text-secondary"
+                                                                                        id="billing_contact"
+                                                                                        value="{{ $custome->technical->technical_contact }}">
                                                                                 </div>
-
-                                                                                <div
-                                                                                    class="row border rounded py-2 mx-2 mb-2">
-                                                                                    <p
-                                                                                        class="p-0 m-0 ps-2 fw-bold mb-3">
-                                                                                        *)
-                                                                                        Data
-                                                                                        {{ $item == 'Personal' ? 'Teknis' : 'Teknis' }}
-                                                                                    </p>
-                                                                                    <div class="col-sm-6">
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Name
-                                                                                                :</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->name }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Phone
-                                                                                                Number</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->phone_number }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Email</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": {{ $custome->email }}">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-sm-6"></div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="billing_email"
+                                                                                        class="form-label text-secondary">Email
+                                                                                        Teknikal</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control text-secondary"
+                                                                                        id="billing_email"
+                                                                                        value="{{ $custome->technical->technical_email }}">
                                                                                 </div>
-
-                                                                                <div
-                                                                                    class="row border rounded py-2 mx-2 mb-2">
-                                                                                    <p
-                                                                                        class="p-0 m-0 ps-2 fw-bold mb-3">
-                                                                                        *)
-                                                                                        Data
-                                                                                        {{ $item == 'Personal' ? 'Layanan' : 'Layanan' }}
-                                                                                    </p>
-                                                                                    <div class="col-sm-6">
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Service
-                                                                                                :</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value="{{ $custome->service_package }}">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Photo
-                                                                                                KTP Identity</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": ">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3 row">
-                                                                                            <label for="staticEmail"
-                                                                                                class="col-sm-6 col-form-label">Photo
-                                                                                                Selfie Identity</label>
-                                                                                            <div class="col-sm-6">
-                                                                                                <img src=""
-                                                                                                    readonly
-                                                                                                    class="form-control-plaintext"
-                                                                                                    id="staticEmail"
-                                                                                                    value=": ">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-sm-6"></div>
-                                                                                </div>
-
-                                                                                <div>
-                                                                                    <div class="col-sm-6"></div>
-                                                                                </div>
-                                                                                <!-- End Template Row and Column -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            <p
+                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                *) Data Service
+                                                                            </p>
+                                                                            <div
+                                                                                class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                @php
+                                                                                    $servicePackage = json_decode($custome->service->service_package);
+                                                                                @endphp
+                                                                                <ol>
+                                                                                    @for ($i = 0; $i < count($servicePackage); $i++)
+                                                                                        <li>
+                                                                                            @foreach ($servicePackage[$i] as $key => $value)
+                                                                                                @if ($key == 'service_name')
+                                                                                                    <p class="fw-bold">
+                                                                                                        Nama Layanan :
+                                                                                                        <span
+                                                                                                            class="fw-normal">{{ $value }}</span>
+                                                                                                    </p>
+                                                                                                @elseif($key == 'service_price')
+                                                                                                    <p class="fw-bold">
+                                                                                                        Harga Layanan :
+                                                                                                        <span
+                                                                                                            class="fw-normal">{{ $value }}</span>
+                                                                                                    </p>
+                                                                                                @elseif($key == 'termofpaymentDeals')
+                                                                                                    <p class="fw-bold">
+                                                                                                        Jangka Waktu
+                                                                                                        Pembayaran :
+                                                                                                        <span
+                                                                                                            class="fw-normal">{{ $value }}</span>
+                                                                                                    </p>
+                                                                                                @endif
+                                                                                            @endforeach
+                                                                                        </li>
+                                                                                    @endfor
+                                                                                </ol>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            <p
+                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                *) Data Approval
+                                                                            </p>
+                                                                            <div
+                                                                                class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                @if ($custome->approval->isApproved)
+                                                                                    <span
+                                                                                        class="badge text-bg-success text-white fs-5">Data
+                                                                                        Telah Disetujui</span>
+                                                                                @elseif($custome->approval->isRejected)
+                                                                                    <span
+                                                                                        class="badge text-bg-danger text-white fs-5">Data
+                                                                                        Belum Disetujui</span>
+                                                                                @else
+                                                                                    <span
+                                                                                        class="badge text-bg-info text-white fs-5">Menunggu
+                                                                                        Persetujuan</span>
+                                                                                @endif
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            @php
-                                                                $id++;
-                                                            @endphp
-                                                        @endif
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                        </div>
+                                                        @php
+                                                            $id++;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                            @endforeach
-                            <!--//tab-pane-->
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//tab-pane-->
 
-                            {{-- <nav class="app-pagination">
+{{-- <nav class="app-pagination">
                                 <ul class="pagination justify-content-center">
                                     {{ $customers->links() }}
                                 </ul>
                             </nav> --}}
 
-                        </div>
-                        <!--//tab-content-->
+</div>
+<!--//tab-content-->
 
-                    </div>
-                </div>
-            </div>
-            <!--//container-fluid-->
-        </div>
-        <!--//app-content-->
-    </div>
+</div>
+</div>
+</div>
+<!--//container-fluid-->
+</div>
+<!--//app-content-->
+</div>
 
 </div>
 @include('includes.data-table')
@@ -567,4 +505,9 @@
     $(document).ready(function() {
         $('.table').DataTable();
     });
+</script>
+<script>
+    window.addEventListener('swal', event => {
+        setTimeout(() => location.reload(), 1500);
+    })
 </script>

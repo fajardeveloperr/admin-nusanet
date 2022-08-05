@@ -50,7 +50,6 @@ class CustomersComponent extends Component
         $approved_status->isRejected = false;
         $approved_status->save();
 
-
         $this->dispatchBrowserEvent('swal', [
             'position' => 'centered',
             'icon' => 'success',
@@ -63,10 +62,10 @@ class CustomersComponent extends Component
     //approved//
     public function rejected_status($id)
     {
-       $rejected_status = Approval::find($id);
-       $rejected_status->isRejected = true;
-       $rejected_status->isApproved = false;
-       $rejected_status->save();
+        $rejected_status = Approval::find($id);
+        $rejected_status->isRejected = true;
+        $rejected_status->isApproved = false;
+        $rejected_status->save();
 
         $this->dispatchBrowserEvent('swal', [
             'position' => 'centered',
@@ -82,9 +81,9 @@ class CustomersComponent extends Component
     public function render()
     {
         $customers = Customer::where('created_at', 'like', '%' . $this->date_picker . '%')
-        ->where('name', 'like', '%' . $this->search . '%')
-        ->where('email', 'like', '%' . $this->search . '%')
-        ->paginate(10);
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->where('email', 'like', '%' . $this->search . '%')
+            ->paginate(10);
 
         return view('livewire.manager-data.customers-component', compact('customers'))->layout('layouts.default');
     }
