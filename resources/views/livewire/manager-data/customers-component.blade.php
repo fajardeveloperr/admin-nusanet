@@ -30,7 +30,8 @@
                                 </div>
 
                                 <div class="col-auto">
-                                    <input  type="date" class="form-control text-center " name="start_date" width="100%" placeholder="Date-Time">
+                                    <input wire:model="date_picker" type="date" class="form-control text-center " name="start_date" width="100%">
+
                                 </div>
                             </div>
                             <!--//row-->
@@ -43,7 +44,6 @@
 
                 @php
                     $class = ['Personal', 'Bussiness'];
-                    $status = ['Approved', 'Rejected'];
                 @endphp
 
                 <div class="card">
@@ -73,11 +73,10 @@
                                                 <thead class="bg-primary">
                                                     <tr class="text-center">
                                                         <th class="cell text-white align-middle text-center">No.</th>
-                                                        <th class="cell text-white align-middle text-center">Nama
-                                                            Lengkap</th>
+                                                        <th class="cell text-white align-middle text-center">Name</th>
                                                         <th class="cell text-white align-middle text-center">Email</th>
-                                                        <th class="cell text-white align-middle text-center">Alamat
-                                                        </th>
+                                                        <th class="cell text-white align-middle text-center">Address</th>
+                                                        <th class="cell text-white align-middle text-center">Created_At</th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
                                                         <th class="cell text-white align-middle text-center">Aksi
                                                         </th>
@@ -96,11 +95,17 @@
                                                                     {{ $id }}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->name }}</td>
+                                                                    {{ $custome->name }}
+                                                                </td>
                                                                 <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->email }}</td>
+                                                                    {{ $custome->email }}
+                                                                </td>
                                                                 <td class="align-middle text-center text-secondary">
-                                                                    {{ $custome->address }}</td>
+                                                                    {{ $custome->address }}
+                                                                </td>
+                                                                <td class="align-middle text-center text-secondary">
+                                                                    {{ $custome->created_at }}
+                                                                </td>
                                                                 <td class="align-middle text-center">
                                                                     @if ($custome->approval->isApproved)
                                                                         <span class="badge bg-success text-white">

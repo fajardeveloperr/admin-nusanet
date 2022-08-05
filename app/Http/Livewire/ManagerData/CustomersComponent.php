@@ -23,6 +23,7 @@ class CustomersComponent extends Component
     use WithPagination;
     protected $paginationTheme = "bootstrap";
     public $search;
+    public $date_picker;
 
 
     //Delete Customer//
@@ -80,10 +81,10 @@ class CustomersComponent extends Component
 
     public function render()
     {
-        $customers = Customer::where('customer_id', 'like', '%' . $this->search . '%')
-            ->orwhere('name', 'like', '%' . $this->search . '%')
-            ->orwhere('class', 'like', '%' . $this->search . '%')
-            ->paginate(5);
+        $customers = Customer::where('created_at', 'like', '%' . $this->date_picker . '%')
+        ->where('name', 'like', '%' . $this->search . '%')
+        ->where('email', 'like', '%' . $this->search . '%')
+        ->paginate(10);
 
         return view('livewire.manager-data.customers-component', compact('customers'))->layout('layouts.default');
     }
