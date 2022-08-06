@@ -1,6 +1,6 @@
 <!-- Javascript -->
 <script src="{{ asset('assets/plugins/popper.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Charts JS -->
 <script src="{{ asset('assets/plugins/chart.js/chart.min.js') }}"></script>
@@ -17,6 +17,5 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 @livewireScripts
