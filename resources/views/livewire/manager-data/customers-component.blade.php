@@ -22,10 +22,10 @@
                                 </div>
                                 <!--//col-->
                                 <div class="col-auto">
-                                    <select class="form-select w-auto">
-                                        <option selected value="option-1">All Status</option>
-                                        <option value="option-2">Approved</option>
-                                        <option value="option-3">Rejected</option>
+                                    <select class="form-select w-auto" id="filterStatus">
+                                        <option selected value="all">All Status</option>
+                                        <option value="approved">Approved</option>
+                                        <option value="rejected">Rejected</option>
                                     </select>
                                 </div>
 
@@ -92,71 +92,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="bg-light bg-gradient">
-                                                @php
-                                                    $id = 1;
-                                                @endphp
                                                 @foreach ($customers as $custome)
                                                     @if ($custome->class == $item)
-                                                        <tr class="text-black" style="text-align: center;">
-                                                            <td class="align-middle text-center text-secondary">
-                                                                {{ $id }}
-                                                            </td>
-                                                            <td class="align-middle text-center text-secondary">
-                                                                {{ $custome->name }}
-                                                            </td>
-                                                            <td class="align-middle text-center text-secondary">
-                                                                {{ $custome->email }}
-                                                            </td>
-                                                            <td class="align-middle text-secondary">
-                                                                <p style="text-align: justify;">{{ $custome->address }}
-                                                                </p>
-                                                            </td>
-                                                            <td class="align-middle text-center text-secondary">
-                                                                {{ $custome->created_at }}
-                                                            </td>
-                                                            <td class="align-middle text-center">
-                                                                @if ($custome->approval->isApproved)
-                                                                    <span class="badge bg-success text-white">
-                                                                        Approved
-                                                                    </span>
-                                                                @elseif ($custome->approval->isRejected)
-                                                                    <span class="badge bg-danger text-white">
-                                                                        Rejected
-                                                                    </span>
-                                                                @else
-                                                                    <span class="badge bg-secondary text-white">
-                                                                        -
-                                                                    </span>
-                                                                @endif
-
-                                                            </td>
-                                                            <td class="align-middle text-center text-secondary">
-                                                                <div class="btn-group" role="group"
-                                                                    aria-label="Basic example">
-                                                                    <button type="button"
-                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                        class="btn btn-md btn-success"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                        <i class="fa-solid fa-eye text-white"></i>
-                                                                    </button>
-                                                                    <button type="button"
-                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                        class="btn btn-md btn-success text-white">
-                                                                        <i class="fa-solid fa-circle-check"></i>
-                                                                    </button>
-                                                                    <button type="button"
-                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                        class="btn btn-md btn-danger text-white">
-                                                                        <i class="fa-solid fa-ban"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
                                                         <!-- Modal view -->
                                                         <div wire:ignore.self class="modal fade"
-                                                            id="detail-data{{ $item }}-modal{{ $id }}"
+                                                            id="detail-data{{ $item }}-modal{{ $custome->id }}"
                                                             tabindex="-1" role="dialog"
                                                             aria-labelledby="exampleModalCenterTitle"
                                                             aria-hidden="true">
@@ -463,9 +403,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        @php
-                                                            $id++;
-                                                        @endphp
                                                     @endif
                                                 @endforeach
                                             </tbody>
@@ -503,7 +440,339 @@
 @include('includes.data-table')
 <script>
     $(document).ready(function() {
-        $('.table').DataTable();
+        var categories = {!! json_encode($class) !!};
+        var dataSet = {!! json_encode($customers) !!}.data;
+        var tableArr = [];
+
+        var newDataArray = [];
+        categories.forEach(element => {
+            newDataArray[element] = [];
+            var nomorTabel = 1;
+
+            var ApprovalWidgets = `
+                <span class="badge text-bg-success">Approved</span>
+            `;
+            var RejectedWidgets = `
+                <span class="badge text-bg-danger">Rejected</span>
+            `;
+
+            dataSet.forEach(data => {
+                if (data.class == element) {
+                    data['nomor'] = nomorTabel;
+
+                    if (data.isApproved == true && data.isRejected == false) {
+                        data['status'] = ApprovalWidgets;
+                    } else if (data.isApproved == false && data.isRejected == true) {
+                        data['status'] = RejectedWidgets;
+                    } else {
+                        data['status'] = '-';
+                    }
+
+                    data['aksi'] = `
+                    <div class="btn-group" role="group"
+                        aria-label="Basic example">
+                        <button type="button"
+                            wire:click="${data.id ? null : data.id}"
+                            class="btn btn-md btn-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#detail-data${element}-modal${data.id}">
+                            <i class="fa-solid fa-eye text-white"></i>
+                        </button>
+                        <button type="button"
+                            wire:click="approved_status()"
+                            class="btn btn-md btn-success text-white">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                        <button type="button"
+                            wire:click="rejected_status()"
+                            class="btn btn-md btn-danger text-white">
+                            <i class="fa-solid fa-ban"></i>
+                        </button>
+                    </div>
+                    `;
+                    newDataArray[element].push(data);
+                    nomorTabel++;
+                }
+            });
+
+            tableArr[element] = $(`#datatables-${element}`).DataTable({
+                data: newDataArray[element],
+                columns: [{
+                        data: 'nomor'
+                    },
+                    {
+                        data: 'name'
+                    },
+                    {
+                        data: 'email'
+                    },
+                    {
+                        data: 'address'
+                    },
+                    {
+                        data: 'created_at'
+                    },
+                    {
+                        data: 'status'
+                    },
+                    {
+                        data: 'aksi'
+                    }
+                ]
+            });
+        });
+
+        $("#filterStatus").on('change', () => {
+            if ($("#filterStatus").val() == "approved") {
+                var newDataArray = [];
+                categories.forEach(element => {
+                    newDataArray[element] = [];
+                    var nomorTabel = 1;
+
+                    var ApprovalWidgets = `
+                        <span class="badge text-bg-success">Approved</span>
+                    `;
+                    var RejectedWidgets = `
+                         <span class="badge text-bg-danger">Rejected</span>
+                    `;
+
+                    dataSet.forEach(data => {
+                        if (data.class == element && data.isApproved == true && data
+                            .isRejected == false) {
+                            data['nomor'] = nomorTabel;
+
+                            if (data.isApproved == true && data.isRejected == false) {
+                                data['status'] = ApprovalWidgets;
+                            } else if (data.isApproved == false && data.isRejected ==
+                                true) {
+                                data['status'] = RejectedWidgets;
+                            } else {
+                                data['status'] = '-';
+                            }
+
+                            data['aksi'] = `
+                                <div class="btn-group" role="group"
+                                    aria-label="Basic example">
+                                    <button type="button"
+                                        wire:click="${data.id ? null : data.id}"
+                                        class="btn btn-md btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#detail-data${element}-modal${data.id}">
+                                        <i class="fa-solid fa-eye text-white"></i>
+                                    </button>
+                                    <button type="button"
+                                        wire:click="approved_status()"
+                                        class="btn btn-md btn-success text-white">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </button>
+                                    <button type="button"
+                                        wire:click="rejected_status()"
+                                        class="btn btn-md btn-danger text-white">
+                                        <i class="fa-solid fa-ban"></i>
+                                    </button>
+                                </div>
+                            `;
+                            newDataArray[element].push(data);
+                            nomorTabel++;
+                        }
+                    });
+
+                    tableArr[element].clear();
+                    tableArr[element].destroy();
+
+                    tableArr[element] = $(`#datatables-${element}`).DataTable({
+                        data: newDataArray[element],
+                        columns: [{
+                                data: 'nomor'
+                            },
+                            {
+                                data: 'name'
+                            },
+                            {
+                                data: 'email'
+                            },
+                            {
+                                data: 'address'
+                            },
+                            {
+                                data: 'created_at'
+                            },
+                            {
+                                data: 'status'
+                            },
+                            {
+                                data: 'aksi'
+                            }
+                        ]
+                    });
+                });
+            } else if ($("#filterStatus").val() == "rejected") {
+                var newDataArray = [];
+                categories.forEach(element => {
+                    newDataArray[element] = [];
+                    var nomorTabel = 1;
+
+                    var ApprovalWidgets = `
+                        <span class="badge text-bg-success">Approved</span>
+                    `;
+                    var RejectedWidgets = `
+                         <span class="badge text-bg-danger">Rejected</span>
+                    `;
+
+                    dataSet.forEach(data => {
+                        if (data.class == element && data.isApproved == false && data
+                            .isRejected == true) {
+                            data['nomor'] = nomorTabel;
+
+                            if (data.isApproved == true && data.isRejected == false) {
+                                data['status'] = ApprovalWidgets;
+                            } else if (data.isApproved == false && data.isRejected ==
+                                true) {
+                                data['status'] = RejectedWidgets;
+                            } else {
+                                data['status'] = '-';
+                            }
+
+                            data['aksi'] = `
+                                <div class="btn-group" role="group"
+                                    aria-label="Basic example">
+                                    <button type="button"
+                                        wire:click="${data.id ? null : data.id}"
+                                        class="btn btn-md btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#detail-data${element}-modal${data.id}">
+                                        <i class="fa-solid fa-eye text-white"></i>
+                                    </button>
+                                    <button type="button"
+                                        wire:click="approved_status()"
+                                        class="btn btn-md btn-success text-white">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </button>
+                                    <button type="button"
+                                        wire:click="rejected_status()"
+                                        class="btn btn-md btn-danger text-white">
+                                        <i class="fa-solid fa-ban"></i>
+                                    </button>
+                                </div>
+                            `;
+                            newDataArray[element].push(data);
+                            nomorTabel++;
+                        }
+                    });
+
+                    tableArr[element].clear();
+                    tableArr[element].destroy();
+
+                    tableArr[element] = $(`#datatables-${element}`).DataTable({
+                        data: newDataArray[element],
+                        columns: [{
+                                data: 'nomor'
+                            },
+                            {
+                                data: 'name'
+                            },
+                            {
+                                data: 'email'
+                            },
+                            {
+                                data: 'address'
+                            },
+                            {
+                                data: 'created_at'
+                            },
+                            {
+                                data: 'status'
+                            },
+                            {
+                                data: 'aksi'
+                            }
+                        ]
+                    });
+                });
+            } else {
+                var newDataArray = [];
+                categories.forEach(element => {
+                    newDataArray[element] = [];
+                    var nomorTabel = 1;
+
+                    var ApprovalWidgets = `
+                        <span class="badge text-bg-success">Approved</span>
+                    `;
+                    var RejectedWidgets = `
+                         <span class="badge text-bg-danger">Rejected</span>
+                    `;
+
+                    dataSet.forEach(data => {
+                        if (data.class == element) {
+                            data['nomor'] = nomorTabel;
+
+                            if (data.isApproved == true && data.isRejected == false) {
+                                data['status'] = ApprovalWidgets;
+                            } else if (data.isApproved == false && data.isRejected ==
+                                true) {
+                                data['status'] = RejectedWidgets;
+                            } else {
+                                data['status'] = '-';
+                            }
+
+                            data['aksi'] = `
+                                <div class="btn-group" role="group"
+                                    aria-label="Basic example">
+                                    <button type="button"
+                                        wire:click="${data.id ? null : data.id}"
+                                        class="btn btn-md btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#detail-data${element}-modal${data.id}">
+                                        <i class="fa-solid fa-eye text-white"></i>
+                                    </button>
+                                    <button type="button"
+                                        wire:click="approved_status()"
+                                        class="btn btn-md btn-success text-white">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </button>
+                                    <button type="button"
+                                        wire:click="rejected_status()"
+                                        class="btn btn-md btn-danger text-white">
+                                        <i class="fa-solid fa-ban"></i>
+                                    </button>
+                                </div>
+                            `;
+                            newDataArray[element].push(data);
+                            nomorTabel++;
+                        }
+                    });
+
+                    tableArr[element].clear();
+                    tableArr[element].destroy();
+
+                    tableArr[element] = $(`#datatables-${element}`).DataTable({
+                        data: newDataArray[element],
+                        columns: [{
+                                data: 'nomor'
+                            },
+                            {
+                                data: 'name'
+                            },
+                            {
+                                data: 'email'
+                            },
+                            {
+                                data: 'address'
+                            },
+                            {
+                                data: 'created_at'
+                            },
+                            {
+                                data: 'status'
+                            },
+                            {
+                                data: 'aksi'
+                            }
+                        ]
+                    });
+                });
+            }
+        })
     });
 </script>
 <script>

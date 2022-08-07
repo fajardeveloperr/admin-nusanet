@@ -11,22 +11,16 @@ use App\Models\Approval;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class CustomersComponent extends Component
 {
-
-
-
-
     use WithPagination;
     protected $paginationTheme = "bootstrap";
     public $search;
     public $date_picker;
 
-
-    //Delete Customer//
     public function delete_personal($id)
     {
 
@@ -42,7 +36,6 @@ class CustomersComponent extends Component
         ]);
     }
 
-    //approved//
     public function approved_status($id)
     {
         $approved_status = Approval::find($id);
@@ -59,7 +52,6 @@ class CustomersComponent extends Component
         ]);
     }
 
-    //approved//
     public function rejected_status($id)
     {
         $rejected_status = Approval::find($id);
@@ -76,14 +68,17 @@ class CustomersComponent extends Component
         ]);
     }
 
-
-
     public function render()
     {
-        $customers = Customer::where('created_at', 'like', '%' . $this->date_picker . '%')
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->where('email', 'like', '%' . $this->search . '%')
-            ->paginate(10);
+        if ($this->date_picker) {
+            $customers = Customer::latest('customers.created_at')
+                ->join('approvals', 'customers.id', '=', 'approvals.id')
+                ->paginate(10);
+        } else {
+            $customers = Customer::join('approvals', 'customers.id', '=', 'approvals.id')
+                ->paginate(10);
+        }
+
 
         return view('livewire.manager-data.customers-component', compact('customers'))->layout('layouts.default');
     }
