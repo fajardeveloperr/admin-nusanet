@@ -13,19 +13,19 @@
                             <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                                 <div class="col-auto">
                                     <form class="table-search-form row gx-1 align-items-center">
-                                        <div class="col-auto">
+                                        {{-- <div class="col-auto">
                                             <input wire:model="search" type="text" id="search-orders"
                                                 name="searchorders" class="form-control search-orders"
                                                 placeholder="Search ....">
-                                        </div>
+                                        </div> --}}
                                     </form>
                                 </div>
                                 <!--//col-->
                                 <div class="col-auto">
-                                    <select class="form-select w-auto">
-                                        <option selected value="option-1">All Status</option>
-                                        <option value="option-2">Approved</option>
-                                        <option value="option-3">Rejected</option>
+                                    <select id="filter-status" class="form-select w-auto" >
+                                        <option selected value="" >All Status</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Rejected">Rejected</option>
                                     </select>
                                 </div>
 
@@ -87,8 +87,7 @@
                                                     <th class="cell text-white align-middle text-center">Address</th>
                                                     <th class="cell text-white align-middle text-center">Created_At</th>
                                                     <th class="cell text-white align-middle text-center">Status</th>
-                                                    <th class="cell text-white align-middle text-center">Aksi
-                                                    </th>
+                                                    <th class="cell text-white align-middle text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="bg-light bg-gradient">
@@ -141,11 +140,17 @@
                                                                         <i class="fa-solid fa-eye text-white"></i>
                                                                     </button>
                                                                     <button type="button"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top"
+                                                                        title="Approved"
                                                                         wire:click="approved_status(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-success text-white">
                                                                         <i class="fa-solid fa-circle-check"></i>
                                                                     </button>
                                                                     <button type="button"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top"
+                                                                        title="Rejected"
                                                                         wire:click="rejected_status(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-danger text-white">
                                                                         <i class="fa-solid fa-ban"></i>
@@ -174,7 +179,7 @@
                                                                     </div>
                                                                     <div class="modal-body p-3">
                                                                         <div
-                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                             <p
                                                                                 class="fw-bold h5 text-white text-gradient mb-3">
                                                                                 *) Data
@@ -296,7 +301,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div
-                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                             <p
                                                                                 class="fw-bold h5 text-white text-gradient mb-3">
                                                                                 *) Data Billing
@@ -359,7 +364,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div
-                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                             <p
                                                                                 class="fw-bold h5 text-white text-gradient mb-3">
                                                                                 *) Data Technical
@@ -396,7 +401,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div
-                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                             <p
                                                                                 class="fw-bold h5 text-white text-gradient mb-3">
                                                                                 *) Data Service
@@ -437,7 +442,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div
-                                                                            class="border rounded p-3 bg-secondary bg-gradient mb-3">
+                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                             <p
                                                                                 class="fw-bold h5 text-white text-gradient mb-3">
                                                                                 *) Data Approval
@@ -446,7 +451,7 @@
                                                                                 class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
                                                                                 @if ($custome->approval->isApproved)
                                                                                     <span
-                                                                                        class="badge text-bg-success text-white fs-5">Data
+                                                                                        class="badge text-bg-primary text-white fs-5">Data
                                                                                         Telah Disetujui</span>
                                                                                 @elseif($custome->approval->isRejected)
                                                                                     <span
@@ -454,7 +459,7 @@
                                                                                         Belum Disetujui</span>
                                                                                 @else
                                                                                     <span
-                                                                                        class="badge text-bg-info text-white fs-5">Menunggu
+                                                                                        class="badge text-bg-warning text-white fs-5">Menunggu
                                                                                         Persetujuan</span>
                                                                                 @endif
                                                                             </div>
@@ -481,33 +486,28 @@
     </div>
 </div>
 <!--//tab-pane-->
-
-{{-- <nav class="app-pagination">
-                                <ul class="pagination justify-content-center">
-                                    {{ $customers->links() }}
-                                </ul>
-                            </nav> --}}
-
 </div>
 <!--//tab-content-->
-
-</div>
-</div>
-</div>
+    </div>
+        </div>
+            </div>
 <!--//container-fluid-->
-</div>
+        </div>
 <!--//app-content-->
-</div>
-
+    </div>
 </div>
 @include('includes.data-table')
 <script>
     $(document).ready(function() {
-        $('.table').DataTable();
+        let dataTable = $('.table').DataTable();
+        $('#filter-status').on('change', function(){
+            let val = $(this).val();
+            console.log(val);
+            dataTable.column(5)
+            .search(val)
+            .draw();
+
+        });
     });
 </script>
-<script>
-    window.addEventListener('swal', event => {
-        setTimeout(() => location.reload(), 1500);
-    })
-</script>
+

@@ -213,14 +213,14 @@
             <div class="app-card-body">
                 <div class="table-responsive">
                     <table class="table app-table-hover mb-0 text-left">
-                        <thead>
+                        <thead class="bg-primary text-center">
                             <tr class="text-center">
-                                <th class="cell">No</th>
-                                <th class="cell">Nama</th>
-                                <th class="cell">Email</th>
-                                <th class="cell">Jabatan</th>
-                                <th class="cell">Tersimpan</th>
-                                <th class="cell">Aksi</th>
+                                <th class="cell text-white">No</th>
+                                <th class="cell text-white">Nama</th>
+                                <th class="cell text-white">Email</th>
+                                <th class="cell text-white">Jabatan</th>
+                                <th class="cell text-white">Tersimpan</th>
+                                <th class="cell text-white">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

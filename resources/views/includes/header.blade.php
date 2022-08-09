@@ -10,7 +10,7 @@
                     </a>
                 </div><!--//col-->
                 <div class="search-mobile-trigger d-sm-none col">
-                    <i class="search-mobile-trigger-icon fas fa-search"></i>
+                    {{-- <i class="search-mobile-trigger-icon fas fa-search"></i> --}}
                 </div><!--//col-->
 
                 <div class="app-utilities col-auto">
@@ -18,7 +18,7 @@
                         <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa fa-user-alt"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Account Setting</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Account Setting</a></li> --}}
                             <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link text-body font-weight-bold px-0">
                                 Logout
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
