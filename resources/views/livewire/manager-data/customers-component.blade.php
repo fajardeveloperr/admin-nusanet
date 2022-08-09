@@ -22,17 +22,14 @@
                                 </div>
                                 <!--//col-->
                                 <div class="col-auto">
-<<<<<<< HEAD
                                     <select id="filter-status" class="form-select w-auto" >
                                         <option selected value="" >All Status</option>
                                         <option value="Approved">Approved</option>
                                         <option value="Rejected">Rejected</option>
-=======
                                     <select class="form-select w-auto" id="filterStatus">
                                         <option selected value="all">All Status</option>
                                         <option value="approved">Approved</option>
                                         <option value="rejected">Rejected</option>
->>>>>>> ecc1c24a42a97c79419268956ab5b24678550e43
                                     </select>
                                 </div>
 
@@ -98,9 +95,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="bg-light bg-gradient">
+                                                @php
+                                                    $id = 1;
+                                                @endphp
+                                                
                                                 @foreach ($customers as $custome)
                                                     @if ($custome->class == $item)
-<<<<<<< HEAD
                                                         <tr class="text-black" style="text-align: center;">
                                                             <td class="align-middle text-center text-secondary">
                                                                 {{ $id }}
@@ -163,9 +163,6 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-
-=======
->>>>>>> ecc1c24a42a97c79419268956ab5b24678550e43
                                                         <!-- Modal view -->
                                                         <div wire:ignore.self class="modal fade"
                                                             id="detail-data{{ $item }}-modal{{ $custome->id }}"
