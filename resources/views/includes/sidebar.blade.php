@@ -58,6 +58,7 @@
                         <ul class="submenu-list list-unstyled"style="vertical-align:-10px;margin:0px 30px">
                             <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.customers') }}">Customers</a></li>
                             <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.pengguna') }}">Pengguna</a></li>
+                            <li class="submenu-item"><a class="submenu-link" href="{{ route('manager.data.service') }}">Service List</a></li>
                         </ul>
                     </div>
                 </li><!--//nav-item-->

@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ManagerData\PenggunaComponent;
+use App\Http\Livewire\ManagerData\ServiceComponent;
 use App\Http\Livewire\ManagerData\CustomersComponent;
 use App\Http\Livewire\ManagerSales\SalesComponent;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -47,6 +48,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'auth.master', 'verified'])->group(function () {
     Route::get('/manager-data-customers', CustomersComponent::class)->name('manager.data.customers');
     Route::get('/manager-data-pengguna', PenggunaComponent::class)->name('manager.data.pengguna');
+    Route::get('/manager-data-service', ServiceComponent::class)->name('manager.data.service');
 });
 
 Route::middleware(['auth:sanctum', 'auth.sales', 'verified'])->group(function () {
