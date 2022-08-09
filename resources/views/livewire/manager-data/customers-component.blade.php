@@ -26,6 +26,7 @@
                                         <option selected value="" >All Status</option>
                                         <option value="Approved">Approved</option>
                                         <option value="Rejected">Rejected</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-auto">
@@ -93,7 +94,6 @@
                                                 @php
                                                     $id = 1;
                                                 @endphp
-
                                                 @foreach ($customers as $custome)
                                                     @if ($custome->class == $item)
                                                         <tr class="text-black" style="text-align: center;">
@@ -158,9 +158,10 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+
                                                         <!-- Modal view -->
                                                         <div wire:ignore.self class="modal fade"
-                                                            id="detail-data{{ $item }}-modal{{ $custome->id }}"
+                                                            id="detail-data{{ $item }}-modal{{ $id }}"
                                                             tabindex="-1" role="dialog"
                                                             aria-labelledby="exampleModalCenterTitle"
                                                             aria-hidden="true">
@@ -467,6 +468,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @php
+                                                            $id++;
+                                                        @endphp
                                                     @endif
                                                 @endforeach
                                             </tbody>
@@ -482,15 +486,24 @@
     </div>
 </div>
 <!--//tab-pane-->
+
+{{-- <nav class="app-pagination">
+                                <ul class="pagination justify-content-center">
+                                    {{ $customers->links() }}
+                                </ul>
+                            </nav> --}}
+
 </div>
 <!--//tab-content-->
-    </div>
-        </div>
-            </div>
+
+</div>
+</div>
+</div>
 <!--//container-fluid-->
-        </div>
+</div>
 <!--//app-content-->
-    </div>
+</div>
+
 </div>
 @include('includes.data-table')
 <script>
