@@ -16,4 +16,8 @@
         Swal.fire(e.detail);
     });
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 466b3a4f7675859ab022d5b2b16b06d7e71b929e
 @livewireScripts
