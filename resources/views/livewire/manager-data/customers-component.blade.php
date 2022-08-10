@@ -86,13 +86,10 @@
                                                         <th class="cell text-white align-middle text-center">No.</th>
                                                         <th class="cell text-white align-middle text-center">Name</th>
                                                         <th class="cell text-white align-middle text-center">Email</th>
-                                                        <th class="cell text-white align-middle text-center">Address
-                                                        </th>
-                                                        <th class="cell text-white align-middle text-center">Created_At
-                                                        </th>
+                                                        <th class="cell text-white align-middle text-center">Address</th>
+                                                        <th class="cell text-white align-middle text-center">Created_At</th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
-                                                        <th class="cell text-white align-middle text-center">Actions
-                                                        </th>
+                                                        <th class="cell text-white align-middle text-center">Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <style>
@@ -256,7 +253,8 @@
                                                                                                 class="form-label text-secondary">Alamat
                                                                                                 Lengkap</label>
                                                                                             <textarea class="form-control text-secondary" name="address" id="address" rows="3"
-                                                                                                style="text-align: justify; height:100%;" readonly>{{ $custome->address }}</textarea>
+                                                                                                style="text-align: justify; height:100%;" readonly>{{ $custome->address }}
+                                                                                            </textarea>
                                                                                         </div>
                                                                                         <div class="mb-3">
                                                                                             <label for="email_address"
@@ -594,12 +592,22 @@
 <script>
     $(document).ready(function() {
         var className = {!! json_encode($class) !!};
-        var tableInit = $('.table').DataTable();
+        var tableInit = $('.table').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
         $('#filter-status').on('change', function() {
             let val = $(this).val();
             console.log(val)
             className.forEach(element => {
-                $(`#datatables-${element}`).DataTable().column(5)
+                $(`#datatables-${element}`).DataTable({
+                        rowReorder: {
+                            selector: 'td:nth-child(2)'
+                        },
+                        responsive: true
+                    }).column(5)
                     .search(val)
                     .draw();
             });
