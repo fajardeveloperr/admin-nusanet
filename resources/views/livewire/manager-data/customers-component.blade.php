@@ -22,8 +22,8 @@
                                 </div>
                                 <!--//col-->
                                 <div class="col-auto">
-                                    <select id="filter-status" class="form-select w-auto" >
-                                        <option selected value="" >All Status</option>
+                                    <select id="filter-status" class="form-select w-auto">
+                                        <option selected value="">All Status</option>
                                         <option value="Approved">Approved</option>
                                         <option value="Rejected">Rejected</option>
                                     </select>
@@ -139,18 +139,14 @@
                                                                         data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                         <i class="fa-solid fa-eye text-white"></i>
                                                                     </button>
-                                                                    <button type="button"
-                                                                        data-bs-toggle="tooltip"
-                                                                        data-bs-placement="top"
-                                                                        title="Approved"
+                                                                    <button type="button" data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top" title="Approved"
                                                                         wire:click="approved_status(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-success text-white">
                                                                         <i class="fa-solid fa-circle-check"></i>
                                                                     </button>
-                                                                    <button type="button"
-                                                                        data-bs-toggle="tooltip"
-                                                                        data-bs-placement="top"
-                                                                        title="Rejected"
+                                                                    <button type="button" data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top" title="Rejected"
                                                                         wire:click="rejected_status(`{{ $custome->id }}`)"
                                                                         class="btn btn-md btn-danger text-white">
                                                                         <i class="fa-solid fa-ban"></i>
@@ -508,15 +504,16 @@
 @include('includes.data-table')
 <script>
     $(document).ready(function() {
-        let dataTable = $('.table').DataTable();
-        $('#filter-status').on('change', function(){
+        var className = {!! json_encode($class) !!};
+        var tableInit = $('.table').DataTable();
+        $('#filter-status').on('change', function() {
             let val = $(this).val();
-            console.log(val);
-            dataTable.column(5)
-            .search(val)
-            .draw();
-
+            console.log(val)
+            className.forEach(element => {
+                $(`#datatables-${element}`).DataTable().column(5)
+                .search(val)
+                .draw();
+            });
         });
     });
 </script>
-

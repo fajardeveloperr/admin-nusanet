@@ -70,15 +70,8 @@ class CustomersComponent extends Component
 
     public function render()
     {
-        if ($this->date_picker) {
-            $customers = Customer::latest('customers.created_at')
-                ->join('approvals', 'customers.id', '=', 'approvals.id')
-                ->paginate(10);
-        } else {
-            $customers = Customer::join('approvals', 'customers.id', '=', 'approvals.id')
-                ->paginate(10);
-        }
-
+        $customers = Customer::where('created_at', 'like', '%' . $this->date_picker . '%')
+        ->paginate(10);
 
         return view('livewire.manager-data.customers-component', compact('customers'))->layout('layouts.default');
     }
