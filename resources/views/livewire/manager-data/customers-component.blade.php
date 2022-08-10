@@ -505,14 +505,24 @@
 <script>
     $(document).ready(function() {
         var className = {!! json_encode($class) !!};
-        var tableInit = $('.table').DataTable();
+        var tableInit = $('.table').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
         $('#filter-status').on('change', function() {
             let val = $(this).val();
             console.log(val)
             className.forEach(element => {
-                $(`#datatables-${element}`).DataTable().column(5)
-                .search(val)
-                .draw();
+                $(`#datatables-${element}`).DataTable({
+                        rowReorder: {
+                            selector: 'td:nth-child(2)'
+                        },
+                        responsive: true
+                    }).column(5)
+                    .search(val)
+                    .draw();
             });
         });
     });
