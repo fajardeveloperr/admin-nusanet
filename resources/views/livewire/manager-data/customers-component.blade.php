@@ -86,10 +86,13 @@
                                                         <th class="cell text-white align-middle text-center">No.</th>
                                                         <th class="cell text-white align-middle text-center">Name</th>
                                                         <th class="cell text-white align-middle text-center">Email</th>
-                                                        <th class="cell text-white align-middle text-center">Address</th>
-                                                        <th class="cell text-white align-middle text-center">Created_At</th>
+                                                        <th class="cell text-white align-middle text-center">Address
+                                                        </th>
+                                                        <th class="cell text-white align-middle text-center">Created_At
+                                                        </th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
-                                                        <th class="cell text-white align-middle text-center">Actions</th>
+                                                        <th class="cell text-white align-middle text-center">Actions
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <style>
@@ -592,22 +595,15 @@
 <script>
     $(document).ready(function() {
         var className = {!! json_encode($class) !!};
-        var tableInit = $('.table').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
-            responsive: true
+        var tableInit = [];
+        className.forEach(element => {
+            tableInit[element] = $(`#datatables-${element}`).DataTable();
         });
         $('#filter-status').on('change', function() {
             let val = $(this).val();
             console.log(val)
             className.forEach(element => {
-                $(`#datatables-${element}`).DataTable({
-                        rowReorder: {
-                            selector: 'td:nth-child(2)'
-                        },
-                        responsive: true
-                    }).column(5)
+                tableInit[element].column(5)
                     .search(val)
                     .draw();
             });
