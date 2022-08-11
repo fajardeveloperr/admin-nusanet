@@ -98,7 +98,7 @@
                                                     }
 
                                                     tr:hover {
-                                                        background-color: #5cb377 !important;
+                                                        background-color: #2E8B57 !important;
                                                         font-weight: 600;
 
                                                     }
@@ -155,11 +155,11 @@
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                     @if ($custome->approval->isApproved)
-                                                                        <span class="badge bg-success text-white">
+                                                                        <span class="badge bg-primary text-white">
                                                                             Approved
                                                                         </span>
                                                                     @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge bg-danger text-white">
+                                                                        <span class="badge text-white" style="background-color:#FF0000;">
                                                                             Rejected
                                                                         </span>
                                                                     @else
@@ -183,14 +183,14 @@
                                                                             data-bs-toggle="tooltip"
                                                                             data-bs-placement="top" title="Approved"
                                                                             wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md btn-success text-white">
+                                                                            class="btn btn-md btn-primary text-white">
                                                                             <i class="fa-solid fa-circle-check"></i>
                                                                         </button>
                                                                         <button type="button"
                                                                             data-bs-toggle="tooltip"
                                                                             data-bs-placement="top" title="Rejected"
                                                                             wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md btn-danger text-white">
+                                                                            class="btn btn-md text-white" style="background-color:#FF0000;">
                                                                             <i class="fa-solid fa-ban"></i>
                                                                         </button>
                                                                     </div>
@@ -507,7 +507,7 @@
                                                                                         data-bs-placement="top"
                                                                                         title="Approved"
                                                                                         wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                                        class="col-sm-6 btn btn-success text-white">
+                                                                                        class="col-sm-6 btn btn-primary text-white">
                                                                                         <i
                                                                                             class="fa-solid fa-circle-check me-1">
                                                                                         </i>
@@ -518,7 +518,7 @@
                                                                                         data-bs-placement="top"
                                                                                         title="Rejected"
                                                                                         wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                                        class="col-sm-6 btn btn-danger text-white">
+                                                                                        class="col-sm-6 btn text-white" style="background-color:#FF0000;">
                                                                                         <i class="fa-solid fa-ban me-1"></i>
                                                                                         Rejected
                                                                                     </button>
@@ -538,7 +538,7 @@
                                                                                             Telah Disetujui</span>
                                                                                     @elseif($custome->approval->isRejected)
                                                                                         <span
-                                                                                            class="badge text-bg-danger text-white fs-5">Data
+                                                                                            class="badge text-white fs-5" style="background-color:#FF0000;">Data
                                                                                             Belum Disetujui</span>
                                                                                     @else
                                                                                         <span
