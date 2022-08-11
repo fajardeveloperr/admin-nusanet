@@ -25,7 +25,7 @@
                                     <select id="filter-status" class="form-select w-auto">
                                         <option selected value="">All Status</option>
                                         <option value="Approved">Approved</option>
-                                        <option value="-">Pending</option>
+                                        <option value="Pending">Pending</option>
                                         <option value="Rejected">Rejected</option>
                                     </select>
                                 </div>
@@ -96,17 +96,18 @@
                                                     </tr>
                                                 </thead>
                                                 <style>
-                                                    tr {
+                                                    /* tr {
                                                         transition: 0.3s all;
-                                                    }
+                                                    } */
 
-                                                    tr:hover {
-                                                        background-color: #2E8B57 !important;
-                                                        font-weight: 600;
+                                                    /* tr:hover {
 
-                                                    }
+                                                    } */
 
                                                     tr:hover td {
+                                                        background-color: 	#3CB371 !important;
+                                                        font-weight: 600;
+
                                                         color: white !important;
                                                     }
                                                 </style>
@@ -166,8 +167,8 @@
                                                                             Rejected
                                                                         </span>
                                                                     @else
-                                                                        <span class="badge bg-secondary text-white">
-                                                                            -
+                                                                        <span class="badge bg-warning text-white">
+                                                                            Pending
                                                                         </span>
                                                                     @endif
 
