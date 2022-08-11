@@ -88,7 +88,7 @@
                                                         <th class="cell text-white align-middle text-center">Email</th>
                                                         <th class="cell text-white align-middle text-center">Address
                                                         </th>
-                                                        <th class="cell text-white align-middle text-center">Created_At
+                                                        <th class="cell text-white align-middle text-center">Reg Date
                                                         </th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
                                                         <th class="cell text-white align-middle text-center">Actions
