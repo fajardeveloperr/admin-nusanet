@@ -118,11 +118,7 @@
                                                     @foreach ($customers as $custome)
                                                         @if ($custome->class == $item)
                                                             <tr class="text-light" style="text-align: center;">
-                                                                <td class="align-middle text-center text-secondary"
-                                                                    style="cursor: pointer;"
-                                                                    wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                <td class="align-middle text-center text-secondary">
                                                                     {{ $id }}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary"

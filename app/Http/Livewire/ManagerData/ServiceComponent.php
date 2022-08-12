@@ -73,13 +73,6 @@ class ServiceComponent extends Component
         $this->service_pengguna_set = $pengguna_edit->service_price;
         $this->id_pengguna_set = $pengguna_edit->id;
 
-        $this->dispatchBrowserEvent('swal', [
-            'position' => 'top-right',
-            'icon' => 'success',
-            'title' => 'Service berhasil terdeteksi!',
-            'showConfirmButton' => false,
-            'timer' => 1500
-        ]);
     }
 
     public function set_pengguna()
@@ -99,7 +92,7 @@ class ServiceComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
-                'title' => 'Service berhasil tersimpan!',
+                'title' => 'Edit Service berhasil tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -107,7 +100,7 @@ class ServiceComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Service gagal tersimpan!',
+                'title' => 'Edit Service gagal tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -121,14 +114,6 @@ class ServiceComponent extends Component
         $this->nama_pengguna_delete = $pengguna_destroy->service_name;
         $this->service_pengguna_delete = $pengguna_destroy->service_price;
         $this->id_pengguna_delete = $pengguna_destroy->id;
-
-        $this->dispatchBrowserEvent('swal', [
-            'position' => 'top-right',
-            'icon' => 'success',
-            'title' => 'Service berhasil terdeteksi!',
-            'showConfirmButton' => false,
-            'timer' => 1500
-        ]);
     }
 
     public function delete_pengguna()
@@ -140,7 +125,7 @@ class ServiceComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
-                'title' => 'Service berhasil terhapus!',
+                'title' => ' Delete Service berhasil terhapus!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -151,7 +136,7 @@ class ServiceComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Service gagal terhapus!',
+                'title' => 'Delete Service gagal terhapus!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);

@@ -94,13 +94,6 @@ class PenggunaComponent extends Component
         $this->utype_pengguna_set = $pengguna_edit->utype;
         $this->id_pengguna_set = $pengguna_edit->id;
 
-        $this->dispatchBrowserEvent('swal', [
-            'position' => 'top-right',
-            'icon' => 'success',
-            'title' => 'Pengguna berhasil terdeteksi!',
-            'showConfirmButton' => false,
-            'timer' => 1500
-        ]);
     }
 
     public function set_pengguna()
@@ -125,7 +118,7 @@ class PenggunaComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
-                'title' => 'Pengguna berhasil tersimpan!',
+                'title' => 'Edit Pengguna berhasil tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -133,7 +126,7 @@ class PenggunaComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Pengguna gagal tersimpan!',
+                'title' => 'Edit Pengguna gagal tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -151,13 +144,6 @@ class PenggunaComponent extends Component
         $this->utype_pengguna_delete = $pengguna_destroy->utype;
         $this->id_pengguna_delete = $pengguna_destroy->id;
 
-        $this->dispatchBrowserEvent('swal', [
-            'position' => 'top-right',
-            'icon' => 'success',
-            'title' => 'Pengguna berhasil terdeteksi!',
-            'showConfirmButton' => false,
-            'timer' => 1500
-        ]);
     }
 
     public function delete_pengguna()
@@ -169,7 +155,7 @@ class PenggunaComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
-                'title' => 'Pengguna berhasil terhapus!',
+                'title' => 'Delete Pengguna berhasil terhapus!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -180,7 +166,7 @@ class PenggunaComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Pengguna gagal terhapus!',
+                'title' => 'Delete Pengguna gagal terhapus!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
