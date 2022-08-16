@@ -70,7 +70,7 @@
                                     aria-labelledby="orders-{{ $item }}-tab">
                                     <div class="app-card app-card-orders-table">
                                         <div class="app-card-body table-responsive">
-                                            <table class="table text-left pt-2 table-bordered table-striped"
+                                            <table class="table text-left pt-2 table-bordered table-striped rounded"
                                                 id="datatables-{{ $item }}" style="width: 100%;">
                                                 <colgroup>
                                                     <col style="width: 5%;">
@@ -81,7 +81,7 @@
                                                     <col style="width: 13%;">
                                                     <col style="width: 15%;">
                                                 </colgroup>
-                                                <thead class="bg-primary bg-gradient">
+                                                <thead class="bg-primary bg-gradient rounded">
                                                     <tr class="text-center">
                                                         <th class="cell text-white align-middle text-center">No.</th>
                                                         <th class="cell text-white align-middle text-center">Name</th>
