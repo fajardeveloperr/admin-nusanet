@@ -46,7 +46,7 @@
 
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="Nusanet">
+        <x-slot name="logo">
             {{-- <x-jet-authentication-card-logo /> --}}
             <img src="{{ asset('vendors/images/nusanet.png')}}" alt="Nusanet" class="light-logo" width="120">
         </x-slot>
