@@ -17,31 +17,35 @@ class PenggunaComponent extends Component
     public $pengguna_search;
 
     public $nama_pengguna_create,
-        $email_pengguna_create,
-        $password_pengguna_create,
-        $konfirmasi_password_pengguna_create,
-        $utype_pengguna_create;
+           $email_pengguna_create,
+           $password_pengguna_create,
+           $konfirmasi_password_pengguna_create,
+           $utype_pengguna_create;
 
     public $nama_pengguna_set,
-        $email_pengguna_set,
-        $password_pengguna_set,
-        $konfirmasi_password_pengguna_set,
-        $utype_pengguna_set,
-        $id_pengguna_set;
+           $email_pengguna_set,
+           $password_pengguna_set,
+           $konfirmasi_password_pengguna_set,
+           $utype_pengguna_set,
+           $id_pengguna_set;
 
     public $nama_pengguna_delete,
-        $email_pengguna_delete,
-        $password_pengguna_delete,
-        $konfirmasi_password_pengguna_delete,
-        $utype_pengguna_delete,
-        $id_pengguna_delete;
+           $email_pengguna_delete,
+           $password_pengguna_delete,
+           $konfirmasi_password_pengguna_delete,
+           $utype_pengguna_delete,
+           $id_pengguna_delete;
+
+    public $password_pengguna_reset,
+           $konfirmasi_password_pengguna_reset,
+           $id_pengguna_reset;
 
     // Create User//
     public function create_pengguna()
     {
         try {
             $this->validate([
-                'nama_pengguna_create' => 'required|min:3|max:50',
+                'nama_pengguna_create' => 'required|unique:users,name',
                 'email_pengguna_create' => 'required|email|unique:users,email',
                 'password_pengguna_create' => 'min:6|required_with:konfirmasi_password_pengguna_create|same:konfirmasi_password_pengguna_create',
                 'konfirmasi_password_pengguna_create' => 'min:6',
@@ -56,6 +60,7 @@ class PenggunaComponent extends Component
             $create_pengguna->utype = $this->utype_pengguna_create;
             $create_pengguna->save();
 
+            //sweatalert//
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
@@ -103,7 +108,7 @@ class PenggunaComponent extends Component
                 'nama_pengguna_set' => 'required|string',
                 'email_pengguna_set' => 'required|string',
                 'utype_pengguna_set' => 'required|string',
-                'password_pengguna_set' => 'required|string|min:8',
+                // 'password_pengguna_set' => 'required|string|min:8',
                 'konfirmasi_password_pengguna_set' => 'required|string'
 
             ]);
@@ -129,6 +134,45 @@ class PenggunaComponent extends Component
                 'title' => 'Edit Pengguna gagal tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
+            ]);
+        }
+    }
+
+    //reset password//
+
+    public function pengguna_reset_password($id)
+    {
+        $pengguna_reset_password = User::find($id);
+        $this->id_pengguna_reset = $pengguna_reset_password->id;
+    }
+
+    public function reset_password_pengguna()
+    {
+        try {
+            $this->validate([
+                'password_pengguna_reset'=>'min:6|required_with:konfirmasi_password_pengguna_reset|same:konfirmasi_password_pengguna_reset',
+                'konfirmasi_password_pengguna_reset'=>'min:6',
+            ]);
+
+            $reset_password_pengguna = User::where('id',$this->id_pengguna_reset)->first();
+            $reset_password_pengguna->password = Hash::make($this->password_pengguna_reset);
+            $reset_password_pengguna->save();
+
+            $this->dispatchBrowserEvent('swal',[
+                'position'=> 'centered',
+                'icon'=> 'success',
+                'title'=> 'Password berhasil tereset!',
+                'showConfirmButton'=> false,
+                'timer'=> 1500
+            ]);
+
+        } catch (\Throwable) {
+            $this->dispatchBrowserEvent('swal',[
+                'position'=> 'centered',
+                'icon'=> 'error',
+                'title'=> 'Password gagal tereset!',
+                'showConfirmButton'=> false,
+                'timer'=> 1500
             ]);
         }
     }

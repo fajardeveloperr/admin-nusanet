@@ -1,4 +1,4 @@
-<header class="app-header fixed-top ">
+<header class="app-header fixed-top rounded">
     <div class="app-header-inner">
         <div class="container-fluid py-2">
             <div class="app-header-content">
@@ -33,5 +33,5 @@
     </div><!--//app-header-inner-->
    @include('includes.sidebar')
 </header><!--//app-header-->
-                
+
 

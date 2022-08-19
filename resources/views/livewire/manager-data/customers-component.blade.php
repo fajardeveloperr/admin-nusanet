@@ -498,36 +498,6 @@
                                                                                 class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                                 <p
                                                                                     class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data Status
-                                                                                </p>
-                                                                                <div
-                                                                                    class="row px-2 border rounded p-3 mx-2 bg-light">
-                                                                                    <button type="button"
-                                                                                        data-bs-toggle="tooltip"
-                                                                                        data-bs-placement="top"
-                                                                                        title="Approved"
-                                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                                        class="col-sm-6 btn btn-primary text-white">
-                                                                                        <i
-                                                                                            class="fa-solid fa-circle-check me-1">
-                                                                                        </i>
-                                                                                        Approved
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        data-bs-toggle="tooltip"
-                                                                                        data-bs-placement="top"
-                                                                                        title="Rejected"
-                                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                                        class="col-sm-6 btn text-white" style="background-color:#FF0000;">
-                                                                                        <i class="fa-solid fa-ban me-1"></i>
-                                                                                        Rejected
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
                                                                                     *) Data Approval
                                                                                 </p>
                                                                                 <div

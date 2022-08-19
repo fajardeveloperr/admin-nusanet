@@ -31,7 +31,7 @@ class ServiceComponent extends Component
     {
         try {
             $this->validate([
-                'nama_pengguna_create' => 'required|min:3|max:50',
+                'nama_pengguna_create' => 'required|unique:services_list,service_name|min:3|max:50',
                 'service_pengguna_create' => 'required|min:3|max:50',
 
             ]);
@@ -53,11 +53,12 @@ class ServiceComponent extends Component
                 'nama_pengguna_create',
                 'service_pengguna_create',
             ]);
+
         } catch (\Throwable) {
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Service gagal tersimpan!',
+                'title' => 'Sorry Service Name Duplicate!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
