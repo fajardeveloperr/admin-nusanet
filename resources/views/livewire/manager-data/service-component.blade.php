@@ -26,7 +26,7 @@
                     data-bs-target="#tambah-data-modal" >
                     <i class="fa fa-plus"></i> Tambah Data
                 </button>
-                <!-- Modal -->
+                <!-- Modal-create -->
                 <div wire:ignore.self class="modal fade" id="tambah-data-modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -40,29 +40,51 @@
                                 <div class="app-card-body">
                                     <form class="settings-form" wire:submit.prevent='create_pengguna'>
                                         @csrf
-                                        <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Name<span
+                                            <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Name :<span
                                                     class="ms-2" data-container="body"
                                                     data-trigger="hover" data-placement="top"
-                                                    data-bs-toggle="tooltip" title="Service Name"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                    <i class="fa-solid fa-newspaper"></i>
-                                                    </span></label>
+                                                    </span>
+                                            </label>
                                             <input type="text" class="form-control" id="setting-input-1"
                                                 wire:model='nama_pengguna_create' required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Price<span
+                                            <label for="setting-input-1" class="form-label">Package Price :<span
                                                     class="ms-2" data-container="body"
                                                     data-trigger="hover" data-placement="top"
-                                                    data-bs-toggle="tooltip" title="Service Price"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                    <i class="fa-solid fa-money-check-dollar"></i>
-                                                    </span></label>
+                                                    </span>
+                                            </label>
                                             <input type="number" class="form-control" id="setting-input-1"
-                                                wire:model='service_pengguna_create' required>
+                                                   wire:model='service_pengguna_create' required>
                                         </div>
-                                        <div class="d-flex justify-content-end">
+                                        @php
+                                        $periode = ['Bulanan', 'Tahunan'];
+                                        @endphp
+                                        <div class="mb-3">
+                                            <label for="setting-input-2" class="form-label">Periode :</label>
+                                            <select class="form-control" id="regional" wire:model='period_pengguna_create'>
+                                                <option value="">-------Pilih Periode-------</option>
+                                                @foreach ($periode as $period)
+                                                    <option value="{{ $period }}">{{ $period }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @php
+                                        $class = ['Personal', 'Bussiness'];
+                                        @endphp
+                                        <div class="mb-3">
+                                            <label for="setting-input-2" class="form-label">Category :</label>
+                                            <select class="form-control" id="regional" wire:model='category_pengguna_create'>
+                                                <option value="">-------Pilih Category-------</option>
+                                                @foreach ($class as $cls)
+                                                    <option value="{{ $cls }}">{{ $cls }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="d-flex justify-content-end ">
                                             <button type="submit" class="btn app-btn-primary">Simpan</button>
                                         </div>
                                     </form>
@@ -86,32 +108,54 @@
                                     <form class="settings-form" wire:submit.prevent='set_pengguna'>
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Name
+                                            <label for="setting-input-1" class="form-label">Package Name :
                                                 <span
                                                     class="ms-2" data-container="body" data-bs-toggle="popover"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                    <i class="fa-solid fa-newspaper"></i>
                                                 </span>
                                             </label>
                                             <input type="text" class="form-control" id="setting-input-1"
                                                 wire:model='nama_pengguna_set' required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Price
+                                            <label for="setting-input-1" class="form-label">Package Price :
                                                 <span
                                                     class="ms-2" data-container="body" data-bs-toggle="popover"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                    <i class="fa-solid fa-money-check-dollar"></i>
                                                 </span>
                                             </label>
                                             <input type="number" class="form-control" id="setting-input-1"
                                                 wire:model='service_pengguna_set' required>
                                         </div>
+                                        @php
+                                        $periode = ['Bulanan', 'Tahunan'];
+                                        @endphp
+                                        <div class="mb-3">
+                                            <label for="setting-input-2" class="form-label">Periode :</label>
+                                            <select class="form-control" id="regional" wire:model='period_pengguna_set'>
+                                                <option class="text-center" value="">-------Pilih Periode-------</option>
+                                                @foreach ($periode as $period)
+                                                    <option value="{{ $period }}">{{ $period }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @php
+                                        $class = ['Personal', 'Bussiness'];
+                                        @endphp
+                                        <div class="mb-3">
+                                            <label for="setting-input-2" class="form-label">Category :</label>
+                                            <select class="form-control" id="regional" wire:model='category_pengguna_set'>
+                                                <option class="text-center" value="">-------Pilih Category-------</option>
+                                                @foreach ($class as $cls)
+                                                    <option value="{{ $cls }}">{{ $cls }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="d-flex justify-content-end">
                                             <button type="submit" class="btn app-btn-primary"
-                                                data-bs-dismiss="modal">Set</button>
+                                                data-bs-dismiss="modal">Update</button>
                                         </div>
                                     </form>
                                 </div>
@@ -134,11 +178,10 @@
                                     <form class="settings-form" wire:submit.prevent='delete_pengguna'>
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Name<span
+                                            <label for="setting-input-1" class="form-label">Package Name :<span
                                                     class="ms-2" data-container="body" data-bs-toggle="popover"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                    <i class="fa-solid fa-newspaper"></i>
                                                 </span>
                                             </label>
                                             <input type="text" class="form-control" id="setting-input-1"
@@ -146,7 +189,7 @@
                                                     wire:model='nama_pengguna_delete' required>
                                             </div>
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Price
+                                            <label for="setting-input-1" class="form-label">Service Price :
                                                 <span
                                                     class="ms-2" data-container="body" data-bs-toggle="popover"
                                                     data-trigger="hover" data-placement="top"
@@ -156,6 +199,30 @@
                                             </label>
                                             <input type="number" class="form-control"readonly id="setting-input-1"
                                                 wire:model='service_pengguna_delete' required>
+                                        </div>
+                                        @php
+                                        $periode = ['Bulanan', 'Tahunan'];
+                                        @endphp
+                                        <div class="mb-3">
+                                            <label for="setting-input-2" class="form-label">Periode :</label>
+                                            <select class="form-control" readonly id="regional" wire:model='period_pengguna_delete'>
+                                                <option class="text-center" value="">-------Pilih Periode-------</option>
+                                                @foreach ($periode as $period)
+                                                    <option value="{{ $period }}">{{ $period }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @php
+                                        $class = ['Personal', 'Bussiness'];
+                                        @endphp
+                                        <div class="mb-3">
+                                            <label for="setting-input-2" class="form-label">Category :</label>
+                                            <select class="form-control" readonly id="regional" wire:model='category_pengguna_delete'>
+                                                <option class="text-center" value="">-------Pilih Category-------</option>
+                                                @foreach ($class as $cls)
+                                                    <option value="{{ $cls }}">{{ $cls }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="d-flex justify-content-end">
                                             <button type="submit" class="btn app-btn-primary"
@@ -175,8 +242,10 @@
                             <thead class="bg-primary text-center">
                                 <tr class="text-center">
                                     <th class="cell text-white">No</th>
-                                    <th class="cell text-white">Service Name</th>
-                                    <th class="cell text-white">Service Price</th>
+                                    <th class="cell text-white">Package Name</th>
+                                    <th class="cell text-white">Package Price</th>
+                                    <th class="cell text-white">Periode</th>
+                                    <th class="cell text-white">Category</th>
                                     <th class="cell text-white">Tersimpan</th>
                                     <th class="cell text-white">Aksi</th>
                                 </tr>
@@ -188,10 +257,16 @@
                                             {{ $service->id }}
                                         </td>
                                         <td>
-                                            {{ $service->service_name }}
+                                            {{ $service->package_name }}
                                         </td>
                                         <td>
-                                            IDR. {{ number_format($service->service_price, 2, ',', '.') }}
+                                            IDR. {{ number_format($service->package_price, 2, ',', '.') }}
+                                        </td>
+                                        <td>
+                                            {{ $service->period }}
+                                        </td>
+                                        <td>
+                                            {{ $service->category }}
                                         </td>
                                         <td>
                                             {{ $service->created_at }}

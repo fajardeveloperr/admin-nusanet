@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTabelServiceList extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,10 @@ class CreateTabelServiceList extends Migration
     {
         Schema::create('services_list', function (Blueprint $table) {
             $table->id();
-            $table->string('service_name')->unique();
-            $table->string('service_price');
+            $table->enum('category', ['Personal','Bussiness']);
+            $table->string('package_name');
+            $table->string('package_price');
+            $table->enum('period', ['Bulanan','Tahunan']);
             $table->timestamps();
         });
     }
@@ -30,4 +32,4 @@ class CreateTabelServiceList extends Migration
     {
         Schema::dropIfExists('services_list');
     }
-}
+};
