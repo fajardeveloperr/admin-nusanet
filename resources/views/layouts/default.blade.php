@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" width="100%" href="{{ asset('vendors/images/logo-nusanet.PNG') }}">
+    <link rel="icon" width="100%" href="{{ asset('vendors/images/nusa.jpeg') }}">
     <title>Nusanet</title>
 
     @include('includes.style')

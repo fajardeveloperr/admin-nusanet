@@ -65,6 +65,7 @@
         rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
@@ -158,8 +159,8 @@
                                 </div>
                                 @if (Route::has('password.request'))
                                     <div class="col-6">
-                                        <div class="forgot-password"><a href="{{ route('password.request') }}">Lupa
-                                                Password ?</a></div>
+                                        <div class="forgot-password"><a href="{{ route('password.request') }}">LupaPassword ?</a>
+                                        </div>
                                     </div>
                                 @endif
                             </div>

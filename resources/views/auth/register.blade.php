@@ -138,7 +138,7 @@
                                     <select name="utype" id="utype" class="form-control form-control-lg" >
                                         <option value="">Daftar Sebagai: </option>
                                         <option value="SUPERADMIN">Superadmin</option>
-                                        <option value="SALES">Sales</option>
+                                        {{-- <option value="SALES">Sales</option> --}}
 
                                     </select>
                                 </div>

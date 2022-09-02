@@ -40,7 +40,7 @@
         <title>Pertamina</title>
 
         <!-- Site favicon -->
-        <link rel="icon" type="image" sizes="16x16" href="{{ asset('vendors/images/pertamina/logo.ico')}}">
+        <link rel="icon" type="image" sizes="32x32" href="{{ asset('vendors/images/nusa.jpeg')}}">
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
