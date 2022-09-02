@@ -66,7 +66,7 @@
                                         <div class="mb-3">
                                             <label for="setting-input-2" class="form-label">Periode :</label>
                                             <select class="form-control" id="regional" wire:model='period_pengguna_create'>
-                                                <option value="">-------Pilih Periode-------</option>
+                                                <option class="text-center" value="">-------Pilih Periode-------</option>
                                                 @foreach ($periode as $period)
                                                     <option value="{{ $period }}">{{ $period }}</option>
                                                 @endforeach
@@ -78,7 +78,7 @@
                                         <div class="mb-3">
                                             <label for="setting-input-2" class="form-label">Category :</label>
                                             <select class="form-control" id="regional" wire:model='category_pengguna_create'>
-                                                <option value="">-------Pilih Category-------</option>
+                                                <option class="text-center" value="">-------Pilih Category-------</option>
                                                 @foreach ($class as $cls)
                                                     <option value="{{ $cls }}">{{ $cls }}</option>
                                                 @endforeach
@@ -194,7 +194,6 @@
                                                     class="ms-2" data-container="body" data-bs-toggle="popover"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                    <i class="fa-solid fa-money-check-dollar"></i>
                                                 </span>
                                             </label>
                                             <input type="number" class="form-control"readonly id="setting-input-1"

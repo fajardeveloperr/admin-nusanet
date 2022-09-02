@@ -140,5 +140,6 @@ class UsersTableSeeder extends Seeder
             'utype'     => 'AuthMaster',
 
         ]);
+
     }
 }
