@@ -86,10 +86,13 @@
                                                         <th class="cell text-white align-middle text-center">No.</th>
                                                         <th class="cell text-white align-middle text-center">Name</th>
                                                         <th class="cell text-white align-middle text-center">Email</th>
-                                                        <th class="cell text-white align-middle text-center">Address</th>
-                                                        <th class="cell text-white align-middle text-center">Reg Date</th>
+                                                        <th class="cell text-white align-middle text-center">Address
+                                                        </th>
+                                                        <th class="cell text-white align-middle text-center">Reg Date
+                                                        </th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
-                                                        <th class="cell text-white align-middle text-center">Actions</th>
+                                                        <th class="cell text-white align-middle text-center">Actions
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <style>
@@ -102,7 +105,7 @@
                                                     } */
 
                                                     tr:hover td {
-                                                        background-color: 	#3CB371 !important;
+                                                        background-color: #3CB371 !important;
                                                         font-weight: 600;
 
                                                         color: white !important;
@@ -156,7 +159,8 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge text-white" style="background-color:#FF0000;">
+                                                                        <span class="badge text-white"
+                                                                            style="background-color:#FF0000;">
                                                                             Rejected
                                                                         </span>
                                                                     @else
@@ -187,7 +191,8 @@
                                                                             data-bs-toggle="tooltip"
                                                                             data-bs-placement="top" title="Rejected"
                                                                             wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md text-white" style="background-color:#FF0000;">
+                                                                            class="btn btn-md text-white"
+                                                                            style="background-color:#FF0000;">
                                                                             <i class="fa-solid fa-ban"></i>
                                                                         </button>
                                                                     </div>
@@ -489,6 +494,20 @@
                                                                                             </li>
                                                                                         @endfor
                                                                                     </ol>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label for="photo_url">Foto
+                                                                                            Identitas KTP</label>
+                                                                                        <p id="photo_url">
+                                                                                            {{ print_r($custome->service->id_photo_url) }}
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label for="photo_selfie">Foto
+                                                                                            Selfie</label>
+                                                                                        <p id="photo_selfie">
+                                                                                            {{ print_r($custome->service->selfie_id_photo_url) }}
+                                                                                        </p>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div
@@ -505,7 +524,8 @@
                                                                                             Telah Disetujui</span>
                                                                                     @elseif($custome->approval->isRejected)
                                                                                         <span
-                                                                                            class="badge text-white fs-5" style="background-color:#FF0000;">Data
+                                                                                            class="badge text-white fs-5"
+                                                                                            style="background-color:#FF0000;">Data
                                                                                             Belum Disetujui</span>
                                                                                     @else
                                                                                         <span
