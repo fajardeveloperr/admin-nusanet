@@ -495,18 +495,30 @@
                                                                                         @endfor
                                                                                     </ol>
                                                                                     <div class="col-sm-6">
-                                                                                        <label for="photo_url">Foto
+                                                                                        <label for="photo_url"
+                                                                                            class="mb-1 fw-bold">Foto
                                                                                             Identitas KTP</label>
-                                                                                        <p id="photo_url">
-                                                                                            {{ print_r($custome->service->id_photo_url) }}
-                                                                                        </p>
+                                                                                        <img class="img-fluid mb-3"
+                                                                                            src="{{ $custome->service->id_photo_url }}"
+                                                                                            alt="">
+                                                                                        <a class="btn btn-primary text-white"
+                                                                                            target="_blank"
+                                                                                            role="button"
+                                                                                            href="{{ $custome->service->id_photo_url }}">Download
+                                                                                            Photos</a>
                                                                                     </div>
                                                                                     <div class="col-sm-6">
-                                                                                        <label for="photo_selfie">Foto
+                                                                                        <label for="photo_selfie"
+                                                                                            class="mb-1 fw-bold">Foto
                                                                                             Selfie</label>
-                                                                                        <p id="photo_selfie">
-                                                                                            {{ print_r($custome->service->selfie_id_photo_url) }}
-                                                                                        </p>
+                                                                                        <img class="img-fluid mb-3"
+                                                                                            src="{{ $custome->service->selfie_id_photo_url }}"
+                                                                                            alt="">
+                                                                                        <a class="btn btn-primary text-white"
+                                                                                            target="_blank"
+                                                                                            role="button"
+                                                                                            href="{{ $custome->service->selfie_id_photo_url }}">
+                                                                                            Download Photos</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
