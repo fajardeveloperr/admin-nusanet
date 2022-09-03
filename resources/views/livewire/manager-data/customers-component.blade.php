@@ -522,6 +522,33 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            @if ($custome->reference_id != null)
+                                                                                <div
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Data Sales
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                        <p>
+                                                                                            <span class="fw-bold">ID
+                                                                                                Sales :</span>
+                                                                                            {{ $custome->id_sales }}
+                                                                                        </p>
+                                                                                        <p>
+                                                                                            <span class="fw-bold">Nama
+                                                                                                Sales :</span>
+                                                                                            {{ $custome->nama_sales }}
+                                                                                        </p>
+                                                                                        <p>
+                                                                                            <span class="fw-bold">Email
+                                                                                                Sales :</span>
+                                                                                            {{ $custome->email_sales }}
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
                                                                             <div
                                                                                 class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                                 <p

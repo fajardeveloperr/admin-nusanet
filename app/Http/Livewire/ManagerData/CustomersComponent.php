@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
+use Illuminate\Support\Facades\Http;
+
 class CustomersComponent extends Component
 {
     use WithPagination;
@@ -72,6 +74,22 @@ class CustomersComponent extends Component
     {
         $customers = Customer::where('created_at', 'like', '%' . $this->date_picker . '%')
         ->paginate(10);
+
+        foreach ($customers as $key => $value) {
+            if ($value->reference_id != null) {
+                $response = Http::withHeaders([
+                    'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
+                ])->get('https://legacy.is5.nusa.net.id/employees/'.$value->reference_id);
+
+                if ($response->successful()) {
+                    $decodeResponse = json_decode($response->body());
+
+                    $value->id_sales = $decodeResponse->id;
+                    $value->nama_sales = $decodeResponse->name;
+                    $value->email_sales = $decodeResponse->email;
+                }
+            }
+        }
 
         return view('livewire.manager-data.customers-component', compact('customers'))->layout('layouts.default');
     }
