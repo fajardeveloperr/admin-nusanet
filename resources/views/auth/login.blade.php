@@ -55,7 +55,7 @@
     <meta charset="utf-8">
     <title>Nusanet</title>
     <!-- Site favicon -->
-    <link rel="icon" type="image" sizes="32x32" href="{{ asset('vendors/images/nusanett.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('vendors/images/nusa.jpeg') }}" alt="Nusanet">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

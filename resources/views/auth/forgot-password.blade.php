@@ -33,20 +33,22 @@
     </x-jet-authentication-card>
 </x-guest-layout> --}}
 
-<x-guest-layout>
+{{-- <x-guest-layout> --}}
+
     <head>
         <!-- Basic Page Info -->
         <meta charset="utf-8">
-        <title>Pertamina</title>
+        <title>Nusanet</title>
 
         <!-- Site favicon -->
-        <link rel="icon" type="image" sizes="32x32" href="{{ asset('vendors/images/nusa.jpeg')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('vendors/images/nusa.jpeg') }}" alt="Nusanet">
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
         <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
@@ -69,16 +71,20 @@
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
                                 <div class="input-group custom">
-                                    <input class="form-control form-control-lg" id="email" type="email" name="email" :value="old('email')" placeholder="Masukkan Email" required autofocus>
+                                    <input class="form-control form-control-lg" id="email" type="email"
+                                        name="email" :value="old('email')" placeholder="Masukkan Email" required
+                                        autofocus>
                                     <div class="input-group-append custom">
-                                        <span class="input-group-text"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                        <span class="input-group-text"><i class="fa fa-envelope-o"
+                                                aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="input-group mb-0 flex justify-content-between">
                                             <a href="{{ route('login') }}">Ingat password?</a>
-                                            <button type="submit" class="btn btn-primary btn-sm rounded text-center">Submit</button>
+                                            <button type="submit"
+                                                class="btn btn-primary btn-sm rounded text-center">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -90,9 +96,4 @@
         </div>
         <!-- js -->
     </body>
-    </x-guest-layout>
-
-
-
-
-
+{{-- </x-guest-layout> --}}

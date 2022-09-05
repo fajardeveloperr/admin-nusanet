@@ -59,13 +59,13 @@
     </x-jet-authentication-card>
 </x-guest-layout> --}}
 
-<x-guest-layout>
+{{-- <x-guest-layyout> --}}
     <head>
         <!-- Basic Page Info -->
         <meta charset="utf-8">
         <title>Nusanet</title>
         <!-- Site favicon -->
-        <link rel="icon" type="image" sizes="32x32" href="{{ asset('vendors/images/nusanet.png')}}">
+        <link rel="icon" type="image" sizes="32x32" href="{{ asset('vendors/images/nusa.jpeg')}}" alt="Nusanet">
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -159,4 +159,4 @@
         </div>
     </body>
 
-    </x-guest-layout>
+    {{-- </x-guest-layyout> --}}
