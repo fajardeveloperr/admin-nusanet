@@ -69,10 +69,11 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
         </head>
 
-        <img style="margin-left:45%; padding-top:15%;" src="{{ asset('vendors/images/nusanet.png') }}" alt="Nusanet"
+        <img style="padding-top:15%; margin-left:45%" src="{{ asset('vendors/images/nusanet.png') }}" alt="Nusanet"
             class="light-logo" width="120">
     </x-slot>
-    <div style="margin-left: 10%" class="mb-4 text-sm text-gray-600">
+
+    <div style="margin-left: 12%" class="mb-4 text-sm text-gray-600">
         {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
     </div>
 
@@ -86,7 +87,7 @@
         <form method="POST" action="{{ route('verification.send') }}" class="mr-4">
             @csrf
             <div>
-                <button type="submit">
+                <button type="submit" class="btn btn-dark">
                     {{ __('Resend Verification Email') }}
                 </button>
             </div>
@@ -95,11 +96,12 @@
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <div>
-                <button type="submit" class="underline text-md text-gray-600 hover:text-gray-900">
+                <button type="submit" class="underline btn btn-danger">
                     {{ __('Log Out') }}
                 </button>
             </div>
         </form>
     </div>
+
 </x-jet-authentication-card>
 {{-- </x-guest-layout> --}}
