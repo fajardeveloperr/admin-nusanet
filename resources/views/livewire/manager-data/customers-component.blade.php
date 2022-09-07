@@ -507,7 +507,7 @@
                                                                                             href="{{ $custome->service->id_photo_url }}">Download
                                                                                             Photos</a>
                                                                                     </div>
-                                                                                    <div class="col-sm-6">
+                                                                                    {{-- <div class="col-sm-6">
                                                                                         <label for="photo_selfie"
                                                                                             class="mb-1 fw-bold">Foto
                                                                                             Selfie</label>
@@ -519,7 +519,7 @@
                                                                                             role="button"
                                                                                             href="{{ $custome->service->selfie_id_photo_url }}">
                                                                                             Download Photos</a>
-                                                                                    </div>
+                                                                                    </div> --}}
                                                                                 </div>
                                                                             </div>
                                                                             @if ($custome->reference_id != null)
