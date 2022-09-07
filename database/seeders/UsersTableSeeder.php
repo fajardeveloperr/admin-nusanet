@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,130 +17,176 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name'      =>'Fajar',
+            'name'      => 'Fajar',
             'email'     => 'fajar@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         User::create([
-            'name'      =>'Cut Amalia',
+            'name'      => 'Cut Amalia',
             'email'     => 'cutamalia@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
 
-            'name'      =>'samuel',
+            'name'      => 'samuel',
             'email'     => 'samuel@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         User::create([
-            'name'      =>'Riris',
+            'name'      => 'Riris',
             'email'     => 'riris@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         User::create([
-            'name'      =>'Syafii',
+            'name'      => 'Syafii',
             'email'     => 'syafii@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Jefri',
+            'name'      => 'Jefri',
             'email'     => 'jefri@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Ali Putera',
+            'name'      => 'Ali Putera',
             'email'     => 'aliputera@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Timmie',
+            'name'      => 'Timmie',
             'email'     => 'timmie@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Sovian',
+            'name'      => 'Sovian',
             'email'     => 'sovian@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
 
         ]);
 
         User::create([
-            'name'      =>'Ramon',
+            'name'      => 'Ramon',
             'email'     => 'ramon@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Bambang',
+            'name'      => 'Bambang',
             'email'     => 'bambang@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Rudi',
+            'name'      => 'Rudi',
             'email'     => 'sahrudi@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Budiman',
+            'name'      => 'Budiman',
             'email'     => 'budiman@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         User::create([
-            'name'      =>'Fani',
+            'name'      => 'Fani',
             'email'     => 'fani@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
 
         User::create([
-            'name'      =>'Jimmy',
+            'name'      => 'Jimmy',
             'email'     => 'jimmy@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
-
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         User::create([
-            'name'      =>'Abdul Majid',
+            'name'      => 'Abdul Majid',
             'email'     => 'abdulmajid@nusa.net.id',
             'password'  => bcrypt('12345678'),
             'utype'     => 'AuthMaster',
+            'email_verified_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
 
         ]);
-
     }
 }

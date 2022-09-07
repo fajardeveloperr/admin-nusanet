@@ -35,7 +35,7 @@
     </x-jet-authentication-card>
 </x-guest-layout> --}}
 
-<x-guest-layout>
+{{-- <x-guest-layout> --}}
     <head>
         <!-- Basic Page Info -->
         <meta charset="utf-8">
@@ -102,4 +102,4 @@
             </div>
         </div>
     </body>
-    </x-guest-layout>
+    {{-- </x-guest-layout> --}}
