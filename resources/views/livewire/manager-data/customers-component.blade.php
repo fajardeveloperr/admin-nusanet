@@ -70,7 +70,7 @@
                                     aria-labelledby="orders-{{ $item }}-tab">
                                     <div class="app-card app-card-orders-table">
                                         <div class="app-card-body table-responsive">
-                                            <table class="table text-left pt-2 table-bordered table-striped"
+                                            <table class="table text-left pt-2 table-bordered table-striped table-hover"
                                                 id="datatables-{{ $item }}" style="width: 100%;">
                                                 <colgroup>
                                                     <col style="width: 5%;">
@@ -104,12 +104,12 @@
 
                                                     } */
 
-                                                    tr:hover td {
+                                                    /* tr:hover td {
                                                         background-color: #3CB371 !important;
                                                         font-weight: 600;
 
                                                         color: white !important;
-                                                    }
+                                                    } */
                                                 </style>
                                                 <tbody class="bg-light bg-gradient">
                                                     @php
@@ -118,7 +118,7 @@
                                                     @foreach ($customers as $custome)
                                                         @if ($custome->class == $item)
                                                             <tr class="text-light" style="text-align: center;">
-                                                                <td class="align-middle text-center text-secondary">
+                                                                <td class="align-middle text-center text-secondary ">
                                                                     {{ $id }}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary"
@@ -168,7 +168,6 @@
                                                                             Pending
                                                                         </span>
                                                                     @endif
-
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary">
                                                                     <div class="btn-group" role="group"
@@ -180,6 +179,7 @@
                                                                             data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                             <i class="fa-solid fa-eye text-white"></i>
                                                                         </button> --}}
+<<<<<<< HEAD
                                                                         <button type="button"
                                                                             data-bs-toggle="tooltip"
                                                                             data-bs-placement="top" title="Approved"
@@ -203,6 +203,58 @@
                                                                             style="background-color:#0062ff;">
                                                                             <i class="fa-solid fa-print"></i>
                                                                         </button>
+=======
+                                                                        @if ($custome->approval->isApproved)
+                                                                            <button type="button" disabled
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top" title="Approved"
+                                                                                wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md btn-primary text-white">
+                                                                                <i class="fa-solid fa-circle-check"></i>
+                                                                            </button>
+                                                                            <button type="button" disabled
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top" title="Rejected"
+                                                                                wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md text-white"
+                                                                                style="background-color:#ff00008f;">
+                                                                                <i class="fa-solid fa-ban"></i>
+                                                                            </button>
+                                                                        @elseif ($custome->approval->isRejected)
+                                                                            <button type="button"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top" title="Approved"
+                                                                                wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md btn-primary text-white">
+                                                                                <i class="fa-solid fa-circle-check"></i>
+                                                                            </button>
+                                                                            <button type="button" disabled
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top" title="Rejected"
+                                                                                wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md text-white"
+                                                                                style="background-color:#ff00008f;">
+                                                                                <i class="fa-solid fa-ban"></i>
+                                                                            </button>
+
+                                                                        @else
+                                                                            <button type="button"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top" title="Approved"
+                                                                                wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md btn-primary text-white">
+                                                                                <i class="fa-solid fa-circle-check"></i>
+                                                                            </button>
+                                                                            <button type="button"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top" title="Rejected"
+                                                                                wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md text-white"
+                                                                                style="background-color:#FF0000;">
+                                                                                <i class="fa-solid fa-ban"></i>
+                                                                            </button>
+                                                                        @endif
+>>>>>>> fdc6816083a8f87b8edfb6f15649e66b38e211c2
                                                                     </div>
                                                                 </td>
                                                             </tr>
