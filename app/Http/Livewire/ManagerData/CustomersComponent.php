@@ -16,6 +16,7 @@ use Livewire\WithPagination;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CustomersComponent extends Component
 {
@@ -83,6 +84,27 @@ class CustomersComponent extends Component
             'showConfirmButton' => false,
             'timer' => 1500
         ]);
+    }
+
+    public function exportPDF($id)
+    {
+        return redirect()->to('/manager-data-customers/' . $id . '/print');
+    }
+
+    public function showPrint($id)
+    {
+        $customerFindByID = Customer::find($id);
+        $data = [
+            'customer' => $customerFindByID
+        ];
+        // print_r($customerFindByID->customer_id);
+        // print_r($customerFindByID->billing->billing_name);
+        // print_r($customerFindByID->technical->technical_name);
+        // print_r($customerFindByID->service->service_package);
+        // print_r($customerFindByID->approval->isApproved);
+        // dd('Test');
+        $pdf = Pdf::loadView('report', $data);
+        return $pdf->stream();
     }
 
     public function render()

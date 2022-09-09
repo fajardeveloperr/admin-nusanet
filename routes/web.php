@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::middleware(['auth:sanctum', 'auth.master', 'verified'])->group(function () {
     Route::get('/manager-data-customers', CustomersComponent::class)->name('manager.data.customers');
+    Route::get('/manager-data-customers/{uuid}/print', [CustomersComponent::class, 'showPrint']);
     Route::get('/manager-data-pengguna', PenggunaComponent::class)->name('manager.data.pengguna');
     Route::get('/manager-data-service', ServiceComponent::class)->name('manager.data.service');
 });

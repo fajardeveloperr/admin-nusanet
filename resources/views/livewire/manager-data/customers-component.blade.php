@@ -195,6 +195,14 @@
                                                                             style="background-color:#FF0000;">
                                                                             <i class="fa-solid fa-ban"></i>
                                                                         </button>
+                                                                        <button type="button"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-placement="top" title="ExportPDF"
+                                                                            wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                            class="btn btn-md text-white"
+                                                                            style="background-color:#0062ff;">
+                                                                            <i class="fa-solid fa-print"></i>
+                                                                        </button>
                                                                     </div>
                                                                 </td>
                                                             </tr>
