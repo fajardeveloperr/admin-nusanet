@@ -179,82 +179,91 @@
                                                                             data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                             <i class="fa-solid fa-eye text-white"></i>
                                                                         </button> --}}
-<<<<<<< HEAD
-                                                                        <button type="button"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Approved"
-                                                                            wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md btn-primary text-white">
-                                                                            <i class="fa-solid fa-circle-check"></i>
-                                                                        </button>
-                                                                        <button type="button"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Rejected"
-                                                                            wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md text-white"
-                                                                            style="background-color:#FF0000;">
-                                                                            <i class="fa-solid fa-ban"></i>
-                                                                        </button>
-                                                                        <button type="button"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="ExportPDF"
-                                                                            wire:click="exportPDF(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md text-white"
-                                                                            style="background-color:#0062ff;">
-                                                                            <i class="fa-solid fa-print"></i>
-                                                                        </button>
-=======
                                                                         @if ($custome->approval->isApproved)
                                                                             <button type="button" disabled
                                                                                 data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Approved"
+                                                                                data-bs-placement="top"
+                                                                                title="Approved"
                                                                                 wire:click="approved_status(`{{ $custome->id }}`)"
                                                                                 class="btn btn-md btn-primary text-white">
-                                                                                <i class="fa-solid fa-circle-check"></i>
+                                                                                <i
+                                                                                    class="fa-solid fa-circle-check"></i>
                                                                             </button>
                                                                             <button type="button" disabled
                                                                                 data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Rejected"
+                                                                                data-bs-placement="top"
+                                                                                title="Rejected"
                                                                                 wire:click="rejected_status(`{{ $custome->id }}`)"
                                                                                 class="btn btn-md text-white"
                                                                                 style="background-color:#ff00008f;">
                                                                                 <i class="fa-solid fa-ban"></i>
+                                                                            </button>
+                                                                            <button type="button"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top"
+                                                                                title="ExportPDF"
+                                                                                wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md text-white"
+                                                                                style="background-color:#0062ff;">
+                                                                                <i class="fa-solid fa-print"></i>
                                                                             </button>
                                                                         @elseif ($custome->approval->isRejected)
                                                                             <button type="button"
                                                                                 data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Approved"
+                                                                                data-bs-placement="top"
+                                                                                title="Approved"
                                                                                 wire:click="approved_status(`{{ $custome->id }}`)"
                                                                                 class="btn btn-md btn-primary text-white">
-                                                                                <i class="fa-solid fa-circle-check"></i>
+                                                                                <i
+                                                                                    class="fa-solid fa-circle-check"></i>
                                                                             </button>
                                                                             <button type="button" disabled
                                                                                 data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Rejected"
+                                                                                data-bs-placement="top"
+                                                                                title="Rejected"
                                                                                 wire:click="rejected_status(`{{ $custome->id }}`)"
                                                                                 class="btn btn-md text-white"
                                                                                 style="background-color:#ff00008f;">
                                                                                 <i class="fa-solid fa-ban"></i>
                                                                             </button>
-
+                                                                            <button type="button"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top"
+                                                                                title="ExportPDF"
+                                                                                wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md text-white"
+                                                                                style="background-color:#0062ff;">
+                                                                                <i class="fa-solid fa-print"></i>
+                                                                            </button>
                                                                         @else
                                                                             <button type="button"
                                                                                 data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Approved"
+                                                                                data-bs-placement="top"
+                                                                                title="Approved"
                                                                                 wire:click="approved_status(`{{ $custome->id }}`)"
                                                                                 class="btn btn-md btn-primary text-white">
-                                                                                <i class="fa-solid fa-circle-check"></i>
+                                                                                <i
+                                                                                    class="fa-solid fa-circle-check"></i>
                                                                             </button>
                                                                             <button type="button"
                                                                                 data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Rejected"
+                                                                                data-bs-placement="top"
+                                                                                title="Rejected"
                                                                                 wire:click="rejected_status(`{{ $custome->id }}`)"
                                                                                 class="btn btn-md text-white"
                                                                                 style="background-color:#FF0000;">
                                                                                 <i class="fa-solid fa-ban"></i>
                                                                             </button>
+                                                                            <button type="button"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-placement="top"
+                                                                                title="ExportPDF"
+                                                                                wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                class="btn btn-md text-white"
+                                                                                style="background-color:#0062ff;">
+                                                                                <i class="fa-solid fa-print"></i>
+                                                                            </button>
                                                                         @endif
->>>>>>> fdc6816083a8f87b8edfb6f15649e66b38e211c2
                                                                     </div>
                                                                 </td>
                                                             </tr>
