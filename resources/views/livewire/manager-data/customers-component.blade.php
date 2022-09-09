@@ -196,7 +196,7 @@
                                                                                 <i class="fa-solid fa-ban"></i>
                                                                             </button>
                                                                         @elseif ($custome->approval->isRejected)
-                                                                            <button type="button" disabled
+                                                                            <button type="button"
                                                                                 data-bs-toggle="tooltip"
                                                                                 data-bs-placement="top" title="Approved"
                                                                                 wire:click="approved_status(`{{ $custome->id }}`)"
