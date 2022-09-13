@@ -97,14 +97,8 @@ class CustomersComponent extends Component
         $data = [
             'customer' => $customerFindByID
         ];
-        // print_r($customerFindByID->customer_id);
-        // print_r($customerFindByID->billing->billing_name);
-        // print_r($customerFindByID->technical->technical_name);
-        // print_r($customerFindByID->service->service_package);
-        // print_r($customerFindByID->approval->isApproved);
-        // dd('Test');
-        $pdf = Pdf::loadView('report', $data);
-        return $pdf->stream();
+
+        return view('report', $data);
     }
 
     public function render()
