@@ -98,7 +98,8 @@ class CustomersComponent extends Component
             'customer' => $customerFindByID
         ];
 
-        return view('report', $data);
+        $pdf = Pdf::loadView('report', $data);
+        return $pdf->stream();
     }
 
     public function render()
