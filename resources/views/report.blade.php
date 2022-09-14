@@ -41,24 +41,15 @@
             right: 0cm;
             height: 2cm;
         }
-    </style>
-</head>
 
-<body>
-    <!-- Define header and footer blocks before your content -->
-    <header>
-        <img src="assets/images/header baru.jpeg" width="100%" height="100%" />
-    </header>
+        .title-page {
+            position: fixed;
+            top: 2.5cm;
+            left: 5.5cm;
+            right: 0cm;
+            height: 3cm;
+        }
 
-    <footer>
-        <img src="assets/images/footer baru.jpeg" width="100%" height="100%" />
-    </footer>
-
-    <!-- Wrap the content of your PDF inside a main tag -->
-    <main>
-        <h1>Hello World</h1>
-    </main>
-    {{-- <style>
         .header-pdf {
             display: flex;
             justify-content: space-between;
@@ -81,6 +72,10 @@
 
         .mb-3 {
             margin-bottom: 1em !important;
+        }
+
+        .mt-5 {
+            margin-top: 3em !important;
         }
 
         .form-label {
@@ -122,120 +117,130 @@
             page-break-after: always;
         }
     </style>
+</head>
 
-    <div class="header-pdf">
-        <img src="assets/images/bg-nusanet.png" alt="" width="120" height="40">
-    </div>
+<body>
+    <!-- Define header and footer blocks before your content -->
+    <header>
+        <img src="assets/images/header baru.jpeg" width="100%" height="100%" />
+    </header>
 
-    <h2 style="text-align: center;">Formulir Digital Registrasi Internet</h2>
+    <footer>
+        <img src="assets/images/footer baru.jpeg" width="100%" height="100%" />
+    </footer>
 
-    <div class="{{ $customer->company_name != null ? 'row' : null }} mb-3 new-page"
-        style="border: 1px solid #dedede; padding: 1em; border-radius: 15px;">
-        <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Personal / Penanggungjawab</p>
-        <div class="{{ $customer->company_name != null ? 'column' : null }}"
-            style="{{ $customer->company_name != null ? null : 'padding-left: 2.5em;' }}">
-            <div class="mb-3">
-                <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
-                <input class="form-control" type="text" name="nama_lengkap" id="nama_lengkap"
-                    value="{{ $customer->name }}" readonly>
+    <h2 class="title-page">Formulir Digital Registrasi Internet</h2>
+
+    <!-- Wrap the content of your PDF inside a main tag -->
+    <main>
+        <div class="{{ $customer->company_name != null ? 'row' : null }} mt-5 new-page"
+            style="border: 1px solid #dedede; padding: 1em; border-radius: 15px;">
+            <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Personal / Penanggungjawab</p>
+            <div class="{{ $customer->company_name != null ? 'column' : null }}"
+                style="{{ $customer->company_name != null ? null : 'padding-left: 2.5em;' }}">
+                <div class="mb-3">
+                    <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
+                    <input class="form-control" type="text" name="nama_lengkap" id="nama_lengkap"
+                        value="{{ $customer->name }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="alamat_lengkap">Alamat Lengkap</label>
+                    <textarea class="form-control" name="alamat_lengkap" id="alamat_lengkap" rows="5" readonly style="height: 150px;">{{ json_decode($customer->address)[0] }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="alamat_email">Alamat Email</label>
+                    <input class="form-control" type="text" name="alamat_email" id="alamat_email"
+                        value="{{ $customer->email }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="identity_number">No. Identitas KTP</label>
+                    <input class="form-control" type="text" name="identity_number" id="identity_number"
+                        value="{{ $customer->identity_number }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="phone_number">Nomor Telepon</label>
+                    <input class="form-control" type="text" name="phone_number" id="phone_number"
+                        value="{{ $customer->phone_number }}" readonly>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="alamat_lengkap">Alamat Lengkap</label>
-                <textarea class="form-control" name="alamat_lengkap" id="alamat_lengkap" rows="5" readonly style="height: 150px;">{{ json_decode($customer->address)[0] }}</textarea>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="alamat_email">Alamat Email</label>
-                <input class="form-control" type="text" name="alamat_email" id="alamat_email"
-                    value="{{ $customer->email }}" readonly>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="identity_number">No. Identitas KTP</label>
-                <input class="form-control" type="text" name="identity_number" id="identity_number"
-                    value="{{ $customer->identity_number }}" readonly>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="phone_number">Nomor Telepon</label>
-                <input class="form-control" type="text" name="phone_number" id="phone_number"
-                    value="{{ $customer->phone_number }}" readonly>
-            </div>
+
+            @if ($customer->company_name != null)
+                <div class="column">
+                    <div class="mb-3">
+                        <label class="form-label" for="company_name">Nama Perusahaan</label>
+                        <input class="form-control" type="text" name="company_name" id="company_name"
+                            value="{{ $customer->company_name }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="company_address">Alamat Perusahaan</label>
+                        <textarea class="form-control" name="company_address" id="company_address" rows="5" readonly
+                            style="height: 150px;">{{ $customer->company_address }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="company_npwp">No.NPWP Perusahaan</label>
+                        <input class="form-control" type="text" name="company_npwp" id="company_npwp"
+                            value="{{ $customer->company_npwp }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="company_phone_number">No.Telepon Perusahaan</label>
+                        <input class="form-control" type="text" name="company_phone_number" id="company_phone_number"
+                            value="{{ $customer->company_phone_number }}" readonly>
+                    </div>
+                </div>
+            @endif
         </div>
 
-        @if ($customer->company_name != null)
-            <div class="column">
-                <div class="mb-3">
-                    <label class="form-label" for="company_name">Nama Perusahaan</label>
-                    <input class="form-control" type="text" name="company_name" id="company_name"
-                        value="{{ $customer->company_name }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="company_address">Alamat Perusahaan</label>
-                    <textarea class="form-control" name="company_address" id="company_address" rows="5" readonly
-                        style="height: 150px;">{{ $customer->company_address }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="company_npwp">No.NPWP Perusahaan</label>
-                    <input class="form-control" type="text" name="company_npwp" id="company_npwp"
-                        value="{{ $customer->company_npwp }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="company_phone_number">No.Telepon Perusahaan</label>
-                    <input class="form-control" type="text" name="company_phone_number" id="company_phone_number"
-                        value="{{ $customer->company_phone_number }}" readonly>
-                </div>
-            </div>
-        @endif
-    </div>
-
-    <div style="border: 1px solid #dedede; padding: 1em; border-radius: 15px; margin-bottom: 5em;">
-        <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Pembayaran</p>
-        <div class="mb-3">
-            <label class="form-label" for="billing_name">Nama Bayar</label>
-            <input class="form-control" type="text" name="billing_name" id="billing_name"
-                value="{{ $customer->billing->billing_name }}" readonly>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="billing_contact">Kontak Bayar</label>
-            <input class="form-control" type="text" name="billing_contact" id="billing_contact"
-                value="{{ $customer->billing->billing_contact }}" readonly>
-        </div>
-        @php
-            $i = 1;
-        @endphp
-        @foreach (json_decode($customer->billing->billing_email) as $item)
+        <div class="mt-5" style="border: 1px solid #dedede; padding: 1em; border-radius: 15px; margin-bottom: 1.5em;">
+            <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Pembayaran</p>
             <div class="mb-3">
-                <label class="form-label" for="alamat_email_{{ $i }}">Alamat Email
-                    {{ $i }}</label>
-                <input class="form-control" type="text" name="alamat_email_{{ $i }}"
-                    id="alamat_email_{{ $i }}" value="{{ $item }}" readonly>
+                <label class="form-label" for="billing_name">Nama Bayar</label>
+                <input class="form-control" type="text" name="billing_name" id="billing_name"
+                    value="{{ $customer->billing->billing_name }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="billing_contact">Kontak Bayar</label>
+                <input class="form-control" type="text" name="billing_contact" id="billing_contact"
+                    value="{{ $customer->billing->billing_contact }}" readonly>
             </div>
             @php
-                $i++;
+                $i = 1;
             @endphp
-        @endforeach
-    </div>
+            @foreach (json_decode($customer->billing->billing_email) as $item)
+                <div class="mb-3">
+                    <label class="form-label" for="alamat_email_{{ $i }}">Alamat Email
+                        {{ $i }}</label>
+                    <input class="form-control" type="text" name="alamat_email_{{ $i }}"
+                        id="alamat_email_{{ $i }}" value="{{ $item }}" readonly>
+                </div>
+                @php
+                    $i++;
+                @endphp
+            @endforeach
+        </div>
 
-    <div class="new-page" style="border: 1px solid #dedede; padding: 1em; border-radius: 15px;">
-        <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Teknis</p>
-        <div class="mb-3">
-            <label class="form-label" for="technical_name">Nama Teknis</label>
-            <input class="form-control" type="text" name="technical_name" id="technical_name"
-                value="{{ $customer->technical->technical_name }}" readonly>
+        <div class="new-page" style="border: 1px solid #dedede; padding: 1em; border-radius: 15px;">
+            <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Teknis</p>
+            <div class="mb-3">
+                <label class="form-label" for="technical_name">Nama Teknis</label>
+                <input class="form-control" type="text" name="technical_name" id="technical_name"
+                    value="{{ $customer->technical->technical_name }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="technical_contact">Kontak Teknis</label>
+                <input class="form-control" type="text" name="technical_contact" id="technical_contact"
+                    value="{{ $customer->technical->technical_contact }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="technical_email">Alamat Email Teknis</label>
+                <input class="form-control" type="text" name="technical_email" id="technical_email"
+                    value="{{ $customer->technical->technical_email }}" readonly>
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label" for="technical_contact">Kontak Teknis</label>
-            <input class="form-control" type="text" name="technical_contact" id="technical_contact"
-                value="{{ $customer->technical->technical_contact }}" readonly>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="technical_email">Alamat Email Teknis</label>
-            <input class="form-control" type="text" name="technical_email" id="technical_email"
-                value="{{ $customer->technical->technical_email }}" readonly>
-        </div>
-    </div>
 
-    <div style="border: 1px solid #dedede; padding: 1em; border-radius: 15px;">
-        <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Layanan</p>
-    </div> --}}
+        <div class="mt-5" style="border: 1px solid #dedede; padding: 1em; border-radius: 15px;">
+            <p style="font-weight: bold; margin-bottom: 1.5em;">*) Data Layanan</p>
+        </div>
+    </main>
 </body>
 
 </html>
