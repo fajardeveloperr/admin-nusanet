@@ -111,6 +111,7 @@
                     value="{{ $customer->phone_number }}" readonly>
             </div>
         </div>
+
         @if ($customer->company_name != null)
             <div class="column">
                 <div class="mb-3">

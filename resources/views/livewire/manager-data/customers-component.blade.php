@@ -573,8 +573,9 @@
                                                                                         <a class="btn btn-primary text-white"
                                                                                             target="_blank"
                                                                                             role="button"
-                                                                                            href="{{ $custome->service->id_photo_url }}">Download
-                                                                                            Photos</a>
+                                                                                            href="{{ $custome->service->id_photo_url }}">
+                                                                                            Tampilkan Gambar
+                                                                                        </a>
                                                                                     </div>
                                                                                     {{-- <div class="col-sm-6">
                                                                                         <label for="photo_selfie"
