@@ -17,6 +17,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\URL;
 
 class CustomersComponent extends Component
 {
@@ -48,18 +49,38 @@ class CustomersComponent extends Component
 
         $customerFindByID = Customer::find($id);
 
+        $fileName = URL::to('assets/pdf/' . $id . '-form.pdf');
+
+        // Download PDF
+        $data = [
+            'customer' => $customerFindByID
+        ];
+
         // Send Email to Customer
         $to_name = $customerFindByID->name;
         $to_email = $customerFindByID->email;
-        $data = [];
-        Mail::send('welcome', $data, function ($message) use ($to_name, $to_email) {
-            $message->to($to_email, $to_name)->subject('Approval Notification!');
-            $message->from('admin@adriel-creation.id', 'Nusanet Medan');
+        $textingEmail = "Data Formulir Digital Registrasi Anda Telah Disetujui";
+        Mail::raw($textingEmail, function ($message) use ($to_name, $to_email, $data, $id, $customerFindByID) {
+            $message->to($to_email, $to_name)->subject('Persetujuan Formulir Registrasi Internet');
+            $message->from('reg@nusa.net.id', 'Nusanet Medan');
+            $pdf = Pdf::loadView('report', $data);
+            $message->attachData($pdf->output(), $id . '-form.pdf');
+
+            if ($customerFindByID->reference_id != null) {
+                $response = Http::withHeaders([
+                    'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
+                ])->get('https://legacy.is5.nusa.net.id/employees/' . $customerFindByID->reference_id);
+
+                if ($response->successful()) {
+                    $decodeResponse = json_decode($response->body());
+
+                    $message->to($decodeResponse->name, $decodeResponse->email)->subject('Persetujuan Formulir Registrasi Internet');
+                    $message->from('reg@nusa.net.id', 'Nusanet Medan');
+                    $pdf = Pdf::loadView('report', $data);
+                    $message->attachData($pdf->output(), $id . '-form.pdf');
+                }
+            }
         });
-
-        // if ($customerFindByID->reference_id != null) {
-        // }
-
 
         $this->dispatchBrowserEvent('swal', [
             'position' => 'centered',

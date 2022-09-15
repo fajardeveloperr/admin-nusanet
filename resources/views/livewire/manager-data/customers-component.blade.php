@@ -135,12 +135,17 @@
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                     {{ $custome->email }}
                                                                 </td>
-                                                                <td class="align-middle text-secondary text-center"
+                                                                <td class="text-secondary text-center"
                                                                     style="cursor: pointer;"
                                                                     wire:click="{{ $custome->id ? null : $custome->id }}"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    {{ $custome->address }}
+                                                                    <ul>
+                                                                        @foreach (json_decode($custome->address) as $item)
+                                                                            <li style="text-align: justify;">
+                                                                                {{ $item }}</li>
+                                                                        @endforeach
+                                                                    </ul>
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary"
                                                                     style="cursor: pointer;"
