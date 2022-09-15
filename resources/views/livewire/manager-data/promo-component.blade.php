@@ -1,0 +1,130 @@
+<div>
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <div class="row g-3 mb-4 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h1 class="app-page-title mb-0 text-primary">
+                        <i class="fa-solid fa-ticket me-1"></i>
+                        Data Promo
+                    </h1>
+                </div>
+            </div>
+            <!--//row-->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between bg-primary" style="width:100%;">
+                    <p class="p-0 m-0 py-2 text-white fw-bold">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Informasi Data Promo
+                    </p>
+                    <button type="button" class="btn btn-light text-primary shadow" data-bs-toggle="modal"
+                        data-bs-target="#addPromoModal">
+                        <i class="fas fa-plus-circle me-1"></i>
+                        Tambah Promo
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addPromoModal" tabindex="-1" aria-labelledby="addPromoModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-white" id="addPromoModalLabel">
+                                        <i class="fas fa-plus-circle me-1"></i>
+                                        Tambah Data Promo
+                                    </h5>
+                                    <style>
+                                        .btn-close {
+                                            box-sizing: content-box;
+                                            width: 1em;
+                                            height: 1em;
+                                            padding: .25em .25em;
+                                            color: #fff;
+                                            background: rgba(0, 0, 0, 0) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+                                            border: 0;
+                                            border-radius: .375rem;
+                                            opacity: .5;
+                                        }
+                                    </style>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form class="settings-form" wire:submit.prevent='create_promo'>
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="kode_promo_admin" class="form-label text-primary fw-bold">
+                                                Kode Promo
+                                            </label>
+                                            <input type="text" class="form-control text-primary border-primary"
+                                                id="kode_promo_admin" wire:model="kode_promo_admin"
+                                                placeholder="Masukkan Kode Promo..." required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="monthly_discount_admin" class="form-label text-primary fw-bold">
+                                                Potongan Bulan
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control text-primary border-primary"
+                                                    id="monthly_discount_admin" wire:model="monthly_discount_admin"
+                                                    placeholder="Masukkan Potongan Bulan..."
+                                                    aria-label="Masukkan Potongan Bulan..."
+                                                    aria-describedby="monthly_discount_admin_addons">
+                                                <span class="input-group-text bg-primary text-white"
+                                                    id="monthly_discount_admin_addons">Bulan</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="discount_admin" class="form-label text-primary fw-bold">
+                                                Potongan Diskon
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control text-primary border-primary"
+                                                    id="discount_admin" wire:model="discount_admin"
+                                                    placeholder="Masukkan Potongan Persentase Diskon..."
+                                                    aria-label="Masukkan Potongan Persentase Diskon..."
+                                                    aria-describedby="discount_admin_addons">
+                                                <span class="input-group-text bg-primary text-white"
+                                                    id="discount_admin_addons">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="start_promo_period_datetime"
+                                                class="form-label text-primary fw-bold">
+                                                Periode Awal Masa Promo
+                                            </label>
+                                            <input type="datetime-local"
+                                                class="form-control text-primary border-primary"
+                                                id="start_promo_period_datetime"
+                                                wire:model="start_promo_period_datetime">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="end_promo_period_datetime"
+                                                class="form-label text-primary fw-bold">
+                                                Periode Akhir Masa Promo
+                                            </label>
+                                            <input type="datetime-local"
+                                                class="form-control text-primary border-primary"
+                                                id="end_promo_period_datetime" wire:model="end_promo_period_datetime">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer bg-primary">
+                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-ban me-1"></i>
+                                            Batalkan Perubahan
+                                        </button>
+                                        <button type="submit" class="btn btn-light">
+                                            <i class="fa-solid fa-floppy-disk me-1"></i>
+                                            Simpan Perubahan
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

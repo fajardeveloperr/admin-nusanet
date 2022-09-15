@@ -5,6 +5,7 @@ use App\Http\Livewire\ManagerData\PenggunaComponent;
 use App\Http\Livewire\ManagerData\ServiceComponent;
 use App\Http\Livewire\ManagerData\CustomersComponent;
 use App\Http\Livewire\ManagerSales\SalesComponent;
+use App\Http\Livewire\ManagerData\PromoComponent;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -50,6 +51,7 @@ Route::middleware(['auth:sanctum', 'auth.master', 'verified'])->group(function (
     Route::get('/manager-data-customers/{uuid}/print', [CustomersComponent::class, 'showPrint']);
     Route::get('/manager-data-pengguna', PenggunaComponent::class)->name('manager.data.pengguna');
     Route::get('/manager-data-service', ServiceComponent::class)->name('manager.data.service');
+    Route::get('/manager-data-promo', PromoComponent::class)->name('manager.data.promo');
 });
 
 Route::middleware(['auth:sanctum', 'auth.sales', 'verified'])->group(function () {
