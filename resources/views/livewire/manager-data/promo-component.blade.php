@@ -23,8 +23,8 @@
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="addPromoModal" tabindex="-1" aria-labelledby="addPromoModalLabel"
-                        aria-hidden="true">
+                    <div wire:ignore.self class="modal fade" id="addPromoModal" tabindex="-1"
+                        aria-labelledby="addPromoModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header bg-primary">
@@ -49,15 +49,20 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <form class="settings-form" wire:submit.prevent='create_promo'>
-                                    @csrf
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="kode_promo_admin" class="form-label text-primary fw-bold">
                                                 Kode Promo
                                             </label>
-                                            <input type="text" class="form-control text-primary border-primary"
-                                                id="kode_promo_admin" wire:model="kode_promo_admin"
-                                                placeholder="Masukkan Kode Promo..." required>
+                                            <input type="text"
+                                                class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
+                                                id="kode_promo_admin" wire:model.defer="kode_promo_admin"
+                                                placeholder="Masukkan Kode Promo...">
+                                            @error('kode_promo_admin')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label for="monthly_discount_admin" class="form-label text-primary fw-bold">
@@ -65,7 +70,8 @@
                                             </label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control text-primary border-primary"
-                                                    id="monthly_discount_admin" wire:model="monthly_discount_admin"
+                                                    id="monthly_discount_admin"
+                                                    wire:model.defer="monthly_discount_admin"
                                                     placeholder="Masukkan Potongan Bulan..."
                                                     aria-label="Masukkan Potongan Bulan..."
                                                     aria-describedby="monthly_discount_admin_addons">
@@ -79,7 +85,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control text-primary border-primary"
-                                                    id="discount_admin" wire:model="discount_admin"
+                                                    id="discount_admin" wire:model.defer="discount_admin"
                                                     placeholder="Masukkan Potongan Persentase Diskon..."
                                                     aria-label="Masukkan Potongan Persentase Diskon..."
                                                     aria-describedby="discount_admin_addons">
@@ -95,7 +101,7 @@
                                             <input type="datetime-local"
                                                 class="form-control text-primary border-primary"
                                                 id="start_promo_period_datetime"
-                                                wire:model="start_promo_period_datetime">
+                                                wire:model.defer="start_promo_period_datetime">
                                         </div>
                                         <div class="mb-3">
                                             <label for="end_promo_period_datetime"
@@ -104,7 +110,8 @@
                                             </label>
                                             <input type="datetime-local"
                                                 class="form-control text-primary border-primary"
-                                                id="end_promo_period_datetime" wire:model="end_promo_period_datetime">
+                                                id="end_promo_period_datetime"
+                                                wire:model.defer="end_promo_period_datetime">
                                         </div>
                                     </div>
                                     <div class="modal-footer bg-primary">
@@ -123,8 +130,68 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable">
+                            <thead class="bg-primary">
+                                <tr>
+                                    <th class="cell text-white align-middle text-center">No.</th>
+                                    <th class="cell text-white align-middle text-center">Kode Promo</th>
+                                    <th class="cell text-white align-middle text-center">Potongan Diskon</th>
+                                    <th class="cell text-white align-middle text-center">Potongan Bulan</th>
+                                    <th class="cell text-white align-middle text-center">Periode Masa Awal Promo</th>
+                                    <th class="cell text-white align-middle text-center">Periode Masa Akhir Promo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light">
+                                @php
+                                    $i = 1;
+                                @endphp
+                                @foreach ($dataPromo as $promo)
+                                    <tr>
+                                        <td class="cell text-primary align-middle text-center">{{ $i }}</td>
+                                        <td class="cell text-primary align-middle text-center fw-bold">
+                                            {{ $promo->promo_code }}
+                                        </td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->percentage_discount }} %</td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->monthly_discount }} Bulan</td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->activate_date }}</td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->expired_date }}
+                                        </td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            <button class="btn btn-warning">
+                                                <i class="fas fa-edit text-white"></i>
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-trash-alt text-white"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@include('includes.data-table')
+
+<script>
+    $(document).ready(() => {
+        $('#dataTable').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+    });
+</script>
