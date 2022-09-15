@@ -57,29 +57,26 @@ class CustomersComponent extends Component
         ];
 
         // Send Email to Customer
-        $to_name = $customerFindByID->name;
         $to_email = $customerFindByID->email;
+        $to_emailSales = "";
+        if ($customerFindByID->reference_id != null) {
+            $response = Http::withHeaders([
+                'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
+            ])->get('https://legacy.is5.nusa.net.id/employees/' . $customerFindByID->reference_id);
+
+            if ($response->successful()) {
+                $decodeResponse = json_decode($response->body());
+
+                $to_emailSales = $decodeResponse->email;
+            }
+        }
+
         $textingEmail = "Data Formulir Digital Registrasi Anda Telah Disetujui";
-        Mail::raw($textingEmail, function ($message) use ($to_name, $to_email, $data, $id, $customerFindByID) {
-            $message->to($to_email, $to_name)->subject('Persetujuan Formulir Registrasi Internet');
+        Mail::raw($textingEmail, function ($message) use ($to_email, $to_emailSales, $data, $id) {
+            $message->to([$to_email, ($to_emailSales != "" ? $to_emailSales : null)])->subject('Persetujuan Formulir Registrasi Internet');
             $message->from('reg@nusa.net.id', 'Nusanet Medan');
             $pdf = Pdf::loadView('report', $data);
             $message->attachData($pdf->output(), $id . '-form.pdf');
-
-            if ($customerFindByID->reference_id != null) {
-                $response = Http::withHeaders([
-                    'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
-                ])->get('https://legacy.is5.nusa.net.id/employees/' . $customerFindByID->reference_id);
-
-                if ($response->successful()) {
-                    $decodeResponse = json_decode($response->body());
-
-                    $message->to($decodeResponse->name, $decodeResponse->email)->subject('Persetujuan Formulir Registrasi Internet');
-                    $message->from('reg@nusa.net.id', 'Nusanet Medan');
-                    $pdf = Pdf::loadView('report', $data);
-                    $message->attachData($pdf->output(), $id . '-form.pdf');
-                }
-            }
         });
 
         $this->dispatchBrowserEvent('swal', [
