@@ -206,15 +206,15 @@
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
                                                                     <label for="kode_promo_admin"
-                                                                        class="form-label text-primary fw-bold text-align-start">
+                                                                        class="form-label text-primary fw-bold text-align-start"
+                                                                        style="margin-right: 330px;">
                                                                         Kode Promo
                                                                     </label>
                                                                     <input type="text"
                                                                         class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
                                                                         id="kode_promo_admin_{{ $i }}"
-                                                                        wire:model.defer="kode_promo_admin"
-                                                                        placeholder="Masukkan Kode Promo..."
-                                                                        value="{{ $promo->promo_code }}">
+                                                                        wire:model.defer="setkode_promo_admin"
+                                                                        placeholder="Masukkan Kode Promo...">
                                                                     @error('kode_promo_admin')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -222,7 +222,8 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="monthly_discount_admin"
+                                                                    <label style="margin-right: 330px;"
+                                                                        for="monthly_discount_admin"
                                                                         class="form-label text-primary fw-bold">
                                                                         Potongan Bulan
                                                                     </label>
@@ -240,7 +241,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="discount_admin"
+                                                                    <label style="margin-right: 330px;"
+                                                                        for="discount_admin"
                                                                         class="form-label text-primary fw-bold">
                                                                         Potongan Diskon
                                                                     </label>
@@ -258,7 +260,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="start_promo_period_datetime"
+                                                                    <label style="margin-right: 260px;"
+                                                                        for="start_promo_period_datetime"
                                                                         class="form-label text-primary fw-bold">
                                                                         Periode Awal Masa Promo
                                                                     </label>
@@ -268,7 +271,8 @@
                                                                         wire:model.defer="setstart_promo_period_datetime">
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="end_promo_period_datetime"
+                                                                    <label style="margin-right: 260px;"
+                                                                        for="end_promo_period_datetime"
                                                                         class="form-label text-primary fw-bold">
                                                                         Periode Akhir Masa Promo
                                                                     </label>
@@ -316,14 +320,32 @@
 @include('includes.data-table')
 
 <script>
+    var dataTable = $('#dataTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
+
     $(document).ready(() => {
-        $('#dataTable').DataTable({
+        dataTable.destroy();
+        var dataTable = $('#dataTable').DataTable({
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },
             responsive: true
         });
     });
+
+    window.addEventListener('refreshListener', event => {
+        dataTable.destroy();
+        var dataTable = $('#dataTable').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+    })
 
     window.addEventListener('swal', event => {
         setTimeout(() => {

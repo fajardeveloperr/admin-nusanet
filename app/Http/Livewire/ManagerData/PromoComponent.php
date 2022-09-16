@@ -21,7 +21,7 @@ class PromoComponent extends Component
     public $setend_promo_period_datetime;
     public $id_promo_set;
     protected $listeners = [
-        'alert' => '$refresh',
+        'promo_edit' => '$refresh',
     ];
 
     public function create_promo()
@@ -93,6 +93,7 @@ class PromoComponent extends Component
         $this->setend_promo_period_datetime = $promo_edit->expired_date;
         $this->id_promo_set = $promo_edit->id;
 
+        $this->dispatchBrowserEvent('refreshListener');
     }
 
     public function set_promo()
