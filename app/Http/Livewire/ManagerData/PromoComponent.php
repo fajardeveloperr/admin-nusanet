@@ -72,6 +72,57 @@ class PromoComponent extends Component
         }
     }
 
+
+    //edit promo
+
+    //Edit Service//
+    public function pengguna_edit($id)
+    {
+        $pengguna_edit = ServicesList::find($id);
+        $this->nama_pengguna_set = $pengguna_edit->package_name;
+        $this->service_pengguna_set = $pengguna_edit->package_price;
+        $this->category_pengguna_set = $pengguna_edit->category;
+        $this->period_pengguna_set = $pengguna_edit->period;
+        $this->id_pengguna_set = $pengguna_edit->id;
+
+    }
+
+    public function set_promo()
+    {
+        try {
+            $this->validate([
+                'nama_pengguna_set' => 'required|string',
+                'service_pengguna_set' => 'required|string',
+                'category_pengguna_set' => 'required|string',
+                'period_pengguna_set' => 'required|string',
+
+            ]);
+
+            $set_pengguna = ServicesList::where('id', $this->id_pengguna_set)->first();
+            $set_pengguna->package_name  = $this->nama_pengguna_set;
+            $set_pengguna->package_price = $this->service_pengguna_set;
+            $set_pengguna->category = $this->category_pengguna_set;
+            $set_pengguna->period = $this->period_pengguna_set;
+            $set_pengguna->save();
+
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'success',
+                'title' => 'Edit Service berhasil tersimpan!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
+        } catch (\Throwable) {
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'error',
+                'title' => 'Edit Service gagal tersimpan!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
+        }
+    }
+
     public function render()
     {
         $datas = [
