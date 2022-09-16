@@ -13,6 +13,9 @@ class PromoComponent extends Component
     public $discount_admin;
     public $start_promo_period_datetime;
     public $end_promo_period_datetime;
+    protected $listeners = [
+        'alert' => '$refresh',
+    ];
 
     public function create_promo()
     {
@@ -72,6 +75,7 @@ class PromoComponent extends Component
         }
     }
 
+<<<<<<< Updated upstream
 
     //edit promo
 
@@ -104,10 +108,18 @@ class PromoComponent extends Component
             $set_pengguna->category = $this->category_pengguna_set;
             $set_pengguna->period = $this->period_pengguna_set;
             $set_pengguna->save();
+=======
+    public function hapusDataPromo($id)
+    {
+        try {
+            $promoFetch = PromoList::find($id);
+            $promoFetch->delete();
+>>>>>>> Stashed changes
 
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
+<<<<<<< Updated upstream
                 'title' => 'Edit Service berhasil tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
@@ -117,6 +129,17 @@ class PromoComponent extends Component
                 'position' => 'centered',
                 'icon' => 'error',
                 'title' => 'Edit Service gagal tersimpan!',
+=======
+                'title' => 'Data Promo berhasil dihapus!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'error',
+                'title' => 'Maaf, Data Promo Yang Anda Masukkan Sudah Ada!',
+>>>>>>> Stashed changes
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);

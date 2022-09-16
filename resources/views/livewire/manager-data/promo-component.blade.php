@@ -22,7 +22,7 @@
                         Tambah Promo
                     </button>
 
-                    <!-- Modal -->
+                    <!-- Modal Tambah Data Promo -->
                     <div wire:ignore.self class="modal fade" id="addPromoModal" tabindex="-1"
                         aria-labelledby="addPromoModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -115,7 +115,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer bg-white">
-                                        <button type="reset" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                        <button type="reset" class="btn btn-light text-danger"
+                                            data-bs-dismiss="modal">
                                             <i class="fa-solid fa-ban me-1"></i>
                                             Batalkan Perubahan
                                         </button>
@@ -130,114 +131,113 @@
                     </div>
 
                     <!--modal edit -->
-                     <div wire:ignore.self class="modal fade" id="addPromoModal" tabindex="-1"
-                     aria-labelledby="addPromoModalLabel" aria-hidden="true">
-                     <div class="modal-dialog modal-dialog-centered">
-                         <div class="modal-content">
-                             <div class="modal-header bg-primary">
-                                 <h5 class="modal-title text-white" id="addPromoModalLabel">
-                                     <i class="fas fa-plus-circle me-1"></i>
-                                     Tambah Data Promo
-                                 </h5>
-                                 <style>
-                                     .btn-close {
-                                         box-sizing: content-box;
-                                         width: 1em;
-                                         height: 1em;
-                                         padding: .25em .25em;
-                                         color: #fff;
-                                         background: rgba(0, 0, 0, 0) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
-                                         border: 0;
-                                         border-radius: .375rem;
-                                         opacity: .5;
-                                     }
-                                 </style>
-                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                     aria-label="Close"></button>
-                             </div>
-                             <form class="settings-form" wire:submit.prevent='set_promo'>
-                                 <div class="modal-body">
-                                     <div class="mb-3">
-                                         <label for="kode_promo_admin" class="form-label text-primary fw-bold">
-                                             Kode Promo
-                                         </label>
-                                         <input type="text"
-                                             class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
-                                             id="kode_promo_admin" 
-                                             wire:model='setkode_promo_admin'
-                                             placeholder="Masukkan Kode Promo...">
-                                         @error('kode_promo_admin')
-                                             <div class="invalid-feedback">
-                                                 {{ $message }}
-                                             </div>
-                                         @enderror
-                                     </div>
-                                     <div class="mb-3">
-                                         <label for="monthly_discount_admin" class="form-label text-primary fw-bold">
-                                             Potongan Bulan
-                                         </label>
-                                         <div class="input-group">
-                                             <input type="number" class="form-control text-primary border-primary"
-                                                 id="monthly_discount_admin"
-                                                 wire:model='setmonthly_discount_admin'
-                                                 placeholder="Masukkan Potongan Bulan..."
-                                                 aria-label="Masukkan Potongan Bulan..."
-                                                 aria-describedby="monthly_discount_admin_addons">
-                                             <span class="input-group-text bg-primary text-white"
-                                                 id="monthly_discount_admin_addons">Bulan</span>
-                                         </div>
-                                     </div>
-                                     <div class="mb-3">
-                                         <label for="discount_admin" class="form-label text-primary fw-bold">
-                                             Potongan Diskon
-                                         </label>
-                                         <div class="input-group">
-                                             <input type="number" class="form-control text-primary border-primary"
-                                                 id="discount_admin"
-                                                 wire:model='setdiscount_admin'
-                                                 placeholder="Masukkan Potongan Persentase Diskon..."
-                                                 aria-label="Masukkan Potongan Persentase Diskon..."
-                                                 aria-describedby="discount_admin_addons">
-                                             <span class="input-group-text bg-primary text-white"
-                                                 id="discount_admin_addons">%</span>
-                                         </div>
-                                     </div>
-                                     <div class="mb-3">
-                                         <label for="start_promo_period_datetime"
-                                             class="form-label text-primary fw-bold">
-                                             Periode Awal Masa Promo
-                                         </label>
-                                         <input type="datetime-local"
-                                             class="form-control text-primary border-primary"
-                                             id="start_promo_period_datetime"
-                                             wire:model='setstart_promo_period_datetime'>
-                                            
-                                     </div>
-                                     <div class="mb-3">
-                                         <label for="end_promo_period_datetime"
-                                             class="form-label text-primary fw-bold">
-                                             Periode Akhir Masa Promo
-                                         </label>
-                                         <input type="datetime-local"
-                                             class="form-control text-primary border-primary"
-                                             id="end_promo_period_datetime"
-                                             wire:model='setend_promo_period_datetime'>
-                                     </div>
-                                 </div>
-                                 <div class="modal-footer bg-white">
-                                     <button type="reset" class="btn btn-light text-danger" data-bs-dismiss="modal">
-                                         <i class="fa-solid fa-ban me-1"></i>
-                                         Batalkan Perubahan
-                                     </button>
-                                     <button type="submit" class="btn btn-light">
-                                         <i class="fa-solid fa-floppy-disk me-1"></i>
-                                         Simpan Perubahan
-                                     </button>
-                                 </div>
-                             </form>
-                         </div>
-                     </div>
-                 </div>
+                    <div wire:ignore.self class="modal fade" id="addPromoModal" tabindex="-1"
+                        aria-labelledby="addPromoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-white" id="addPromoModalLabel">
+                                        <i class="fas fa-plus-circle me-1"></i>
+                                        Tambah Data Promo
+                                    </h5>
+                                    <style>
+                                        .btn-close {
+                                            box-sizing: content-box;
+                                            width: 1em;
+                                            height: 1em;
+                                            padding: .25em .25em;
+                                            color: #fff;
+                                            background: rgba(0, 0, 0, 0) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+                                            border: 0;
+                                            border-radius: .375rem;
+                                            opacity: .5;
+                                        }
+                                    </style>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form class="settings-form" wire:submit.prevent='set_promo'>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="kode_promo_admin" class="form-label text-primary fw-bold">
+                                                Kode Promo
+                                            </label>
+                                            <input type="text"
+                                                class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
+                                                id="kode_promo_admin" wire:model='setkode_promo_admin'
+                                                placeholder="Masukkan Kode Promo...">
+                                            @error('kode_promo_admin')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="monthly_discount_admin"
+                                                class="form-label text-primary fw-bold">
+                                                Potongan Bulan
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control text-primary border-primary"
+                                                    id="monthly_discount_admin" wire:model='setmonthly_discount_admin'
+                                                    placeholder="Masukkan Potongan Bulan..."
+                                                    aria-label="Masukkan Potongan Bulan..."
+                                                    aria-describedby="monthly_discount_admin_addons">
+                                                <span class="input-group-text bg-primary text-white"
+                                                    id="monthly_discount_admin_addons">Bulan</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="discount_admin" class="form-label text-primary fw-bold">
+                                                Potongan Diskon
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control text-primary border-primary"
+                                                    id="discount_admin" wire:model='setdiscount_admin'
+                                                    placeholder="Masukkan Potongan Persentase Diskon..."
+                                                    aria-label="Masukkan Potongan Persentase Diskon..."
+                                                    aria-describedby="discount_admin_addons">
+                                                <span class="input-group-text bg-primary text-white"
+                                                    id="discount_admin_addons">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="start_promo_period_datetime"
+                                                class="form-label text-primary fw-bold">
+                                                Periode Awal Masa Promo
+                                            </label>
+                                            <input type="datetime-local"
+                                                class="form-control text-primary border-primary"
+                                                id="start_promo_period_datetime"
+                                                wire:model='setstart_promo_period_datetime'>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="end_promo_period_datetime"
+                                                class="form-label text-primary fw-bold">
+                                                Periode Akhir Masa Promo
+                                            </label>
+                                            <input type="datetime-local"
+                                                class="form-control text-primary border-primary"
+                                                id="end_promo_period_datetime"
+                                                wire:model='setend_promo_period_datetime'>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer bg-white">
+                                        <button type="reset" class="btn btn-light text-danger"
+                                            data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-ban me-1"></i>
+                                            Batalkan Perubahan
+                                        </button>
+                                        <button type="submit" class="btn btn-light">
+                                            <i class="fa-solid fa-floppy-disk me-1"></i>
+                                            Simpan Perubahan
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -264,19 +264,151 @@
                                             {{ $promo->promo_code }}
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
-                                            {{ $promo->percentage_discount }} %</td>
+                                            {{ $promo->percentage_discount }} %
+                                        </td>
                                         <td class="cell text-primary align-middle text-center">
-                                            {{ $promo->monthly_discount }} Bulan</td>
+                                            {{ $promo->monthly_discount }} Bulan
+                                        </td>
                                         <td class="cell text-primary align-middle text-center">
-                                            {{ $promo->activate_date }}</td>
+                                            {{ $promo->activate_date }}
+                                        </td>
                                         <td class="cell text-primary align-middle text-center">
                                             {{ $promo->expired_date }}
                                         </td>
-                                        <td class="cell text-primary align-middle text-center ">
-                                            <button class="btn btn-warning mb-2" wire:click="promo_destroy({{ $promo->id }})">
+                                        <td class="cell text-primary align-middle text-center">
+                                            <button class="btn btn-warning" data-bs-toggle="modal"
+                                                data-bs-target="#updateDataPromoModal-{{ $i }}">
                                                 <i class="fas fa-edit text-white"></i>
                                             </button>
-                                            <button class="btn btn-danger">
+
+                                            <!-- Modal Tambah Data Promo -->
+                                            <div wire:ignore.self class="modal fade"
+                                                id="updateDataPromoModal-{{ $i }}" tabindex="-1"
+                                                aria-labelledby="updateDataPromoModalLabel-{{ $i }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-primary">
+                                                            <h5 class="modal-title text-white"
+                                                                id="updateDataPromoModalLabel-{{ $i }}">
+                                                                <i class="fas fa-edit me-1"></i>
+                                                                Update Data Promo
+                                                            </h5>
+                                                            <style>
+                                                                .btn-close {
+                                                                    box-sizing: content-box;
+                                                                    width: 1em;
+                                                                    height: 1em;
+                                                                    padding: .25em .25em;
+                                                                    color: #fff;
+                                                                    background: rgba(0, 0, 0, 0) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+                                                                    border: 0;
+                                                                    border-radius: .375rem;
+                                                                    opacity: .5;
+                                                                }
+                                                            </style>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <form class="settings-form"
+                                                            wire:submit.prevent='update_promo({{ $promo->id }})'>
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <div for="kode_promo_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: justify;">
+                                                                        Kode Promo
+                                                                    </div>
+                                                                    <input type="text"
+                                                                        class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
+                                                                        id="kode_promo_admin"
+                                                                        wire:model.defer="kode_promo_admin"
+                                                                        placeholder="Masukkan Kode Promo...">
+                                                                    @error('kode_promo_admin')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div for="monthly_discount_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: justify;">
+                                                                        Potongan Bulan
+                                                                    </div>
+                                                                    <div class="input-group">
+                                                                        <input type="number"
+                                                                            class="form-control text-primary border-primary"
+                                                                            id="monthly_discount_admin"
+                                                                            wire:model.defer="monthly_discount_admin"
+                                                                            placeholder="Masukkan Potongan Bulan..."
+                                                                            aria-label="Masukkan Potongan Bulan..."
+                                                                            aria-describedby="monthly_discount_admin_addons">
+                                                                        <span
+                                                                            class="input-group-text bg-primary text-white"
+                                                                            id="monthly_discount_admin_addons">Bulan</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div for="discount_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: justify;">
+                                                                        Potongan Diskon
+                                                                    </div>
+                                                                    <div class="input-group">
+                                                                        <input type="number"
+                                                                            class="form-control text-primary border-primary"
+                                                                            id="discount_admin"
+                                                                            wire:model.defer="discount_admin"
+                                                                            placeholder="Masukkan Potongan Persentase Diskon..."
+                                                                            aria-label="Masukkan Potongan Persentase Diskon..."
+                                                                            aria-describedby="discount_admin_addons">
+                                                                        <span
+                                                                            class="input-group-text bg-primary text-white"
+                                                                            id="discount_admin_addons">%</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div for="start_promo_period_datetime"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: justify;">
+                                                                        Periode Awal Masa Promo
+                                                                    </div>
+                                                                    <input type="datetime-local"
+                                                                        class="form-control text-primary border-primary"
+                                                                        id="start_promo_period_datetime"
+                                                                        wire:model.defer="start_promo_period_datetime">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div for="end_promo_period_datetime"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: justify;">
+                                                                        Periode Akhir Masa Promo
+                                                                    </div>
+                                                                    <input type="datetime-local"
+                                                                        class="form-control text-primary border-primary"
+                                                                        id="end_promo_period_datetime"
+                                                                        wire:model.defer="end_promo_period_datetime">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer bg-primary">
+                                                                <button type="reset" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                    <i class="fa-solid fa-ban me-1"></i>
+                                                                    Batalkan Perubahan
+                                                                </button>
+                                                                <button type="submit" class="btn btn-light">
+                                                                    <i class="fa-solid fa-floppy-disk me-1"></i>
+                                                                    Simpan Perubahan
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button class="btn btn-danger"
+                                                wire:click="hapusDataPromo({{ $promo->id }})">
                                                 <i class="fas fa-trash-alt text-white"></i>
                                             </button>
                                         </td>
@@ -304,4 +436,10 @@
             responsive: true
         });
     });
+
+    window.addEventListener('swal', event => {
+        setTimeout(() => {
+            window.location.reload();
+        }, 1500);
+    })
 </script>
