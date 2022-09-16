@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('promo_list', function (Blueprint $table) {
             $table->id();
             $table->string('promo_code');
-            $table->foreignId('package_id');
+            $table->string('package_name');
             $table->enum('package_top', ['Bulanan', 'Tahunan']);
             $table->string('discount_cut');
             $table->string('monthly_cut');

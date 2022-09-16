@@ -55,10 +55,53 @@
                                                 Kode Promo
                                             </label>
                                             <input type="text"
-                                                class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
+                                                class="form-control text-primary border-primary @error('setkode_promo_admin') is-invalid border-danger @enderror"
                                                 id="kode_promo_admin" wire:model.defer="setkode_promo_admin"
                                                 placeholder="Masukkan Kode Promo...">
-                                            @error('kode_promo_admin')
+                                            @error('setkode_promo_admin')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="package_name_admin" class="form-label text-primary fw-bold">
+                                                Nama Paket
+                                            </label>
+                                            <select
+                                                class="form-select text-primary border-primary @error('package_name_admin') is-invalid border-danger @enderror"
+                                                id="package_name_admin" wire:model='package_name_admin'>
+                                                <option value="">
+                                                    Pilih Nama Paket...
+                                                </option>
+                                                @foreach ($dataServiceList as $key => $value)
+                                                    <option value="{{ $key }}">{{ $key }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('package_name_admin')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="package_top_admin" class="form-label text-primary fw-bold">
+                                                TermOfPayment Paket
+                                            </label>
+                                            @php
+                                                $topPaket = ['Bulanan', 'Tahunan'];
+                                            @endphp
+                                            <select
+                                                class="form-select text-primary border-primary @error('package_top_admin') is-invalid border-danger @enderror"
+                                                id="package_top_admin" wire:model='package_top_admin'>
+                                                <option value="">
+                                                    Pilih TOP Paket...
+                                                </option>
+                                                @foreach ($topPaket as $top)
+                                                    <option value="{{ $top }}">{{ $top }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('package_top_admin')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -69,7 +112,8 @@
                                                 Potongan Bulan
                                             </label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control text-primary border-primary"
+                                                <input type="number"
+                                                    class="form-control text-primary border-primary @error('monthly_discount_admin') is-invalid border-danger @enderror"
                                                     id="monthly_discount_admin"
                                                     wire:model.defer="monthly_discount_admin"
                                                     placeholder="Masukkan Potongan Bulan..."
@@ -77,6 +121,11 @@
                                                     aria-describedby="monthly_discount_admin_addons">
                                                 <span class="input-group-text bg-primary text-white"
                                                     id="monthly_discount_admin_addons">Bulan</span>
+                                                @error('monthly_discount_admin')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3">
@@ -84,13 +133,19 @@
                                                 Potongan Diskon
                                             </label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control text-primary border-primary"
+                                                <input type="number"
+                                                    class="form-control text-primary border-primary @error('discount_admin') is-invalid border-danger @enderror"
                                                     id="discount_admin" wire:model.defer="discount_admin"
                                                     placeholder="Masukkan Potongan Persentase Diskon..."
                                                     aria-label="Masukkan Potongan Persentase Diskon..."
                                                     aria-describedby="discount_admin_addons">
                                                 <span class="input-group-text bg-primary text-white"
                                                     id="discount_admin_addons">%</span>
+                                                @error('discount_admin')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3">
@@ -99,9 +154,14 @@
                                                 Periode Awal Masa Promo
                                             </label>
                                             <input type="datetime-local"
-                                                class="form-control text-primary border-primary"
+                                                class="form-control text-primary border-primary @error('start_promo_period_datetime') is-invalid border-danger @enderror"
                                                 id="start_promo_period_datetime"
                                                 wire:model.defer="start_promo_period_datetime">
+                                            @error('start_promo_period_datetime')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label for="end_promo_period_datetime"
@@ -109,9 +169,14 @@
                                                 Periode Akhir Masa Promo
                                             </label>
                                             <input type="datetime-local"
-                                                class="form-control text-primary border-primary"
+                                                class="form-control text-primary border-primary @error('end_promo_period_datetime') is-invalid border-danger @enderror"
                                                 id="end_promo_period_datetime"
                                                 wire:model.defer="end_promo_period_datetime">
+                                            @error('end_promo_period_datetime')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="modal-footer bg-white">
@@ -137,6 +202,8 @@
                                 <tr>
                                     <th class="cell text-white align-middle text-center">No.</th>
                                     <th class="cell text-white align-middle text-center">Kode Promo</th>
+                                    <th class="cell text-white align-middle text-center">Nama Paket</th>
+                                    <th class="cell text-white align-middle text-center">TOP Paket</th>
                                     <th class="cell text-white align-middle text-center">Potongan Diskon</th>
                                     <th class="cell text-white align-middle text-center">Potongan Bulan</th>
                                     <th class="cell text-white align-middle text-center">Periode Masa Awal Promo</th>
@@ -150,15 +217,22 @@
                                 @endphp
                                 @foreach ($dataPromo as $promo)
                                     <tr>
-                                        <td class="cell text-primary align-middle text-center">{{ $i }}</td>
+                                        <td class="cell text-primary align-middle text-center">{{ $i }}
+                                        </td>
                                         <td class="cell text-primary align-middle text-center fw-bold">
                                             {{ $promo->promo_code }}
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
-                                            {{ $promo->percentage_discount }} %
+                                            {{ $promo->package_name }}
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
-                                            {{ $promo->monthly_discount }} Bulan
+                                            {{ $promo->package_top }}
+                                        </td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->monthly_cut }} Bulan
+                                        </td>
+                                        <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->discount_cut }}
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
                                             {{ $promo->activate_date }}
@@ -205,11 +279,11 @@
                                                         <form class="settings-form" wire:submit.prevent='set_promo'>
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
-                                                                    <label for="kode_promo_admin"
-                                                                        class="form-label text-primary fw-bold text-align-start"
-                                                                        style="margin-right: 330px;">
+                                                                    <div for="kode_promo_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: start;">
                                                                         Kode Promo
-                                                                    </label>
+                                                                    </div>
                                                                     <input type="text"
                                                                         class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
                                                                         id="kode_promo_admin_{{ $i }}"
@@ -222,11 +296,62 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label style="margin-right: 330px;"
+                                                                    <div for="package_name_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: start;">
+                                                                        Nama Paket
+                                                                    </div>
+                                                                    <select
+                                                                        class="form-select text-primary border-primary @error('package_name_admin') is-invalid border-danger @enderror"
+                                                                        id="package_name_admin"
+                                                                        wire:model='package_name_admin'>
+                                                                        <option value="">
+                                                                            Pilih Nama Paket...
+                                                                        </option>
+                                                                        @foreach ($dataServiceList as $key => $value)
+                                                                            <option value="{{ $key }}">
+                                                                                {{ $key }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('package_name_admin')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div for="package_top_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: start;">
+                                                                        TermOfPayment Paket
+                                                                    </div>
+                                                                    @php
+                                                                        $topPaket = ['Bulanan', 'Tahunan'];
+                                                                    @endphp
+                                                                    <select
+                                                                        class="form-select text-primary border-primary @error('package_top_admin') is-invalid border-danger @enderror"
+                                                                        id="package_top_admin"
+                                                                        wire:model='package_top_admin'>
+                                                                        <option value="">
+                                                                            Pilih TOP Paket...
+                                                                        </option>
+                                                                        @foreach ($topPaket as $top)
+                                                                            <option value="{{ $top }}">
+                                                                                {{ $top }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('package_top_admin')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div style="text-align: start;"
                                                                         for="monthly_discount_admin"
                                                                         class="form-label text-primary fw-bold">
                                                                         Potongan Bulan
-                                                                    </label>
+                                                                    </div>
                                                                     <div class="input-group">
                                                                         <input type="number"
                                                                             class="form-control text-primary border-primary"
@@ -241,11 +366,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label style="margin-right: 330px;"
+                                                                    <div style="text-align: start;"
                                                                         for="discount_admin"
                                                                         class="form-label text-primary fw-bold">
                                                                         Potongan Diskon
-                                                                    </label>
+                                                                    </div>
                                                                     <div class="input-group">
                                                                         <input type="number"
                                                                             class="form-control text-primary border-primary"
@@ -260,22 +385,22 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label style="margin-right: 260px;"
+                                                                    <div style="text-align: start;"
                                                                         for="start_promo_period_datetime"
                                                                         class="form-label text-primary fw-bold">
                                                                         Periode Awal Masa Promo
-                                                                    </label>
+                                                                    </div>
                                                                     <input type="datetime-local"
                                                                         class="form-control text-primary border-primary"
                                                                         id="start_promo_period_datetime"
                                                                         wire:model.defer="setstart_promo_period_datetime">
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label style="margin-right: 260px;"
+                                                                    <div style="text-align: start;"
                                                                         for="end_promo_period_datetime"
                                                                         class="form-label text-primary fw-bold">
                                                                         Periode Akhir Masa Promo
-                                                                    </label>
+                                                                    </div>
                                                                     <input type="datetime-local"
                                                                         class="form-control text-primary border-primary"
                                                                         id="end_promo_period_datetime"
