@@ -38,7 +38,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="app-card-body">
-                                    <form class="settings-form" wire:submit.prevent='create_pengguna'>
+                                    <form class="settings-form" wire:submit.prevent='create_service'>
                                         @csrf
                                             <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Name :<span
@@ -48,7 +48,17 @@
                                                     </span>
                                             </label>
                                             <input type="text" class="form-control" id="setting-input-1"
-                                                wire:model='nama_pengguna_create' required>
+                                                wire:model='nama_service_create' required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Speed :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="text" class="form-control" id="setting-input-1"
+                                                wire:model='speed_service_create' required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Price :<span
@@ -58,14 +68,25 @@
                                                     </span>
                                             </label>
                                             <input type="number" class="form-control" id="setting-input-1"
-                                                   wire:model='service_pengguna_create' required>
+                                                   wire:model='price_service_create' required>
+                                        </div>
+                                       
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Category :<span
+                                                class="ms-2" data-container="body"
+                                                data-trigger="hover" data-placement="top"
+                                                data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                </span>
+                                        </label>
+                                        <input type="text" class="form-control" id="setting-input-1"
+                                        wire:model='category_service_create' required>
                                         </div>
                                         @php
                                         $periode = ['Bulanan', 'Tahunan'];
                                         @endphp
                                         <div class="mb-3">
-                                            <label for="setting-input-2" class="form-label">Periode :</label>
-                                            <select class="form-control" id="regional" wire:model='period_pengguna_create'>
+                                            <label for="setting-input-2" class="form-label">Package Top :</label>
+                                            <select class="form-control" id="regional" wire:model='top_service_create'>
                                                 <option class="text-center" value="">-------Pilih Periode-------</option>
                                                 @foreach ($periode as $period)
                                                     <option value="{{ $period }}">{{ $period }}</option>
@@ -73,14 +94,14 @@
                                             </select>
                                         </div>
                                         @php
-                                        $class = ['Personal', 'Bussiness'];
+                                        $types = ['Fiber Optik', 'Wireless'];
                                         @endphp
                                         <div class="mb-3">
-                                            <label for="setting-input-2" class="form-label">Category :</label>
-                                            <select class="form-control" id="regional" wire:model='category_pengguna_create'>
-                                                <option class="text-center" value="">-------Pilih Category-------</option>
-                                                @foreach ($class as $cls)
-                                                    <option value="{{ $cls }}">{{ $cls }}</option>
+                                            <label for="setting-input-2" class="form-label">Package Type :</label>
+                                            <select class="form-control" id="regional" wire:model='type_service_create'>
+                                                <option class="text-center" value="">-------Pilih Type-------</option>
+                                                @foreach ($types as $type)
+                                                    <option value="{{ $type }}">{{ $type }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -175,7 +196,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="app-card-body">
-                                    <form class="settings-form" wire:submit.prevent='delete_pengguna'>
+                                    <form class="settings-form" wire:submit.prevent='delete_service'>
                                         @csrf
                                         <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Name :<span
@@ -186,7 +207,7 @@
                                             </label>
                                             <input type="text" class="form-control" id="setting-input-1"
                                                     readonly
-                                                    wire:model='nama_pengguna_delete' required>
+                                                    wire:model='nama_service_delete' required>
                                             </div>
                                         <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Service Price :
@@ -243,8 +264,10 @@
                                     <th class="cell text-white">No</th>
                                     <th class="cell text-white">Package Name</th>
                                     <th class="cell text-white">Package Price</th>
-                                    <th class="cell text-white">Periode</th>
-                                    <th class="cell text-white">Category</th>
+                                    <th class="cell text-white">Package Speed</th>
+                                    <th class="cell text-white">Package Category</th>
+                                    <th class="cell text-white">Package Type</th>
+                                    <th class="cell text-white">Package Top</th>
                                     <th class="cell text-white">Tersimpan</th>
                                     <th class="cell text-white">Aksi</th>
                                 </tr>
@@ -262,10 +285,16 @@
                                             IDR. {{ number_format($service->package_price, 2, ',', '.') }}
                                         </td>
                                         <td>
-                                            {{ $service->period }}
+                                            {{ $service->package_speed }}
                                         </td>
                                         <td>
-                                            {{ $service->category }}
+                                            {{ $service->package_categories }}
+                                        </td>
+                                        <td>
+                                            {{ $service->package_type }}
+                                        </td>
+                                        <td>
+                                            {{ $service->package_top }}
                                         </td>
                                         <td>
                                             {{ $service->created_at }}

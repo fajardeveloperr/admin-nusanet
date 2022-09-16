@@ -14,10 +14,12 @@ class ServiceComponent extends Component
 
     public $pengguna_search;
 
-    public $nama_pengguna_create,
-           $service_pengguna_create,
-           $category_pengguna_create,
-           $period_pengguna_create;
+    public $nama_service_create,
+           $speed_service_create,
+           $price_service_create,
+           $category_service_create,
+           $top_service_create,
+           $type_service_create;
 
     public $nama_pengguna_set,
            $service_pengguna_set,
@@ -29,27 +31,31 @@ class ServiceComponent extends Component
            $service_pengguna_delete,
            $category_pengguna_delete,
            $period_pengguna_delete,
-           $id_pengguna_delete;
+           $id_service_delete;
 
 
     // Create Service//
-    public function create_pengguna()
+    public function create_service()
     {
         try {
             $this->validate([
-                'nama_pengguna_create' => 'required|unique:services_list,package_name|min:3|max:50',
-                'service_pengguna_create' => 'required|min:3|max:50',
-                'category_pengguna_create' => 'required|min:3|max:50',
-                'period_pengguna_create' => 'required|min:3|max:50',
+                'nama_service_create' => 'required|unique:services_list,package_name|min:3|max:50',
+                'speed_service_create' => 'required|min:3|max:50',
+                'price_service_create' => 'required|min:3|max:50',
+                'category_service_create' => 'required|min:3|max:50',
+                'top_service_create' => 'required|min:3|max:50',
+                'type_service_create' => 'required|min:3|max:50',
 
             ]);
 
-            $create_pengguna = new ServicesList();
-            $create_pengguna->package_name = $this->nama_pengguna_create;
-            $create_pengguna->package_price = $this->service_pengguna_create;
-            $create_pengguna->category = $this->category_pengguna_create;
-            $create_pengguna->period = $this->period_pengguna_create;
-            $create_pengguna->save();
+            $create_service = new ServicesList();
+            $create_service->package_name = $this->nama_service_create;
+            $create_service->package_speed = $this->speed_service_create;
+            $create_service->package_price = $this->price_service_create;
+            $create_service->package_categories = $this->category_service_create;
+            $create_service->package_top = $this->top_service_create;
+            $create_service->package_type = $this->type_service_create;
+            $create_service->save();
 
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
@@ -60,10 +66,12 @@ class ServiceComponent extends Component
             ]);
 
             $this->reset([
-                'nama_pengguna_create',
-                'service_pengguna_create',
-                'category_pengguna_set',
-                'period_pengguna_set',
+                'nama_service_create',
+                'speed_service_create',
+                'price_service_create',
+                'category_service_create',
+                'top_service_create',
+                'type_service_create',
             ]);
 
         } catch (\Throwable) {
@@ -137,11 +145,11 @@ class ServiceComponent extends Component
         $this->id_pengguna_delete = $pengguna_destroy->id;
     }
 
-    public function delete_pengguna()
+    public function delete_service()
     {
         try {
-            $delete_pengguna = ServicesList::where('id', $this->id_pengguna_delete)->first();
-            $delete_pengguna->delete();
+            $delete_service = ServicesList::where('id', $this->id_service_delete)->first();
+            $delete_service->delete();
 
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
@@ -169,10 +177,12 @@ class ServiceComponent extends Component
 
     public function render()
     {
-        $services = Serviceslist::where('category', 'like', '%' . $this->pengguna_search . '%')
+        $services = Serviceslist::where('package_categories', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_name', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('package_speed', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_price', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('period', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('package_top', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('package_type', 'like', '%' . $this->pengguna_search . '%')
         ->paginate(10);
         return view('livewire.manager-data.service-component',compact('services'))->layout('layouts.default');
     }
