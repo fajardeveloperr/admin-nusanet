@@ -56,7 +56,7 @@
                                             </label>
                                             <input type="text"
                                                 class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
-                                                id="kode_promo_admin" wire:model.defer="kode_promo_admin"
+                                                id="kode_promo_admin" wire:model.defer="setkode_promo_admin"
                                                 placeholder="Masukkan Kode Promo...">
                                             @error('kode_promo_admin')
                                                 <div class="invalid-feedback">
@@ -173,7 +173,7 @@
                                                 <i class="fas fa-edit text-white"></i>
                                             </button>
 
-                                            <!-- Modal edit Data Promo -->
+                                            <!-- Modal Update Data Promo -->
                                             <div wire:ignore.self class="modal fade"
                                                 id="updateDataPromoModal-{{ $i }}" tabindex="-1"
                                                 aria-labelledby="updateDataPromoModalLabel-{{ $i }}"
@@ -205,13 +205,16 @@
                                                         <form class="settings-form" wire:submit.prevent='set_promo'>
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
-                                                                    <label for="kode_promo_admin" class="form-label text-primary fw-bold ">
+                                                                    <label for="kode_promo_admin"
+                                                                        class="form-label text-primary fw-bold text-align-start">
                                                                         Kode Promo
                                                                     </label>
                                                                     <input type="text"
                                                                         class="form-control text-primary border-primary @error('kode_promo_admin') is-invalid border-danger @enderror"
-                                                                        id="kode_promo_admin" wire:model.defer="setkode_promo_admin"
-                                                                        placeholder="Masukkan Kode Promo...">
+                                                                        id="kode_promo_admin_{{ $i }}"
+                                                                        wire:model.defer="kode_promo_admin"
+                                                                        placeholder="Masukkan Kode Promo..."
+                                                                        value="{{ $promo->promo_code }}">
                                                                     @error('kode_promo_admin')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -219,31 +222,38 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="monthly_discount_admin" class="form-label text-primary fw-bold">
+                                                                    <label for="monthly_discount_admin"
+                                                                        class="form-label text-primary fw-bold">
                                                                         Potongan Bulan
                                                                     </label>
                                                                     <div class="input-group">
-                                                                        <input type="number" class="form-control text-primary border-primary"
+                                                                        <input type="number"
+                                                                            class="form-control text-primary border-primary"
                                                                             id="monthly_discount_admin"
                                                                             wire:model.defer="setmonthly_discount_admin"
                                                                             placeholder="Masukkan Potongan Bulan..."
                                                                             aria-label="Masukkan Potongan Bulan..."
                                                                             aria-describedby="monthly_discount_admin_addons">
-                                                                        <span class="input-group-text bg-primary text-white"
+                                                                        <span
+                                                                            class="input-group-text bg-primary text-white"
                                                                             id="monthly_discount_admin_addons">Bulan</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="discount_admin" class="form-label text-primary fw-bold">
+                                                                    <label for="discount_admin"
+                                                                        class="form-label text-primary fw-bold">
                                                                         Potongan Diskon
                                                                     </label>
                                                                     <div class="input-group">
-                                                                        <input type="number" class="form-control text-primary border-primary"
-                                                                            id="discount_admin" wire:model.defer="setdiscount_admin"
+                                                                        <input type="number"
+                                                                            class="form-control text-primary border-primary"
+                                                                            id="discount_admin"
+                                                                            wire:model.defer="setdiscount_admin"
                                                                             placeholder="Masukkan Potongan Persentase Diskon..."
                                                                             aria-label="Masukkan Potongan Persentase Diskon..."
                                                                             aria-describedby="discount_admin_addons">
-                                                                        <span class="input-group-text bg-primary text-white"
+                                                                        <span
+                                                                            class="input-group-text bg-primary text-white"
                                                                             id="discount_admin_addons">%</span>
                                                                     </div>
                                                                 </div>
@@ -268,18 +278,19 @@
                                                                         wire:model.defer="setend_promo_period_datetime">
                                                                 </div>
                                                             </div>
-                                    <div class="modal-footer bg-white">
-                                        <button type="reset" class="btn btn-light text-danger"
-                                            data-bs-dismiss="modal">
-                                            <i class="fa-solid fa-ban me-1"></i>
-                                            Batalkan Perubahan
-                                        </button>
-                                        <button type="submit" class="btn btn-light">
-                                            <i class="fa-solid fa-floppy-disk me-1"></i>
-                                            Simpan Perubahan
-                                        </button>
-                                    </div>
-                                </form>
+                                                            <div class="modal-footer bg-white">
+                                                                <button type="reset"
+                                                                    class="btn btn-light text-danger"
+                                                                    data-bs-dismiss="modal">
+                                                                    <i class="fa-solid fa-ban me-1"></i>
+                                                                    Batalkan Perubahan
+                                                                </button>
+                                                                <button type="submit" class="btn btn-light">
+                                                                    <i class="fa-solid fa-floppy-disk me-1"></i>
+                                                                    Simpan Perubahan
+                                                                </button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

@@ -107,7 +107,7 @@ class PromoComponent extends Component
             ]);
 
             $set_promo = PromoList::where('id', $this->id_promo_set)->first();
-            $set_promo->promo_code = $this->setkode_promo_admint;
+            $set_promo->promo_code = $this->setkode_promo_admin;
             $set_promo->monthly_discount = $this->setmonthly_discount_admin;
             $set_promo->percentage_discount = $this->setdiscount_admin;
             $set_promo->activate_date = $this->setstart_promo_period_datetime;
