@@ -13,6 +13,13 @@ class PromoComponent extends Component
     public $discount_admin;
     public $start_promo_period_datetime;
     public $end_promo_period_datetime;
+
+    public $setkode_promo_admin;
+    public $setmonthly_discount_admin;
+    public $setdiscount_admin;
+    public $setstart_promo_period_datetime;
+    public $setend_promo_period_datetime;
+    public $id_promo_set;
     protected $listeners = [
         'alert' => '$refresh',
     ];
@@ -69,6 +76,56 @@ class PromoComponent extends Component
                 'position' => 'centered',
                 'icon' => 'error',
                 'title' => 'Maaf, Data Promo Yang Anda Masukkan Sudah Ada!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
+        }
+    }
+
+    //Edit Promo//
+    public function promo_edit($id)
+    {
+        $promo_edit = PromoList::find($id);
+        $this->setkode_promo_admin = $promo_edit->promo_code;
+        $this->setmonthly_discount_admin = $promo_edit->monthly_discount;
+        $this->setdiscount_admin = $promo_edit->percentage_discount;
+        $this->setstart_promo_period_datetime = $promo_edit->activate_date;
+        $this->setend_promo_period_datetime = $promo_edit->expired_date;
+        $this->id_promo_set = $promo_edit->id;
+
+    }
+
+    public function set_promo()
+    {
+        try {
+            $this->validate([
+                'setkode_promo_admin' => 'required|string',
+                'setmonthly_discount_admin' => 'required|string',
+                'setdiscount_admin' => 'required|string',
+                'setstart_promo_period_datetime' => 'required|string',
+                'setend_promo_period_datetime' => 'required|string',
+            ]);
+
+            $set_promo = PromoList::where('id', $this->id_promo_set)->first();
+            $set_promo->promo_code = $this->setkode_promo_admint;
+            $set_promo->monthly_discount = $this->setmonthly_discount_admin;
+            $set_promo->percentage_discount = $this->setdiscount_admin;
+            $set_promo->activate_date = $this->setstart_promo_period_datetime;
+            $set_promo->expired_date = $this->setend_promo_period_datetime;
+            $set_promo->save();
+
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'success',
+                'title' => 'Edit Promo berhasil tersimpan!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
+        } catch (\Throwable) {
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'error',
+                'title' => 'Edit Promo gagal tersimpan!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
