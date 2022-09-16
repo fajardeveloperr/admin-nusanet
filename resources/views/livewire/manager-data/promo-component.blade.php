@@ -205,7 +205,7 @@
                                                         <form class="settings-form" wire:submit.prevent='set_promo'>
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
-                                                                    <label for="kode_promo_admin" class="form-label text-primary fw-bold ">
+                                                                    <label for="kode_promo_admin" class="form-label text-primary fw-bold text-align-start">
                                                                         Kode Promo
                                                                     </label>
                                                                     <input type="text"
