@@ -15,46 +15,25 @@ class ServicesTableSeeder extends Seeder
      */
     public function run()
     {
-        ServicesList::create([
-            'package_name'  =>'Broadband FO Home Basic 30 Mbps',
-            'package_price' => '388500',
-            'category'  =>'Personal',
-            'period' => 'Bulanan',
-        ]);
+        $newDataService = new ServicesList();
 
-        ServicesList::create([
-            'package_name'  =>'Broadband FO Home Basic 30 Mbps (TAHUNAN)',
-            'package_price' => '4662000',
-            'category'  =>'Personal',
-            'period' => 'Tahunan',
-        ]);
-
-        ServicesList::create([
-            'package_name'  =>'Broadband FO Home Standard 50 Mbps',
-            'package_price' => '499500',
-            'category'  =>'Personal',
-            'period' => 'Bulanan',
-        ]);
-
-        ServicesList::create([
-            'package_name'  =>'Broadband FO Home Standard 50 Mbps (TAHUNAN)',
-            'package_price' => '5994000',
-            'category'  =>'Personal',
-            'period' => 'Tahunan',
-        ]);
-
-        ServicesList::create([
-            'package_name'  =>'Broadband FO Home Premium 100 Mbps',
-            'package_price' => '888000',
-            'category'  =>'Personal',
-            'period' => 'Bulanan',
-        ]);
-
-        ServicesList::create([
-            'package_name'  =>'Broadband FO Home Premium 100 Mbps (TAHUNAN)',
-            'package_price' => '10656000',
-            'category'  =>'Personal',
-            'period' => 'Tahunan',
+        $newDataService->insert([
+            [
+                'package_name' => 'Broadband Home',
+                'package_type' => 'Fiber Optic',
+                'package_categories' => 'Basic',
+                'package_speed' => '30',
+                'package_top' => 'Bulanan',
+                'package_price' => ''
+            ],
+            [
+                'package_name' => 'Broadband Home',
+                'package_type' => 'Fiber Optic',
+                'package_categories' => 'Basic',
+                'package_speed' => '30',
+                'package_top' => 'Tahunan',
+                'package_price' => ''
+            ]
         ]);
     }
 }
