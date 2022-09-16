@@ -205,7 +205,7 @@
                                                         <form class="settings-form" wire:submit.prevent='set_promo'>
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
-                                                                    <label for="kode_promo_admin" class="form-label text-primary fw-bold text-align-start">
+                                                                    <label for="kode_promo_admin" style="margin-right: 360px;" class="form-label text-primary fw-bold text-align-start">
                                                                         Kode Promo
                                                                     </label>
                                                                     <input type="text"
@@ -219,7 +219,7 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="monthly_discount_admin" class="form-label text-primary fw-bold">
+                                                                    <label style="margin-right: 330px;" for="monthly_discount_admin" class="form-label text-primary fw-bold">
                                                                         Potongan Bulan
                                                                     </label>
                                                                     <div class="input-group">
@@ -234,7 +234,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="discount_admin" class="form-label text-primary fw-bold">
+                                                                    <label style="margin-right: 330px;" for="discount_admin" class="form-label text-primary fw-bold">
                                                                         Potongan Diskon
                                                                     </label>
                                                                     <div class="input-group">
@@ -248,7 +248,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="start_promo_period_datetime"
+                                                                    <label style="margin-right: 260px;" for="start_promo_period_datetime"
                                                                         class="form-label text-primary fw-bold">
                                                                         Periode Awal Masa Promo
                                                                     </label>
@@ -258,7 +258,7 @@
                                                                         wire:model.defer="setstart_promo_period_datetime">
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="end_promo_period_datetime"
+                                                                    <label style="margin-right: 260px;" for="end_promo_period_datetime"
                                                                         class="form-label text-primary fw-bold">
                                                                         Periode Akhir Masa Promo
                                                                     </label>
