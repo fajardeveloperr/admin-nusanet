@@ -117,8 +117,8 @@
                                                     @endphp
                                                     @foreach ($customers as $custome)
                                                         @if ($custome->class == $item)
-                                                            <tr class="text-light" style="text-align: center;">
-                                                                <td class="align-middle text-center text-secondary ">
+                                                            <tr class="text-light" data-bs-toggle="modal" data-bs-target="#detail-data" style="text-align: center;">
+                                                                <td class="align-middle text-center text-secondary">
                                                                     {{ $id }}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary"
@@ -279,8 +279,7 @@
                                                                 tabindex="-1" role="dialog"
                                                                 aria-labelledby="exampleModalCenterTitle"
                                                                 aria-hidden="true">
-                                                                <div
-                                                                    class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title text-success"
