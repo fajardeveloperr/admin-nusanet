@@ -9,9 +9,11 @@ class ServicesList extends Model
     protected $table = 'services_list';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'category',
         'package_name',
-        'package_price',
-        'period'
+        'package_type',
+        'package_categories',
+        'package_speed',
+        'package_top',
+        'package_price'
     ];
 }
