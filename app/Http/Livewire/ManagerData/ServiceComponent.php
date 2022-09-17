@@ -21,16 +21,20 @@ class ServiceComponent extends Component
            $top_service_create,
            $type_service_create;
 
-    public $nama_pengguna_set,
-           $service_pengguna_set,
-           $category_pengguna_set,
-           $period_pengguna_set,
-           $id_pengguna_set;
+    public $nama_service_set,
+           $speed_service_set,
+           $price_service_set,
+           $category_service_set,
+           $top_service_set,
+           $type_service_set,
+           $id_service_set;
 
-    public $nama_pengguna_delete,
-           $service_pengguna_delete,
-           $category_pengguna_delete,
-           $period_pengguna_delete,
+    public $nama_service_delete,
+           $speed_service_delete,
+           $price_service_delete,
+           $category_service_delete,
+           $top_service_delete,
+           $type_service_delete,
            $id_service_delete;
 
 
@@ -39,7 +43,8 @@ class ServiceComponent extends Component
     {
         try {
             $this->validate([
-                'nama_service_create' => 'required|unique:services_list,package_name|min:3|max:50',
+                // 'nama_service_create' => 'required|unique:services_list,package_name|min:3|max:50',
+                'nama_service_create' => 'required|min:3|max:50',
                 'speed_service_create' => 'required|min:3|max:50',
                 'price_service_create' => 'required|min:3|max:50',
                 'category_service_create' => 'required|min:3|max:50',
@@ -87,33 +92,38 @@ class ServiceComponent extends Component
 
 
     //Edit Service//
-    public function pengguna_edit($id)
+    public function service_edit($id)
     {
-        $pengguna_edit = ServicesList::find($id);
-        $this->nama_pengguna_set = $pengguna_edit->package_name;
-        $this->service_pengguna_set = $pengguna_edit->package_price;
-        $this->category_pengguna_set = $pengguna_edit->category;
-        $this->period_pengguna_set = $pengguna_edit->period;
-        $this->id_pengguna_set = $pengguna_edit->id;
+        $service_edit = ServicesList::find($id);
+        $this->nama_service_set = $service_edit->package_name;
+        $this->speed_service_set = $service_edit->package_speed;
+        $this->price_service_set = $service_edit->package_price;
+        $this->category_service_set = $service_edit->package_categories;
+        $this->top_service_set = $service_edit->package_top;
+        $this->type_service_set = $service_edit->package_type;
+        $this->id_pengguna_set = $service_edit->id;
 
     }
 
-    public function set_pengguna()
+    public function set_service()
     {
         try {
             $this->validate([
-                'nama_pengguna_set' => 'required|string',
-                'service_pengguna_set' => 'required|string',
-                'category_pengguna_set' => 'required|string',
-                'period_pengguna_set' => 'required|string',
-
+                'nama_service_set' =>'required|string',
+                'speed_service_set' =>'required|string',
+                'price_service_set' =>'required|string',
+                'category_service_set' =>'required|string',
+                'top_service_set' =>'required|string',
+                'type_service_set' =>'required|string',
             ]);
 
-            $set_pengguna = ServicesList::where('id', $this->id_pengguna_set)->first();
-            $set_pengguna->package_name  = $this->nama_pengguna_set;
-            $set_pengguna->package_price = $this->service_pengguna_set;
-            $set_pengguna->category = $this->category_pengguna_set;
-            $set_pengguna->period = $this->period_pengguna_set;
+            $set_service = ServicesList::where('id', $this->id_service_set)->first();
+            $set_service->package_name = $this->nama_service_set;
+            $set_service->package_speed = $this->speed_service_set;
+            $set_service->package_price = $this->price_service_set;
+            $set_service->package_categories = $this->category_service_set;
+            $set_service->package_top = $this->top_service_set;
+            $set_service->package_type = $this->type_service_set;
             $set_pengguna->save();
 
             $this->dispatchBrowserEvent('swal', [
@@ -135,14 +145,16 @@ class ServiceComponent extends Component
     }
 
     //Delete Service//
-    public function pengguna_destroy($id)
+    public function service_destroy($id)
     {
-        $pengguna_destroy = ServicesList::find($id);
-        $this->nama_pengguna_delete = $pengguna_destroy->package_name;
-        $this->service_pengguna_delete = $pengguna_destroy->package_price;
-        $this->category_pengguna_delete = $pengguna_destroy->category;
-        $this->period_pengguna_delete = $pengguna_destroy->period;
-        $this->id_pengguna_delete = $pengguna_destroy->id;
+        $service_destroy = ServicesList::find($id);
+        $this->nama_service_delete = $service_destroy->package_name;
+        $this->speed_service_delete = $service_destroy->package_speed;
+        $this->price_service_delete = $service_destroy->package_price;
+        $this->category_service_delete = $service_destroy->package_categories;
+        $this->top_service_delete = $service_destroy->package_top;
+        $this->type_service_delete = $service_destroy->package_type;
+        $this->id_service_delete = $service_destroy->id;
     }
 
     public function delete_service()
@@ -159,10 +171,12 @@ class ServiceComponent extends Component
                 'timer' => 1500
             ]);
             $this->reset([
-                'nama_pengguna_delete',
-                'service_pengguna_delete',
-                'category_pengguna_delete',
-                'period_pengguna_delete',
+                'nama_service_delete',
+                'speed_service_delete',
+                'price_service_delete',
+                'category_service_delete',
+                'top_service_delete',
+                'type_service_delete',
             ]);
         } catch (\Throwable) {
             $this->dispatchBrowserEvent('swal', [

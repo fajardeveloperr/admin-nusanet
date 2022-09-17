@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\ServicesList;
+use Carbon\Carbon;
 
 class ServicesTableSeeder extends Seeder
 {
@@ -18,14 +19,15 @@ class ServicesTableSeeder extends Seeder
         $newDataService = new ServicesList();
 
         $newDataService->insert([
-
             [
                 'package_name' => 'Broadband Home',
                 'package_type' => 'Fiber Optic',
                 'package_categories' => 'Basic',
                 'package_speed' => '30',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Home',
@@ -33,7 +35,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Basic',
                 'package_speed' => '30',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -42,7 +46,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Standart',
                 'package_speed' => '50',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Home',
@@ -51,6 +57,8 @@ class ServicesTableSeeder extends Seeder
                 'package_speed' => '50',
                 'package_top' => 'Tahunan',
                 'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -59,7 +67,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Premium',
                 'package_speed' => '100',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Home',
@@ -68,6 +78,8 @@ class ServicesTableSeeder extends Seeder
                 'package_speed' => '100',
                 'package_top' => 'Tahunan',
                 'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -76,7 +88,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Primary',
                 'package_speed' => '30',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Bussiness',
@@ -84,7 +98,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Primary',
                 'package_speed' => '30',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -93,7 +109,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Advanced',
                 'package_speed' => '50',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Bussiness',
@@ -101,7 +119,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Advanced',
                 'package_speed' => '50',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -110,7 +130,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Pro',
                 'package_speed' => '100',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Bussiness',
@@ -118,7 +140,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Pro',
                 'package_speed' => '100',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -127,7 +151,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Silver',
                 'package_speed' => '10',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Bussiness',
@@ -135,7 +161,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Silver',
                 'package_speed' => '10',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -144,7 +172,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Gold',
                 'package_speed' => '20',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Bussiness',
@@ -152,7 +182,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Gold',
                 'package_speed' => '20',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -161,7 +193,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Diamond',
                 'package_speed' => '30',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Broadband Bussiness',
@@ -169,7 +203,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => 'Diamond',
                 'package_speed' => '30',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -178,7 +214,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '50',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 4',
@@ -186,7 +224,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '50',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -195,7 +235,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '75',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 4',
@@ -203,7 +245,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '75',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -212,7 +256,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '100',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 4',
@@ -220,7 +266,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '100',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -229,7 +277,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '10',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -237,7 +287,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '15',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -246,7 +298,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '20',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -254,7 +308,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '30',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -263,7 +319,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '40',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -271,7 +329,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '50',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -280,7 +340,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '60',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -288,7 +350,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '70',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -297,7 +361,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '80',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -305,7 +371,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '90',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -314,7 +382,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '100',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -322,7 +392,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '150',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -331,7 +403,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '200',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -339,7 +413,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '300',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -348,7 +424,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '400',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -356,7 +434,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '500',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -365,7 +445,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '600',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -373,7 +455,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '700',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -382,7 +466,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '800',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -390,7 +476,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '900',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -399,7 +487,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '1000',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -407,7 +497,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '10',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -416,7 +508,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '15',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -424,7 +518,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '20',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -433,7 +529,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '30',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -441,7 +539,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '40',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -450,7 +550,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '50',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -458,7 +560,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '60',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -467,7 +571,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '70',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -475,7 +581,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '80',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -484,7 +592,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '90',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -492,7 +602,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '100',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -501,7 +613,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '150',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -509,7 +623,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '200',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -518,7 +634,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '300',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -526,7 +644,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '400',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -535,7 +655,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '500',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -543,7 +665,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '600',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -552,7 +676,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '700',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -560,7 +686,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '800',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -569,7 +697,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '900',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -577,7 +707,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '1000',
                 'package_top' => 'Tahunan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -586,7 +718,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '10',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -594,7 +728,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '15',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -603,7 +739,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '20',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -611,7 +749,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '30',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
@@ -620,7 +760,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '40',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'package_name' => 'Dedicated 1 : 1',
@@ -628,7 +770,9 @@ class ServicesTableSeeder extends Seeder
                 'package_categories' => '-',
                 'package_speed' => '50',
                 'package_top' => 'Bulanan',
-                'package_price' => '0'
+                'package_price' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
         ]);
     }

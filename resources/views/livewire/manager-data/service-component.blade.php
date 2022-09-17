@@ -126,36 +126,55 @@
                             </div>
                             <div class="modal-body">
                                 <div class="app-card-body">
-                                    <form class="settings-form" wire:submit.prevent='set_pengguna'>
+                                    <form class="settings-form" wire:submit.prevent='set_service'>
                                         @csrf
-                                        <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Package Name :
-                                                <span
-                                                    class="ms-2" data-container="body" data-bs-toggle="popover"
+                                            <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Name :<span
+                                                    class="ms-2" data-container="body"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                </span>
+                                                    </span>
                                             </label>
                                             <input type="text" class="form-control" id="setting-input-1"
-                                                wire:model='nama_pengguna_set' required>
+                                                wire:model='nama_service_set' required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Package Price :
-                                                <span
-                                                    class="ms-2" data-container="body" data-bs-toggle="popover"
+                                            <label for="setting-input-1" class="form-label">Package Speed :<span
+                                                    class="ms-2" data-container="body"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                </span>
+                                                    </span>
+                                            </label>
+                                            <input type="text" class="form-control" id="setting-input-1"
+                                                wire:model='speed_service_set' required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
                                             </label>
                                             <input type="number" class="form-control" id="setting-input-1"
-                                                wire:model='service_pengguna_set' required>
+                                                   wire:model='price_service_set' required>
+                                        </div>
+                                       
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Category :<span
+                                                class="ms-2" data-container="body"
+                                                data-trigger="hover" data-placement="top"
+                                                data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                </span>
+                                        </label>
+                                        <input type="text" class="form-control" id="setting-input-1"
+                                        wire:model='category_service_set' required>
                                         </div>
                                         @php
                                         $periode = ['Bulanan', 'Tahunan'];
                                         @endphp
                                         <div class="mb-3">
-                                            <label for="setting-input-2" class="form-label">Periode :</label>
-                                            <select class="form-control" id="regional" wire:model='period_pengguna_set'>
+                                            <label for="setting-input-2" class="form-label">Package Top :</label>
+                                            <select class="form-control" id="regional" wire:model='top_service_set'>
                                                 <option class="text-center" value="">-------Pilih Periode-------</option>
                                                 @foreach ($periode as $period)
                                                     <option value="{{ $period }}">{{ $period }}</option>
@@ -163,20 +182,19 @@
                                             </select>
                                         </div>
                                         @php
-                                        $class = ['Personal', 'Bussiness'];
+                                        $types = ['Fiber Optik', 'Wireless'];
                                         @endphp
                                         <div class="mb-3">
-                                            <label for="setting-input-2" class="form-label">Category :</label>
-                                            <select class="form-control" id="regional" wire:model='category_pengguna_set'>
-                                                <option class="text-center" value="">-------Pilih Category-------</option>
-                                                @foreach ($class as $cls)
-                                                    <option value="{{ $cls }}">{{ $cls }}</option>
+                                            <label for="setting-input-2" class="form-label">Package Type :</label>
+                                            <select class="form-control" id="regional" wire:model='type_service_set'>
+                                                <option class="text-center" value="">-------Pilih Type-------</option>
+                                                @foreach ($types as $type)
+                                                    <option value="{{ $type }}">{{ $type }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn app-btn-primary"
-                                                data-bs-dismiss="modal">Update</button>
+                                        <div class="d-flex justify-content-end ">
+                                            <button type="submit" class="btn app-btn-primary">Update</button>
                                         </div>
                                     </form>
                                 </div>
@@ -198,34 +216,53 @@
                                 <div class="app-card-body">
                                     <form class="settings-form" wire:submit.prevent='delete_service'>
                                         @csrf
-                                        <div class="mb-3">
+                                            <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Name :<span
-                                                    class="ms-2" data-container="body" data-bs-toggle="popover"
+                                                    class="ms-2" data-container="body"
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                </span>
+                                                    </span>
                                             </label>
-                                            <input type="text" class="form-control" id="setting-input-1"
-                                                    readonly
-                                                    wire:model='nama_service_delete' required>
-                                            </div>
+                                            <input type="text" readonly class="form-control" id="setting-input-1"
+                                                wire:model='nama_service_delete' required>
+                                        </div>
                                         <div class="mb-3">
-                                            <label for="setting-input-1" class="form-label">Service Price :
-                                                <span
-                                                    class="ms-2" data-container="body" data-bs-toggle="popover"
+                                            <label for="setting-input-1" class="form-label">Package Speed :<span
+                                                    class="ms-2" data-container="body" 
                                                     data-trigger="hover" data-placement="top"
                                                     data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                </span>
+                                                    </span>
                                             </label>
-                                            <input type="number" class="form-control"readonly id="setting-input-1"
-                                                wire:model='service_pengguna_delete' required>
+                                            <input type="text" class="form-control" readonly id="setting-input-1"
+                                                wire:model='speed_service_delete' required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" class="form-control" readonly id="setting-input-1"
+                                                   wire:model='price_service_delete' required>
+                                        </div>
+                                       
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Package Category :<span
+                                                class="ms-2" data-container="body"
+                                                data-trigger="hover" data-placement="top"
+                                                data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                </span>
+                                        </label>
+                                        <input type="text" class="form-control" readonly id="setting-input-1"
+                                        wire:model='category_service_delete' required>
                                         </div>
                                         @php
                                         $periode = ['Bulanan', 'Tahunan'];
                                         @endphp
                                         <div class="mb-3">
-                                            <label for="setting-input-2" class="form-label">Periode :</label>
-                                            <select class="form-control" readonly id="regional" wire:model='period_pengguna_delete'>
+                                            <label for="setting-input-2" class="form-label">Package Top :</label>
+                                            <select class="form-control" id="regional" readonly wire:model='top_service_delete'>
                                                 <option class="text-center" value="">-------Pilih Periode-------</option>
                                                 @foreach ($periode as $period)
                                                     <option value="{{ $period }}">{{ $period }}</option>
@@ -233,20 +270,19 @@
                                             </select>
                                         </div>
                                         @php
-                                        $class = ['Personal', 'Bussiness'];
+                                        $types = ['Fiber Optik', 'Wireless'];
                                         @endphp
                                         <div class="mb-3">
-                                            <label for="setting-input-2" class="form-label">Category :</label>
-                                            <select class="form-control" readonly id="regional" wire:model='category_pengguna_delete'>
-                                                <option class="text-center" value="">-------Pilih Category-------</option>
-                                                @foreach ($class as $cls)
-                                                    <option value="{{ $cls }}">{{ $cls }}</option>
+                                            <label for="setting-input-2" class="form-label">Package Type :</label>
+                                            <select class="form-control" id="regional" readonly wire:model='type_service_delete'>
+                                                <option class="text-center" value="">-------Pilih Type-------</option>
+                                                @foreach ($types as $type)
+                                                    <option value="{{ $type }}">{{ $type }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn app-btn-primary"
-                                                data-bs-dismiss="modal">Hapus</button>
+                                        <div class="d-flex justify-content-end ">
+                                            <button type="submit" class="btn app-btn-primary">Delete</button>
                                         </div>
                                     </form>
                                 </div>
@@ -304,14 +340,14 @@
                                             {{-- <a data-bs-toggle="modal" data-bs-target="#delete-data-modal" wire:click="pengguna_lihat_password({{ $peng->id }})" class="btn btn-md btn-warning mb-2" href="#"><i class="fa-solid fa-eye"></i></a> --}}
                                             <a data-bs-toggle="modal" data-bs-target="#update-data-modal"
                                                data-bs-placement="top" title="Edit"
-                                               wire:click="pengguna_edit({{ $service->id }})"
+                                               wire:click="service_edit({{ $service->id }})"
                                                class="btn btn-md btn-info mb-2" style="background-color:#1E90FF" href="#"><i
                                                class="fa-solid fa-pen-clip"></i>
                                             </a>
                                             <a data-bs-toggle="modal" data-bs-target="#delete-data-modal"
                                                data-bs-placement="top" title="Delete"
                                                style="background-color:#FF0000"
-                                               wire:click="pengguna_destroy({{ $service->id }})"
+                                               wire:click="service_destroy({{ $service->id }})"
                                                class="btn btn-md btn-danger mb-2" href="#"><i
                                                class="fa-solid fa-trash-arrow-up" style="color:#000000"></i>
                                             </a>
