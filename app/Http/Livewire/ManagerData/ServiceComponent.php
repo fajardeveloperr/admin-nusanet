@@ -49,7 +49,7 @@ class ServiceComponent extends Component
                 'price_service_create' => 'required|min:3|max:50',
                 'category_service_create' => 'required|min:3|max:50',
                 'top_service_create' => 'required|min:3|max:50',
-                'type_service_create' => 'required|min:3|max:50',
+                'type_service_create' => 'required|min:3|max:50'
 
             ]);
 
@@ -76,7 +76,7 @@ class ServiceComponent extends Component
                 'price_service_create',
                 'category_service_create',
                 'top_service_create',
-                'type_service_create',
+                'type_service_create'
             ]);
 
         } catch (\Throwable) {
@@ -101,7 +101,7 @@ class ServiceComponent extends Component
         $this->category_service_set = $service_edit->package_categories;
         $this->top_service_set = $service_edit->package_top;
         $this->type_service_set = $service_edit->package_type;
-        $this->id_pengguna_set = $service_edit->id;
+        $this->id_service_set = $service_edit->id;
 
     }
 
@@ -124,7 +124,7 @@ class ServiceComponent extends Component
             $set_service->package_categories = $this->category_service_set;
             $set_service->package_top = $this->top_service_set;
             $set_service->package_type = $this->type_service_set;
-            $set_pengguna->save();
+            $set_service->save();
 
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
@@ -191,8 +191,8 @@ class ServiceComponent extends Component
 
     public function render()
     {
-        $services = Serviceslist::where('package_categories', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('package_name', 'like', '%' . $this->pengguna_search . '%')
+        $services = Serviceslist::where('package_name', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('package_categories', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_speed', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_price', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_top', 'like', '%' . $this->pengguna_search . '%')

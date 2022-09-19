@@ -123,7 +123,7 @@ class CustomersComponent extends Component
     public function render()
     {
         $customers = Customer::where('created_at', 'like', '%' . $this->date_picker . '%')
-            ->paginate(10);
+        ->paginate(10);
 
         foreach ($customers as $key => $value) {
             if ($value->reference_id != null) {

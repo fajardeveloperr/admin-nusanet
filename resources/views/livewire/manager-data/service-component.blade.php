@@ -86,7 +86,7 @@
                                         @endphp
                                         <div class="mb-3">
                                             <label for="setting-input-2" class="form-label">Package Top :</label>
-                                            <select class="form-control" id="regional" wire:model='top_service_create'>
+                                            <select class="form-control" id="top"  wire:model='top_service_create'>
                                                 <option class="text-center" value="">-------Pilih Periode-------</option>
                                                 @foreach ($periode as $period)
                                                     <option value="{{ $period }}">{{ $period }}</option>
@@ -98,7 +98,7 @@
                                         @endphp
                                         <div class="mb-3">
                                             <label for="setting-input-2" class="form-label">Package Type :</label>
-                                            <select class="form-control" id="regional" wire:model='type_service_create'>
+                                            <select class="form-control" id="type" wire:model='type_service_create'>
                                                 <option class="text-center" value="">-------Pilih Type-------</option>
                                                 @foreach ($types as $type)
                                                     <option value="{{ $type }}">{{ $type }}</option>
@@ -182,7 +182,7 @@
                                             </select>
                                         </div>
                                         @php
-                                        $types = ['Fiber Optik', 'Wireless'];
+                                        $types = ['Fiber Optic', 'Wireless'];
                                         @endphp
                                         <div class="mb-3">
                                             <label for="setting-input-2" class="form-label">Package Type :</label>
@@ -194,7 +194,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex justify-content-end ">
-                                            <button type="submit" class="btn app-btn-primary">Update</button>
+                                            <button type="submit" data-bs-dismiss="modal" class="btn app-btn-primary">Update</button>
                                         </div>
                                     </form>
                                 </div>
@@ -270,7 +270,7 @@
                                             </select>
                                         </div>
                                         @php
-                                        $types = ['Fiber Optik', 'Wireless'];
+                                        $types = ['Fiber Optic', 'Wireless'];
                                         @endphp
                                         <div class="mb-3">
                                             <label for="setting-input-2" class="form-label">Package Type :</label>
@@ -282,7 +282,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex justify-content-end ">
-                                            <button type="submit" class="btn app-btn-primary">Delete</button>
+                                            <button type="submit" data-bs-dismiss="modal" class="btn app-btn-primary">Delete</button>
                                         </div>
                                     </form>
                                 </div>
