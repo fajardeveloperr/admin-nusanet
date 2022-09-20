@@ -19,7 +19,10 @@ class ServiceComponent extends Component
            $price_service_create,
            $category_service_create,
            $top_service_create,
-           $type_service_create;
+           $type_service_create,
+           $retail_service_create,
+           $government_service_create,
+           $noted_service_create;
 
     public $nama_service_set,
            $speed_service_set,
@@ -27,6 +30,9 @@ class ServiceComponent extends Component
            $category_service_set,
            $top_service_set,
            $type_service_set,
+           $retail_service_set,
+           $government_service_set,
+           $noted_service_set,
            $id_service_set;
 
     public $nama_service_delete,
@@ -44,12 +50,13 @@ class ServiceComponent extends Component
         try {
             $this->validate([
                 // 'nama_service_create' => 'required|unique:services_list,package_name|min:3|max:50',
-                'nama_service_create' => 'required|min:3|max:50',
-                'speed_service_create' => 'required|min:3|max:50',
-                'price_service_create' => 'required|min:3|max:50',
-                'category_service_create' => 'required|min:3|max:50',
-                'top_service_create' => 'required|min:3|max:50',
-                'type_service_create' => 'required|min:3|max:50'
+                'nama_service_create' => 'required',
+                'speed_service_create' => 'required',
+                'price_service_create' => 'required',
+                'category_service_create' => 'required',
+                'top_service_create' => 'required',
+                'type_service_create' => 'required',
+                
 
             ]);
 
@@ -60,8 +67,11 @@ class ServiceComponent extends Component
             $create_service->package_categories = $this->category_service_create;
             $create_service->package_top = $this->top_service_create;
             $create_service->package_type = $this->type_service_create;
+            $create_service->retail_package_price = $this->retail_service_create;
+            $create_service->government_package_price = $this->government_service_create;
+            $create_service->noted_service = $this->noted_service_create;
             $create_service->save();
-
+            
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
@@ -76,7 +86,10 @@ class ServiceComponent extends Component
                 'price_service_create',
                 'category_service_create',
                 'top_service_create',
-                'type_service_create'
+                'type_service_create',
+                'retail_service_create',
+                'government_service_create',
+                'noted_service_create'
             ]);
 
         } catch (\Throwable) {
@@ -101,10 +114,13 @@ class ServiceComponent extends Component
         $this->category_service_set = $service_edit->package_categories;
         $this->top_service_set = $service_edit->package_top;
         $this->type_service_set = $service_edit->package_type;
+        $this->retail_service_set = $service_edit->retail_package_price;
+        $this->government_service_set = $service_edit->government_package_price;
+        $this->noted_service_set = $service_edit->noted_service;
         $this->id_service_set = $service_edit->id;
 
     }
-
+ 
     public function set_service()
     {
         try {
@@ -124,8 +140,11 @@ class ServiceComponent extends Component
             $set_service->package_categories = $this->category_service_set;
             $set_service->package_top = $this->top_service_set;
             $set_service->package_type = $this->type_service_set;
+            $set_service->retail_package_price = $this->retail_service_set;
+            $set_service->government_package_price = $this->government_service_set;
+            $set_service->noted_service = $this->noted_service_set;
             $set_service->save();
-
+           
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
@@ -154,6 +173,9 @@ class ServiceComponent extends Component
         $this->category_service_delete = $service_destroy->package_categories;
         $this->top_service_delete = $service_destroy->package_top;
         $this->type_service_delete = $service_destroy->package_type;
+        $this->retail_service_delete = $service_destroy->retail_package_price;
+        $this->government_service_delete = $service_destroy->government_package_price;
+        $this->noted_service_delete = $service_destroy->noted_service;
         $this->id_service_delete = $service_destroy->id;
     }
 
@@ -177,6 +199,9 @@ class ServiceComponent extends Component
                 'category_service_delete',
                 'top_service_delete',
                 'type_service_delete',
+                'retail_service_delete',
+                'government_service_delete',
+                'noted_service_delete'
             ]);
         } catch (\Throwable) {
             $this->dispatchBrowserEvent('swal', [
@@ -195,6 +220,9 @@ class ServiceComponent extends Component
         ->orwhere('package_categories', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_speed', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_price', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('retail_package_price', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('government_package_price', 'like', '%' . $this->pengguna_search . '%')
+        ->orwhere('noted_service', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_top', 'like', '%' . $this->pengguna_search . '%')
         ->orwhere('package_type', 'like', '%' . $this->pengguna_search . '%')
         ->paginate(10);

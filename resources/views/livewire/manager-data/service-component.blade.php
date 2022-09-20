@@ -40,7 +40,7 @@
                                 <div class="app-card-body">
                                     <form class="settings-form" wire:submit.prevent='create_service'>
                                         @csrf
-                                            <div class="mb-3">
+                                        <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Name :<span
                                                     class="ms-2" data-container="body"
                                                     data-trigger="hover" data-placement="top"
@@ -70,7 +70,27 @@
                                             <input type="number" class="form-control" id="setting-input-1"
                                                    wire:model='price_service_create' required>
                                         </div>
-                                       
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Retail Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" class="form-control" id="setting-input-1"
+                                                   wire:model='retail_service_create'>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Government Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" class="form-control" id="setting-input-1"
+                                                   wire:model='government_service_create'>
+                                        </div>
+
                                         <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Category :<span
                                                 class="ms-2" data-container="body"
@@ -104,6 +124,15 @@
                                                     <option value="{{ $type }}">{{ $type }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Noted Service :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <textarea style="height: 20%" class="form-control" id="exampleFormControlTextarea1" rows="3"   wire:model='noted_service_create'></textarea>
                                         </div>
                                         <div class="d-flex justify-content-end ">
                                             <button type="submit" class="btn app-btn-primary">Simpan</button>
@@ -158,6 +187,26 @@
                                             <input type="number" class="form-control" id="setting-input-1"
                                                    wire:model='price_service_set' required>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Retail Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" class="form-control" id="setting-input-1"
+                                                   wire:model='retail_service_set'>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Government Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" class="form-control" id="setting-input-1"
+                                                   wire:model='government_service_set'>
+                                        </div>
                                        
                                         <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Category :<span
@@ -192,6 +241,15 @@
                                                     <option value="{{ $type }}">{{ $type }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Noted Service :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <textarea style="height: 20%" class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model='noted_service_set'></textarea>
                                         </div>
                                         <div class="d-flex justify-content-end ">
                                             <button type="submit" data-bs-dismiss="modal" class="btn app-btn-primary">Update</button>
@@ -246,7 +304,26 @@
                                             <input type="number" class="form-control" readonly id="setting-input-1"
                                                    wire:model='price_service_delete' required>
                                         </div>
-                                       
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Retail Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" readonly class="form-control" id="setting-input-1"
+                                                   wire:model='retail_service_delete'>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="setting-input-1" class="form-label">Government Price :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <input type="number" readonly class="form-control" id="setting-input-1"
+                                                   wire:model='government_service_delete'>
+                                        </div>
                                         <div class="mb-3">
                                             <label for="setting-input-1" class="form-label">Package Category :<span
                                                 class="ms-2" data-container="body"
@@ -281,6 +358,15 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Noted Service :<span
+                                                    class="ms-2" data-container="body"
+                                                    data-trigger="hover" data-placement="top"
+                                                    data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                    </span>
+                                            </label>
+                                            <textarea style="height: 20%" class="form-control" readonly id="exampleFormControlTextarea1" rows="3" wire:model='noted_service_delete'></textarea>
+                                        </div>
                                         <div class="d-flex justify-content-end ">
                                             <button type="submit" data-bs-dismiss="modal" class="btn app-btn-primary">Delete</button>
                                         </div>
@@ -300,10 +386,13 @@
                                     <th class="cell text-white">No</th>
                                     <th class="cell text-white">Package Name</th>
                                     <th class="cell text-white">Package Price</th>
+                                    <th class="cell text-white">Retail Price</th>
+                                    <th class="cell text-white">government Price</th>
                                     <th class="cell text-white">Package Speed</th>
                                     <th class="cell text-white">Package Category</th>
                                     <th class="cell text-white">Package Type</th>
                                     <th class="cell text-white">Package Top</th>
+                                    <th class="cell text-white">Noted Service</th>
                                     <th class="cell text-white">Tersimpan</th>
                                     <th class="cell text-white">Aksi</th>
                                 </tr>
@@ -321,6 +410,12 @@
                                             IDR. {{ number_format($service->package_price, 2, ',', '.') }}
                                         </td>
                                         <td>
+                                            IDR. {{ number_format($service->retail_package_price, 2, ',', '.') }}
+                                        </td>
+                                        <td>
+                                            IDR. {{ number_format($service->government_package_price, 2, ',', '.') }}
+                                        </td>
+                                        <td>
                                             {{ $service->package_speed }}
                                         </td>
                                         <td>
@@ -331,6 +426,9 @@
                                         </td>
                                         <td>
                                             {{ $service->package_top }}
+                                        </td>
+                                        <td>
+                                            {{ $service->noted_service }}
                                         </td>
                                         <td>
                                             {{ $service->created_at }}
