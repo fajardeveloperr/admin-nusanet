@@ -21,7 +21,7 @@ class PromoTableSeeder extends Seeder
 
         $newDataService->insert([
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingBroadband1',
                 'package_name' => 'Broadband Home',
                 'package_top' => 'Tahunan',
                 'discount_cut' => '-',
@@ -32,7 +32,7 @@ class PromoTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingBroadband2',
                 'package_name' => 'Broadband Bussiness',
                 'package_top' => 'Bulanan',
                 'discount_cut' => '15',
@@ -44,7 +44,7 @@ class PromoTableSeeder extends Seeder
             ],
 
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingBroadband3',
                 'package_name' => 'Broadband Bussiness',
                 'package_top' => 'Tahunan',
                 'discount_cut' => '15',
@@ -55,7 +55,7 @@ class PromoTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingDedicated1',
                 'package_name' => 'Dedicated 1:4',
                 'package_top' => 'Bulanan',
                 'discount_cut' => '15',
@@ -67,7 +67,7 @@ class PromoTableSeeder extends Seeder
             ],
 
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingDedicated2',
                 'package_name' => 'Dedicated 1:4',
                 'package_top' => 'Tahunan',
                 'discount_cut' => '15',
@@ -78,7 +78,7 @@ class PromoTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingDedicated3',
                 'package_name' => 'Dedicated 1:1',
                 'package_top' => 'Bulanan',
                 'discount_cut' => '10',
@@ -90,7 +90,7 @@ class PromoTableSeeder extends Seeder
             ],
 
             [
-                'promo_code' => '-',
+                'promo_code' => 'testingDedicated4',
                 'package_name' => 'Dedicated 1:1',
                 'package_top' => 'Bulanan',
                 'discount_cut' => '10',
