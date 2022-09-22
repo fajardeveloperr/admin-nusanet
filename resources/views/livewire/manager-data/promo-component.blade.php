@@ -204,8 +204,8 @@
                                     <th class="cell text-white align-middle text-center">Kode Promo</th>
                                     <th class="cell text-white align-middle text-center">Nama Paket</th>
                                     <th class="cell text-white align-middle text-center">TOP Paket</th>
-                                    <th class="cell text-white align-middle text-center">Potongan Diskon</th>
                                     <th class="cell text-white align-middle text-center">Potongan Bulan</th>
+                                    <th class="cell text-white align-middle text-center">Potongan Diskon</th>
                                     <th class="cell text-white align-middle text-center">Periode Masa Awal Promo</th>
                                     <th class="cell text-white align-middle text-center">Periode Masa Akhir Promo</th>
                                     <th></th>
