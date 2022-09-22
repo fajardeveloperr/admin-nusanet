@@ -47,7 +47,7 @@
                 @php
                     $class = ['Personal', 'Bussiness'];
                 @endphp
-
+                
                 <div class="card">
                     <div class="card-header d-flex justify-content-between bg-white" style="width:100%;">
                         <p class="p-0 m-0 py-2 text-primary fw-bold">Informasi Data Customer</p>
@@ -58,7 +58,8 @@
                                     id="orders-{{ $cls }}-tab" data-bs-toggle="tab"
                                     href="#orders-{{ $cls }}" role="tab"
                                     aria-controls="orders-{{ $cls }}"
-                                    aria-selected="true">{{ $cls }}</a>
+                                    aria-selected="true">{{ $cls }}
+                                </a>
                             @endforeach
                         </nav>
                     </div>
@@ -115,8 +116,9 @@
                                                     @php
                                                         $id = 1;
                                                     @endphp
+                                                
                                                     @foreach ($customers as $custome)
-                                                        @if ($custome->class == $item)
+                                                    {{-- @if ($custome->class == $item)  --}}
                                                             <tr class="text-light" data-bs-toggle="modal" data-bs-target="#detail-data" style="text-align: center;">
                                                                 <td class="align-middle text-center text-secondary">
                                                                     {{ $id }}
@@ -654,7 +656,7 @@
                                                             @php
                                                                 $id++;
                                                             @endphp
-                                                        @endif
+                                                        {{-- @endif --}}
                                                     @endforeach
                                                 </tbody>
                                             </table>

@@ -18,7 +18,6 @@ class PromoTableSeeder extends Seeder
     public function run()
     {
         $newDataService = new PromoList();
-
         $newDataService->insert([
             [
                 'promo_code' => 'TESTHOME1',
