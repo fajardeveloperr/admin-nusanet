@@ -33,7 +33,6 @@
                                 <div class="col-auto">
                                     <input id="filter-date" type="date" class="form-control text-center "
                                         name="start_date" width="100%">
-
                                 </div>
                             </div>
                             <!--//row-->
@@ -47,7 +46,7 @@
                 @php
                     $class = ['Personal', 'Bussiness'];
                 @endphp
-                
+
                 <div class="card">
                     <div class="card-header d-flex justify-content-between bg-white" style="width:100%;">
                         <p class="p-0 m-0 py-2 text-primary fw-bold">Informasi Data Customer</p>
@@ -71,7 +70,7 @@
                                     aria-labelledby="orders-{{ $item }}-tab">
                                     <div class="app-card app-card-orders-table">
                                         <div class="app-card-body table-responsive">
-                                            <table class="table text-left pt-2 table-bordered table-striped table-hover"
+                                            <table class="table text-left pt-2 table-bordered table-striped rounded"
                                                 id="datatables-{{ $item }}" style="width: 100%;">
                                                 <colgroup>
                                                     <col style="width: 5%;">
@@ -82,7 +81,7 @@
                                                     <col style="width: 13%;">
                                                     <col style="width: 15%;">
                                                 </colgroup>
-                                                <thead class="bg-primary bg-gradient">
+                                                <thead class="bg-primary bg-gradient rounded">
                                                     <tr class="text-center">
                                                         <th class="cell text-white align-middle text-center">No.</th>
                                                         <th class="cell text-white align-middle text-center">Name</th>
@@ -96,30 +95,13 @@
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <style>
-                                                    /* tr {
-                                                        transition: 0.3s all;
-                                                    } */
-
-                                                    /* tr:hover {
-
-                                                    } */
-
-                                                    /* tr:hover td {
-                                                        background-color: #3CB371 !important;
-                                                        font-weight: 600;
-
-                                                        color: white !important;
-                                                    } */
-                                                </style>
                                                 <tbody class="bg-light bg-gradient">
                                                     @php
                                                         $id = 1;
                                                     @endphp
-                                                
                                                     @foreach ($customers as $custome)
-                                                    {{-- @if ($custome->class == $item)  --}}
-                                                            <tr class="text-light" data-bs-toggle="modal" data-bs-target="#detail-data" style="text-align: center;">
+                                                        @if ($custome->class == $item)
+                                                            <tr class="text-light" style="text-align: center;">
                                                                 <td class="align-middle text-center text-secondary">
                                                                     {{ $id }}
                                                                 </td>
@@ -137,17 +119,12 @@
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                     {{ $custome->email }}
                                                                 </td>
-                                                                <td class="text-secondary text-center"
+                                                                <td class="align-middle text-secondary text-center"
                                                                     style="cursor: pointer;"
                                                                     wire:click="{{ $custome->id ? null : $custome->id }}"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    <ul>
-                                                                        @foreach (json_decode($custome->address) as $item)
-                                                                            <li style="text-align: justify;">
-                                                                                {{ $item }}</li>
-                                                                        @endforeach
-                                                                    </ul>
+                                                                    {{ $custome->address }}
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary"
                                                                     style="cursor: pointer;"
@@ -166,8 +143,7 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge text-white"
-                                                                            style="background-color:#FF0000;">
+                                                                        <span class="badge text-white" style="background-color:#FF0000;">
                                                                             Rejected
                                                                         </span>
                                                                     @else
@@ -176,6 +152,7 @@
                                                                         </span>
                                                                     @endif
                                                                 </td>
+
                                                                 <td class="align-middle text-center text-secondary">
                                                                     <div class="btn-group" role="group"
                                                                         aria-label="Basic example">
@@ -582,8 +559,8 @@
                                                                                             href="{{ $custome->service->id_photo_url }}">
                                                                                             Tampilkan Gambar
                                                                                         </a>
-                                                                                    </div>
-                                                                                    {{-- <div class="col-sm-6">
+                                                                                    </div> 
+                                                                                    <div class="col-sm-6">
                                                                                         <label for="photo_selfie"
                                                                                             class="mb-1 fw-bold">Foto
                                                                                             Selfie</label>
@@ -595,7 +572,7 @@
                                                                                             role="button"
                                                                                             href="{{ $custome->service->selfie_id_photo_url }}">
                                                                                             Download Photos</a>
-                                                                                    </div> --}}
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             @if ($custome->reference_id != null)
@@ -656,7 +633,7 @@
                                                             @php
                                                                 $id++;
                                                             @endphp
-                                                        {{-- @endif --}}
+                                                        @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -671,6 +648,13 @@
         </div>
     </div>
     <!--//tab-pane-->
+
+    {{-- <nav class="app-pagination">
+                                <ul class="pagination justify-content-center">
+                                    {{ $customers->links() }}
+                                </ul>
+                            </nav> --}}
+
 </div>
 <!--//tab-content-->
 
@@ -683,6 +667,26 @@
 </div>
 
 </div>
+{{-- @include('includes.data-table')
+<script>
+    $(document).ready(function() {
+        var className = {!! json_encode($class) !!};
+        var tableInit = [];
+        className.forEach(element => {
+            tableInit[element] = $(`#datatables-${element}`).DataTable();
+        });
+        $('#filter-status').on('change', function() {
+            let val = $(this).val();
+            console.log(val)
+            className.forEach(element => {
+                tableInit[element].column(5)
+                    .search(val)
+                    .draw();
+            });
+        });
+    });
+</script> --}}
+
 @include('includes.data-table')
 <script>
     $(document).ready(function() {

@@ -58,7 +58,8 @@
                                     id="orders-{{ $cls }}-tab" data-bs-toggle="tab"
                                     href="#orders-{{ $cls }}" role="tab"
                                     aria-controls="orders-{{ $cls }}"
-                                    aria-selected="true">{{ $cls }}</a>
+                                    aria-selected="true">{{ $cls }}
+                                </a>
                             @endforeach
                         </nav>
                     </div>
