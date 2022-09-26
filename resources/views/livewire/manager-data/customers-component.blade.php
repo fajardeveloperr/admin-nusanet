@@ -6,7 +6,10 @@
             <div class="container-xl">
                 <div class="row g-3 mb-4 align-items-center justify-content-between">
                     <div class="col-auto">
-                        <h1 class="app-page-title mb-0">Customers</h1>
+                        <h1 class="app-page-title mb-0 text-primary">
+                            <i class="fas fa-users me-1"></i>
+                            Data Pelanggan
+                        </h1>
                     </div>
                     <div class="col-auto">
                         <div class="page-utilities">
@@ -48,16 +51,18 @@
                 @endphp
 
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between bg-white" style="width:100%;">
-                        <p class="p-0 m-0 py-2 text-primary fw-bold">Informasi Data Customer</p>
+                    <div class="card-header d-flex justify-content-between bg-light" style="width:100%;">
+                        <p class="p-0 m-0 py-2 text-primary fw-bold">
+                            <i class="fa-solid fa-circle-info me-1"></i>
+                            Informasi Data Customer
+                        </p>
                         <nav id="orders-table-tab"
                             class="orders-table-tab app-nav-tabs nav shadow flex-column flex-sm-row rounded">
                             @foreach ($class as $cls)
                                 <a class="flex-sm-fill text-sm-center nav-link {{ $cls == 'Personal' ? 'active' : null }}"
                                     id="orders-{{ $cls }}-tab" data-bs-toggle="tab"
                                     href="#orders-{{ $cls }}" role="tab"
-                                    aria-controls="orders-{{ $cls }}"
-                                    aria-selected="true">{{ $cls }}
+                                    aria-controls="orders-{{ $cls }}" aria-selected="true">{{ $cls }}
                                 </a>
                             @endforeach
                         </nav>
@@ -101,7 +106,7 @@
                                                     @endphp
                                                     @foreach ($customers as $custome)
                                                         @if ($custome->class == $item)
-                                                            <tr class="text-light" style="text-align: center;">
+                                                            <tr class="text-light">
                                                                 <td class="align-middle text-center text-secondary">
                                                                     {{ $id }}
                                                                 </td>
@@ -119,12 +124,17 @@
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                     {{ $custome->email }}
                                                                 </td>
-                                                                <td class="align-middle text-secondary text-center"
+                                                                <td class="align-middle text-secondary"
                                                                     style="cursor: pointer;"
                                                                     wire:click="{{ $custome->id ? null : $custome->id }}"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    {{ $custome->address }}
+                                                                    <ul>
+                                                                        @foreach (json_decode($custome->address) as $addr)
+                                                                            <li style="text-align: justify;">
+                                                                                {{ $addr }}</li>
+                                                                        @endforeach
+                                                                    </ul>
                                                                 </td>
                                                                 <td class="align-middle text-center text-secondary"
                                                                     style="cursor: pointer;"
@@ -143,7 +153,8 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge text-white" style="background-color:#FF0000;">
+                                                                        <span class="badge text-white"
+                                                                            style="background-color:#FF0000;">
                                                                             Rejected
                                                                         </span>
                                                                     @else
@@ -258,7 +269,8 @@
                                                                 tabindex="-1" role="dialog"
                                                                 aria-labelledby="exampleModalCenterTitle"
                                                                 aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                                <div
+                                                                    class="modal-dialog modal-dialog-scrollable modal-lg">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title text-success"
@@ -559,7 +571,7 @@
                                                                                             href="{{ $custome->service->id_photo_url }}">
                                                                                             Tampilkan Gambar
                                                                                         </a>
-                                                                                    </div> 
+                                                                                    </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label for="photo_selfie"
                                                                                             class="mb-1 fw-bold">Foto
