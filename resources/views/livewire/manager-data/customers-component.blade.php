@@ -592,6 +592,33 @@
                                                                                     class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                                     <p
                                                                                         class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Catatan Tambahan
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row px-2 border rounded p-3 mx-2 bg-light">
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="exampleInputPassword1"
+                                                                                                class="form-label">ID
+                                                                                                Survey</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                value="{{ $custome->survey_id }}"
+                                                                                                readonly>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label for="catatan_lain"
+                                                                                                class="form-label">Catatan</label>
+                                                                                            @php
+                                                                                                echo "<textarea class='form-control' cols='30' rows='10' style='height: 300px;' readonly>" . $custome->extend_note . '</textarea>';
+                                                                                            @endphp
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
                                                                                         *) Data Sales
                                                                                     </p>
                                                                                     <div

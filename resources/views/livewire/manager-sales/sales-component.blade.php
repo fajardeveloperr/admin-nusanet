@@ -57,8 +57,7 @@
                                 <a class="flex-sm-fill text-sm-center nav-link {{ $cls == 'Personal' ? 'active' : null }}"
                                     id="orders-{{ $cls }}-tab" data-bs-toggle="tab"
                                     href="#orders-{{ $cls }}" role="tab"
-                                    aria-controls="orders-{{ $cls }}"
-                                    aria-selected="true">{{ $cls }}
+                                    aria-controls="orders-{{ $cls }}" aria-selected="true">{{ $cls }}
                                 </a>
                             @endforeach
                         </nav>
@@ -75,12 +74,11 @@
                                                 id="datatables-{{ $item }}" style="width: 100%;">
                                                 <colgroup>
                                                     <col style="width: 5%;">
-                                                    <col style="width: 13%;">
+                                                    <col style="width: 28%;">
                                                     <col style="width: 13%;">
                                                     <col style="width: 28%;">
                                                     <col style="width: 13%;">
                                                     <col style="width: 13%;">
-                                                    <col style="width: 15%;">
                                                 </colgroup>
                                                 <thead class="bg-primary bg-gradient rounded">
                                                     <tr class="text-center">
@@ -92,8 +90,6 @@
                                                         <th class="cell text-white align-middle text-center">Reg Date
                                                         </th>
                                                         <th class="cell text-white align-middle text-center">Status</th>
-                                                        <th class="cell text-white align-middle text-center">Actions
-                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <style>
@@ -106,7 +102,7 @@
                                                     } */
 
                                                     tr:hover td {
-                                                        background-color: 	#3CB371 !important;
+                                                        background-color: #3CB371 !important;
                                                         font-weight: 600;
 
                                                         color: white !important;
@@ -160,7 +156,8 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge text-white" style="background-color:#FF0000;">
+                                                                        <span class="badge text-white"
+                                                                            style="background-color:#FF0000;">
                                                                             Rejected
                                                                         </span>
                                                                     @else
@@ -169,32 +166,6 @@
                                                                         </span>
                                                                     @endif
 
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    <div class="btn-group" role="group"
-                                                                        aria-label="Basic example">
-                                                                        {{-- <button type="button"
-                                                                            wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                            class="btn btn-md btn-success"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                            <i class="fa-solid fa-eye text-white"></i>
-                                                                        </button> --}}
-                                                                        <button type="button"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Approved"
-                                                                            wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md btn-primary text-white">
-                                                                            <i class="fa-solid fa-circle-check"></i>
-                                                                        </button>
-                                                                        <button type="button"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Rejected"
-                                                                            wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                            class="btn btn-md text-white" style="background-color:#FF0000;">
-                                                                            <i class="fa-solid fa-ban"></i>
-                                                                        </button>
-                                                                    </div>
                                                                 </td>
                                                             </tr>
 
@@ -495,36 +466,70 @@
                                                                                     </ol>
                                                                                 </div>
                                                                             </div>
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data Status
-                                                                                </p>
+                                                                            @if (empty($custome->extend_note) && empty($custome->survey_id))
                                                                                 <div
-                                                                                    class="row px-2 border rounded p-3 mx-2 bg-light">
-                                                                                    <button type="button"
-                                                                                        data-bs-toggle="tooltip"
-                                                                                        data-bs-placement="top"
-                                                                                        title="Approved"
-                                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                                        class="col-sm-6 btn btn-primary text-white">
-                                                                                        <i
-                                                                                            class="fa-solid fa-circle-check me-1">
-                                                                                        </i>
-                                                                                        Approved
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        data-bs-toggle="tooltip"
-                                                                                        data-bs-placement="top"
-                                                                                        title="Rejected"
-                                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                                        class="col-sm-6 btn text-white" style="background-color:#FF0000;">
-                                                                                        <i class="fa-solid fa-ban me-1"></i>
-                                                                                        Rejected
-                                                                                    </button>
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Catatan Tambahan
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row px-2 border rounded p-3 mx-2 bg-light">
+                                                                                        <form class="settings-form"
+                                                                                            wire:submit.prevent="add_extend_note({{ json_encode($custome->customer_id) }})">
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="exampleInputPassword1"
+                                                                                                    class="form-label">ID
+                                                                                                    Survey</label>
+                                                                                                <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    wire:model='id_survey'>
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="catatan_lain"
+                                                                                                    class="form-label">Catatan</label>
+                                                                                                @php
+                                                                                                    echo "<textarea class='form-control' wire:model='catatan_lain' cols='30' rows='10' style='height: 300px;'></textarea>";
+                                                                                                @endphp
+                                                                                            </div>
+                                                                                            <button
+                                                                                                class="btn btn-primary text-white">Submit
+                                                                                                Data</button>
+                                                                                        </form>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
+                                                                            @else
+                                                                                <div
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Catatan Tambahan
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row px-2 border rounded p-3 mx-2 bg-light">
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="exampleInputPassword1"
+                                                                                                class="form-label">ID
+                                                                                                Survey</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                value="{{ $custome->survey_id }}"
+                                                                                                readonly>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label for="catatan_lain"
+                                                                                                class="form-label">Catatan</label>
+                                                                                            @php
+                                                                                                echo "<textarea class='form-control' cols='30' rows='10' style='height: 300px;' readonly>" . $custome->extend_note . '</textarea>';
+                                                                                            @endphp
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+
                                                                             <div
                                                                                 class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                                 <p
@@ -539,7 +544,8 @@
                                                                                             Telah Disetujui</span>
                                                                                     @elseif($custome->approval->isRejected)
                                                                                         <span
-                                                                                            class="badge text-white fs-5" style="background-color:#FF0000;">Data
+                                                                                            class="badge text-white fs-5"
+                                                                                            style="background-color:#FF0000;">Data
                                                                                             Belum Disetujui</span>
                                                                                     @else
                                                                                         <span
