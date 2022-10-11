@@ -204,8 +204,9 @@
                                     <th class="cell text-white align-middle text-center">Kode Promo</th>
                                     <th class="cell text-white align-middle text-center">Nama Paket</th>
                                     <th class="cell text-white align-middle text-center">TOP Paket</th>
-                                    <th class="cell text-white align-middle text-center">Potongan Bulan</th>
                                     <th class="cell text-white align-middle text-center">Potongan Diskon</th>
+                                    <th class="cell text-white align-middle text-center">Potongan Bulan</th>
+                                    <th class="cell text-white align-middle text-center">Status Potongan Bulan</th>
                                     <th class="cell text-white align-middle text-center">Periode Masa Awal Promo</th>
                                     <th class="cell text-white align-middle text-center">Periode Masa Akhir Promo</th>
                                     <th></th>
@@ -229,10 +230,13 @@
                                             {{ $promo->package_top }}
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
+                                            {{ $promo->discount_cut }}
+                                        </td>
+                                        <td class="cell text-primary align-middle text-center">
                                             {{ $promo->monthly_cut }} Bulan
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
-                                            {{ $promo->discount_cut }}
+                                            {{ $promo->monthly_cut_status }}
                                         </td>
                                         <td class="cell text-primary align-middle text-center">
                                             {{ $promo->activate_date }}

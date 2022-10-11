@@ -8,40 +8,31 @@ use Livewire\WithPagination;
 
 class ServiceComponent extends Component
 {
-
-    use WithPagination;
-    protected $paginationTheme = "bootstrap";
-
-    public $pengguna_search;
-
     public $nama_service_create,
-           $speed_service_create,
-           $price_service_create,
-           $category_service_create,
-           $top_service_create,
-           $type_service_create,
-           $retail_service_create,
-           $government_service_create,
-           $noted_service_create;
+        $speed_service_create,
+        $price_service_create,
+        $category_service_create,
+        $type_service_create,
+        $retail_service_create,
+        $government_service_create,
+        $noted_service_create;
 
-    public $nama_service_set,
-           $speed_service_set,
-           $price_service_set,
-           $category_service_set,
-           $top_service_set,
-           $type_service_set,
-           $retail_service_set,
-           $government_service_set,
-           $noted_service_set,
-           $id_service_set;
+    // public $nama_service_set,
+    //     $speed_service_set,
+    //     $price_service_set,
+    //     $category_service_set,
+    //     $type_service_set,
+    //     $retail_service_set,
+    //     $government_service_set,
+    //     $noted_service_set,
+    //     $id_service_set;
 
-    public $nama_service_delete,
-           $speed_service_delete,
-           $price_service_delete,
-           $category_service_delete,
-           $top_service_delete,
-           $type_service_delete,
-           $id_service_delete;
+    // public $nama_service_delete,
+    //     $speed_service_delete,
+    //     $price_service_delete,
+    //     $category_service_delete,
+    //     $type_service_delete,
+    //     $id_service_delete;
 
 
     // Create Service//
@@ -49,15 +40,11 @@ class ServiceComponent extends Component
     {
         try {
             $this->validate([
-                // 'nama_service_create' => 'required|unique:services_list,package_name|min:3|max:50',
                 'nama_service_create' => 'required',
                 'speed_service_create' => 'required',
                 'price_service_create' => 'required',
                 'category_service_create' => 'required',
-                'top_service_create' => 'required',
                 'type_service_create' => 'required',
-                
-
             ]);
 
             $create_service = new ServicesList();
@@ -65,13 +52,12 @@ class ServiceComponent extends Component
             $create_service->package_speed = $this->speed_service_create;
             $create_service->package_price = $this->price_service_create;
             $create_service->package_categories = $this->category_service_create;
-            $create_service->package_top = $this->top_service_create;
             $create_service->package_type = $this->type_service_create;
             $create_service->retail_package_price = $this->retail_service_create;
             $create_service->government_package_price = $this->government_service_create;
             $create_service->noted_service = $this->noted_service_create;
             $create_service->save();
-            
+
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
@@ -85,13 +71,11 @@ class ServiceComponent extends Component
                 'speed_service_create',
                 'price_service_create',
                 'category_service_create',
-                'top_service_create',
                 'type_service_create',
                 'retail_service_create',
                 'government_service_create',
                 'noted_service_create'
             ]);
-
         } catch (\Throwable) {
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
@@ -118,19 +102,18 @@ class ServiceComponent extends Component
         $this->government_service_set = $service_edit->government_package_price;
         $this->noted_service_set = $service_edit->noted_service;
         $this->id_service_set = $service_edit->id;
-
     }
- 
+
     public function set_service()
     {
         try {
             $this->validate([
-                'nama_service_set' =>'required|string',
-                'speed_service_set' =>'required|string',
-                'price_service_set' =>'required|string',
-                'category_service_set' =>'required|string',
-                'top_service_set' =>'required|string',
-                'type_service_set' =>'required|string',
+                'nama_service_set' => 'required|string',
+                'speed_service_set' => 'required|string',
+                'price_service_set' => 'required|string',
+                'category_service_set' => 'required|string',
+                'top_service_set' => 'required|string',
+                'type_service_set' => 'required|string',
             ]);
 
             $set_service = ServicesList::where('id', $this->id_service_set)->first();
@@ -144,7 +127,7 @@ class ServiceComponent extends Component
             $set_service->government_package_price = $this->government_service_set;
             $set_service->noted_service = $this->noted_service_set;
             $set_service->save();
-           
+
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'success',
@@ -216,16 +199,7 @@ class ServiceComponent extends Component
 
     public function render()
     {
-        $services = Serviceslist::where('package_name', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('package_categories', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('package_speed', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('package_price', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('retail_package_price', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('government_package_price', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('noted_service', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('package_top', 'like', '%' . $this->pengguna_search . '%')
-        ->orwhere('package_type', 'like', '%' . $this->pengguna_search . '%')
-        ->paginate(10);
-        return view('livewire.manager-data.service-component',compact('services'))->layout('layouts.default');
+        $services = Serviceslist::all();
+        return view('livewire.manager-data.service-component', compact('services'))->layout('layouts.default');
     }
 }

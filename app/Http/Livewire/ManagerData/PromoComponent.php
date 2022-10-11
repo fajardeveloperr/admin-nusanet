@@ -14,12 +14,14 @@ class PromoComponent extends Component
 
     public $kode_promo_admin;
     public $monthly_discount_admin;
+    public $monthly_discount_status_admin;
     public $discount_admin;
     public $start_promo_period_datetime;
     public $end_promo_period_datetime;
 
     public $setkode_promo_admin;
     public $setmonthly_discount_admin;
+    public $setmonthly_discount_status_admin;
     public $setdiscount_admin;
     public $setstart_promo_period_datetime;
     public $setend_promo_period_datetime;

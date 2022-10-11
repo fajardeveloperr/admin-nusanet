@@ -13,7 +13,6 @@ class ServicesList extends Model
         'package_type',
         'package_categories',
         'package_speed',
-        'package_top',
         'package_price',
         'retail_package_price',
         'government_package_price',

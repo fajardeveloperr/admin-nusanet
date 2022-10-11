@@ -15,7 +15,26 @@
                     </h3>
                     <div class="row gx-5 gy-3">
                         <div class="col-12 col-lg-9">
-                            <div class="text-primary">{{ ucwords(auth()->user()->name) }}</div>
+                            @php
+                                $greetings = '';
+                                $startPagi = strtotime('00:00:00');
+                                $endPagi = strtotime('11:59:59');
+                                $startSiang = strtotime('12:00:00');
+                                $endSiang = strtotime('16:59:59');
+                                $startMalam = strtotime('17:00:00');
+                                $endMalam = strtotime('23:59:59');
+
+                                if (time() >= $startPagi && time() <= $endPagi) {
+                                    $greetings = 'Pagi';
+                                } elseif (time() >= $startSiang && time() <= $endSiang) {
+                                    $greetings = 'Siang';
+                                } elseif (time() >= $startMalam && time() <= $endMalam) {
+                                    $greetings = 'Malam';
+                                }
+                            @endphp
+                            <div class="text-primary">
+                                Selamat {{ $greetings }}, {{ ucwords(auth()->user()->name) }}
+                            </div>
                         </div>
                         <!--//col-->
                     </div>

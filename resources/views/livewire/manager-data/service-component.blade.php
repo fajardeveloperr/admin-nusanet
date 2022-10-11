@@ -8,21 +8,6 @@
                         Data Layanan
                     </h1>
                 </div>
-                <div class="col-auto">
-                    <div class="page-utilities">
-                        <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-                            <div class="col-auto">
-                                <form class="table-search-form row gx-1 align-items-center">
-                                    <div class="col-auto">
-                                        <input type="text" id="search-orders" name="searchorders"
-                                            class="form-control search-orders" placeholder="Search"
-                                            wire:model="pengguna_search">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="card">
                 <div class="card-header d-flex justify-content-between bg-light" style="width:100%;">
@@ -52,8 +37,8 @@
                                             <form class="settings-form" wire:submit.prevent='create_service'>
                                                 @csrf
                                                 <div class="mb-3">
-                                                    <label for="setting-input-1" class="form-label">Package Name
-                                                        :<span class="ms-2" data-container="body" data-trigger="hover"
+                                                    <label for="setting-input-1" class="form-label">Nama Paket
+                                                        <span class="ms-2" data-container="body" data-trigger="hover"
                                                             data-placement="top"
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
@@ -61,86 +46,15 @@
                                                     <input type="text" class="form-control" id="setting-input-1"
                                                         wire:model='nama_service_create' required>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="setting-input-1" class="form-label">Package Speed
-                                                        :<span class="ms-2" data-container="body" data-trigger="hover"
-                                                            data-placement="top"
-                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                        </span>
-                                                    </label>
-                                                    <input type="text" class="form-control" id="setting-input-1"
-                                                        wire:model='speed_service_create' required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="setting-input-1" class="form-label">Package Price
-                                                        :<span class="ms-2" data-container="body" data-trigger="hover"
-                                                            data-placement="top"
-                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                        </span>
-                                                    </label>
-                                                    <input type="number" class="form-control" id="setting-input-1"
-                                                        wire:model='price_service_create' required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="setting-input-1" class="form-label">Retail Price
-                                                        :<span class="ms-2" data-container="body" data-trigger="hover"
-                                                            data-placement="top"
-                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                        </span>
-                                                    </label>
-                                                    <input type="number" class="form-control" id="setting-input-1"
-                                                        wire:model='retail_service_create'>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="setting-input-1" class="form-label">Government
-                                                        Price
-                                                        :<span class="ms-2" data-container="body"
-                                                            data-trigger="hover" data-placement="top"
-                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                        </span>
-                                                    </label>
-                                                    <input type="number" class="form-control" id="setting-input-1"
-                                                        wire:model='government_service_create'>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="setting-input-1" class="form-label">Package
-                                                        Category
-                                                        :<span class="ms-2" data-container="body"
-                                                            data-trigger="hover" data-placement="top"
-                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
-                                                        </span>
-                                                    </label>
-                                                    <input type="text" class="form-control" id="setting-input-1"
-                                                        wire:model='category_service_create' required>
-                                                </div>
-                                                @php
-                                                    $periode = ['Bulanan', 'Tahunan'];
-                                                @endphp
-                                                <div class="mb-3">
-                                                    <label for="setting-input-2" class="form-label">Package Top
-                                                        :</label>
-                                                    <select class="form-control" id="top"
-                                                        wire:model='top_service_create'>
-                                                        <option class="text-center" value="">-------Pilih
-                                                            Periode-------
-                                                        </option>
-                                                        @foreach ($periode as $period)
-                                                            <option value="{{ $period }}">{{ $period }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
                                                 @php
                                                     $types = ['Fiber Optik', 'Wireless'];
                                                 @endphp
                                                 <div class="mb-3">
-                                                    <label for="setting-input-2" class="form-label">Package Type
-                                                        :</label>
+                                                    <label for="setting-input-2" class="form-label">Tipe Paket
+                                                    </label>
                                                     <select class="form-control" id="type"
                                                         wire:model='type_service_create'>
-                                                        <option class="text-center" value="">-------Pilih
-                                                            Type-------
+                                                        <option value="">Pilih Tipe Paket...
                                                         </option>
                                                         @foreach ($types as $type)
                                                             <option value="{{ $type }}">{{ $type }}
@@ -149,9 +63,59 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Noted
-                                                        Service
-                                                        :<span class="ms-2" data-container="body"
+                                                    <label for="setting-input-1" class="form-label">Kategori Paket
+                                                        <span class="ms-2" data-container="body" data-trigger="hover"
+                                                            data-placement="top"
+                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                        </span>
+                                                    </label>
+                                                    <input type="text" class="form-control" id="setting-input-1"
+                                                        wire:model='category_service_create' required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="setting-input-1" class="form-label">Kecepatan Internet
+                                                        <span class="ms-2" data-container="body" data-trigger="hover"
+                                                            data-placement="top"
+                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                        </span>
+                                                    </label>
+                                                    <input type="text" class="form-control" id="setting-input-1"
+                                                        wire:model='speed_service_create' required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="setting-input-1" class="form-label">Harga Paket
+                                                        <span class="ms-2" data-container="body" data-trigger="hover"
+                                                            data-placement="top"
+                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                        </span>
+                                                    </label>
+                                                    <input type="number" class="form-control" id="setting-input-1"
+                                                        wire:model='price_service_create' required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="setting-input-1" class="form-label">Harga Ritel
+                                                        <span class="ms-2" data-container="body" data-trigger="hover"
+                                                            data-placement="top"
+                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                        </span>
+                                                    </label>
+                                                    <input type="number" class="form-control" id="setting-input-1"
+                                                        wire:model='retail_service_create'>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="setting-input-1" class="form-label">Harga Pemerintah
+                                                        <span class="ms-2" data-container="body"
+                                                            data-trigger="hover" data-placement="top"
+                                                            data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
+                                                        </span>
+                                                    </label>
+                                                    <input type="number" class="form-control" id="setting-input-1"
+                                                        wire:model='government_service_create'>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1"
+                                                        class="form-label">Catatan Tambahan
+                                                        <span class="ms-2" data-container="body"
                                                             data-trigger="hover" data-placement="top"
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
@@ -169,7 +133,7 @@
                             </div>
                         </div>
                         <!-- Modal Edit -->
-                        <div wire:ignore.self class="modal fade" id="update-data-modal" tabindex="-1"
+                        {{-- <div wire:ignore.self class="modal fade" id="update-data-modal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -246,23 +210,6 @@
                                                         wire:model='category_service_set' required>
                                                 </div>
                                                 @php
-                                                    $periode = ['Bulanan', 'Tahunan'];
-                                                @endphp
-                                                <div class="mb-3">
-                                                    <label for="setting-input-2" class="form-label">Package Top
-                                                        :</label>
-                                                    <select class="form-control" id="regional"
-                                                        wire:model='top_service_set'>
-                                                        <option class="text-center" value="">-------Pilih
-                                                            Periode-------
-                                                        </option>
-                                                        @foreach ($periode as $period)
-                                                            <option value="{{ $period }}">{{ $period }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                @php
                                                     $types = ['Fiber Optic', 'Wireless'];
                                                 @endphp
                                                 <div class="mb-3">
@@ -299,8 +246,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Modal Delete -->
+                        </div> --}}
+                        {{-- <!-- Modal Delete -->
                         <div wire:ignore.self class="modal fade" id="delete-data-modal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -381,23 +328,6 @@
                                                         required>
                                                 </div>
                                                 @php
-                                                    $periode = ['Bulanan', 'Tahunan'];
-                                                @endphp
-                                                <div class="mb-3">
-                                                    <label for="setting-input-2" class="form-label">Package Top
-                                                        :</label>
-                                                    <select class="form-control" id="regional" readonly
-                                                        wire:model='top_service_delete'>
-                                                        <option class="text-center" value="">-------Pilih
-                                                            Periode-------
-                                                        </option>
-                                                        @foreach ($periode as $period)
-                                                            <option value="{{ $period }}">{{ $period }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                @php
                                                     $types = ['Fiber Optic', 'Wireless'];
                                                 @endphp
                                                 <div class="mb-3">
@@ -435,7 +365,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="app-card app-card-orders-table mb-5 mt-2">
                         <div class="app-card-body">
@@ -445,15 +375,14 @@
                                     <thead class="bg-primary text-center">
                                         <tr class="text-center">
                                             <th class="cell text-white">No.</th>
-                                            <th class="cell text-white">Package Name</th>
-                                            <th class="cell text-white">Package Price</th>
-                                            <th class="cell text-white">Retail Price</th>
-                                            <th class="cell text-white">Government Price</th>
-                                            <th class="cell text-white">Package Speed</th>
-                                            <th class="cell text-white">Package Category</th>
-                                            <th class="cell text-white">Package Type</th>
-                                            <th class="cell text-white">Package Top</th>
-                                            <th class="cell text-white">Noted Service</th>
+                                            <th class="cell text-white">Nama Paket</th>
+                                            <th class="cell text-white">Tipe Paket</th>
+                                            <th class="cell text-white">Kategori Paket</th>
+                                            <th class="cell text-white">Kecepatan Internet</th>
+                                            <th class="cell text-white">Harga Paket</th>
+                                            <th class="cell text-white">Harga Ritel</th>
+                                            <th class="cell text-white">Harga Pemerintah</th>
+                                            <th class="cell text-white">Catatan Paket</th>
                                             <th class="cell text-white">Tersimpan</th>
                                             <th class="cell text-white">Aksi</th>
                                         </tr>
@@ -468,6 +397,15 @@
                                                     {{ $service->package_name }}
                                                 </td>
                                                 <td class="align-middle">
+                                                    {{ $service->package_type }}
+                                                </td>
+                                                <td class="align-middle">
+                                                    {{ $service->package_categories }}
+                                                </td>
+                                                <td class="align-middle">
+                                                    {{ $service->package_speed }}
+                                                </td>
+                                                <td class="align-middle">
                                                     IDR. {{ number_format($service->package_price, 2, ',', '.') }}
                                                 </td>
                                                 <td class="align-middle">
@@ -477,18 +415,6 @@
                                                 <td class="align-middle">
                                                     IDR.
                                                     {{ number_format($service->government_package_price, 2, ',', '.') }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ $service->package_speed }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ $service->package_categories }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ $service->package_type }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ $service->package_top }}
                                                 </td>
                                                 <td class="align-middle">
                                                     {{ $service->noted_service }}
@@ -532,11 +458,6 @@
 @include('includes.data-table')
 <script>
     $(document).ready(function() {
-        $('#dataTables').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
-            responsive: true
-        });
+        var table = $('#dataTables').DataTable();
     });
 </script>
