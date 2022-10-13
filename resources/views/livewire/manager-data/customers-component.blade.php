@@ -106,572 +106,1201 @@
                                                     @endphp
                                                     @foreach ($customers as $custome)
                                                         @if ($custome->class == $item)
-                                                            <tr class="text-light">
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    {{ $id }}
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary"
-                                                                    style="cursor: pointer;"
-                                                                    wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    {{ $custome->name }}
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary"
-                                                                    style="cursor: pointer;"
-                                                                    wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    {{ $custome->email }}
-                                                                </td>
-                                                                <td class="align-middle text-secondary"
-                                                                    style="cursor: pointer;"
-                                                                    wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    <ul>
-                                                                        @foreach (json_decode($custome->address) as $addr)
-                                                                            <li style="text-align: justify;">
-                                                                                {{ $addr }}</li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </td>
-                                                                <td class="align-middle text-center text-secondary"
-                                                                    style="cursor: pointer;"
-                                                                    wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    {{ $custome->created_at }}
-                                                                </td>
-                                                                <td class="align-middle text-center"
-                                                                    style="cursor: pointer;"
-                                                                    wire:click="{{ $custome->id ? null : $custome->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
-                                                                    @if ($custome->approval->isApproved)
-                                                                        <span class="badge bg-primary text-white">
-                                                                            Approved
-                                                                        </span>
-                                                                    @elseif ($custome->approval->isRejected)
-                                                                        <span class="badge text-white"
-                                                                            style="background-color:#FF0000;">
-                                                                            Rejected
-                                                                        </span>
-                                                                    @else
-                                                                        <span class="badge bg-warning text-white">
-                                                                            Pending
-                                                                        </span>
-                                                                    @endif
-                                                                </td>
+                                                            @if ($custome->reference_id != null)
+                                                                @if ($custome->survey_id != null && $custome->extend_note)
+                                                                    <tr class="text-light">
+                                                                        <td
+                                                                            class="align-middle text-center text-secondary">
+                                                                            {{ $id }}
+                                                                        </td>
+                                                                        <td class="align-middle text-center text-secondary"
+                                                                            style="cursor: pointer;"
+                                                                            wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                            {{ $custome->name }}
+                                                                        </td>
+                                                                        <td class="align-middle text-center text-secondary"
+                                                                            style="cursor: pointer;"
+                                                                            wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                            {{ $custome->email }}
+                                                                        </td>
+                                                                        <td class="align-middle text-secondary"
+                                                                            style="cursor: pointer;"
+                                                                            wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                            <ul>
+                                                                                @foreach (json_decode($custome->address) as $addr)
+                                                                                    <li style="text-align: justify;">
+                                                                                        {{ $addr }}</li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </td>
+                                                                        <td class="align-middle text-center text-secondary"
+                                                                            style="cursor: pointer;"
+                                                                            wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                            {{ $custome->created_at }}
+                                                                        </td>
+                                                                        <td class="align-middle text-center"
+                                                                            style="cursor: pointer;"
+                                                                            wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                            @if ($custome->approval->isApproved)
+                                                                                <span
+                                                                                    class="badge bg-primary text-white">
+                                                                                    Approved
+                                                                                </span>
+                                                                            @elseif ($custome->approval->isRejected)
+                                                                                <span class="badge text-white"
+                                                                                    style="background-color:#FF0000;">
+                                                                                    Rejected
+                                                                                </span>
+                                                                            @else
+                                                                                <span
+                                                                                    class="badge bg-warning text-white">
+                                                                                    Pending
+                                                                                </span>
+                                                                            @endif
+                                                                        </td>
 
-                                                                <td class="align-middle text-center text-secondary">
-                                                                    <div class="btn-group" role="group"
-                                                                        aria-label="Basic example">
-                                                                        {{-- <button type="button"
+                                                                        <td
+                                                                            class="align-middle text-center text-secondary">
+                                                                            <div class="btn-group" role="group"
+                                                                                aria-label="Basic example">
+                                                                                {{-- <button type="button"
+                                                                                wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                                class="btn btn-md btn-success"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                                <i class="fa-solid fa-eye text-white"></i>
+                                                                            </button> --}}
+                                                                                @if ($custome->approval->isApproved)
+                                                                                    <button type="button" disabled
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Approved"
+                                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md btn-primary text-white">
+                                                                                        <i
+                                                                                            class="fa-solid fa-circle-check"></i>
+                                                                                    </button>
+                                                                                    <button type="button" disabled
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Rejected"
+                                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md text-white"
+                                                                                        style="background-color:#ff00008f;">
+                                                                                        <i class="fa-solid fa-ban"></i>
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="ExportPDF"
+                                                                                        wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md text-white"
+                                                                                        style="background-color:#0062ff;">
+                                                                                        <i
+                                                                                            class="fa-solid fa-print"></i>
+                                                                                    </button>
+                                                                                @elseif($custome->approval->isRejected)
+                                                                                    <button type="button"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Approved"
+                                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md btn-primary text-white">
+                                                                                        <i
+                                                                                            class="fa-solid fa-circle-check"></i>
+                                                                                    </button>
+                                                                                    <button type="button" disabled
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Rejected"
+                                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md text-white"
+                                                                                        style="background-color:#ff00008f;">
+                                                                                        <i class="fa-solid fa-ban"></i>
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="ExportPDF"
+                                                                                        wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md text-white"
+                                                                                        style="background-color:#0062ff;">
+                                                                                        <i
+                                                                                            class="fa-solid fa-print"></i>
+                                                                                    </button>
+                                                                                @else
+                                                                                    <button type="button"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Approved"
+                                                                                        wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md btn-primary text-white">
+                                                                                        <i
+                                                                                            class="fa-solid fa-circle-check"></i>
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Rejected"
+                                                                                        wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md text-white"
+                                                                                        style="background-color:#FF0000;">
+                                                                                        <i class="fa-solid fa-ban"></i>
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="ExportPDF"
+                                                                                        wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                        class="btn btn-md text-white"
+                                                                                        style="background-color:#0062ff;">
+                                                                                        <i
+                                                                                            class="fa-solid fa-print"></i>
+                                                                                    </button>
+                                                                                @endif
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <!-- Modal view -->
+                                                                    <div wire:ignore.self class="modal fade"
+                                                                        id="detail-data{{ $item }}-modal{{ $id }}"
+                                                                        tabindex="-1" role="dialog"
+                                                                        aria-labelledby="exampleModalCenterTitle"
+                                                                        aria-hidden="true">
+                                                                        <div
+                                                                            class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title text-success"
+                                                                                        id="exampleModalLongTitle">
+                                                                                        Informasi
+                                                                                        Data
+                                                                                        {{ $item == 'Personal' ? 'Personal' : 'Bussiness' }}
+                                                                                    </h5>
+                                                                                    <button type="button"
+                                                                                        class="btn-close"
+                                                                                        data-bs-dismiss="modal"
+                                                                                        aria-label="Close"></button>
+                                                                                </div>
+                                                                                <div class="modal-body p-3">
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Data
+                                                                                            {{ $item == 'Personal' ? 'Personal' : 'Penanggung Jawab' }}
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                            <div
+                                                                                                class="{{ $item == 'Personal' ? 'col-sm-12' : 'col-sm-6' }}">
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="customer_id"
+                                                                                                        class="form-label text-secondary">No.
+                                                                                                        ID
+                                                                                                        Pelanggan</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="customer_id"
+                                                                                                        value="{{ $custome->customer_id }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="customer_name"
+                                                                                                        class="form-label text-secondary">Nama
+                                                                                                        Lengkap</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="customer_name"
+                                                                                                        value="{{ $custome->name }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="address"
+                                                                                                        class="form-label text-secondary">Alamat
+                                                                                                        Lengkap</label>
+                                                                                                    <blade
+                                                                                                        ___html_tags_0___ />
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="email_address"
+                                                                                                        class="form-label text-secondary">Email</label>
+                                                                                                    <input
+                                                                                                        type="email"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="email_address"
+                                                                                                        value="{{ $custome->email }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="identity_number"
+                                                                                                        class="form-label text-secondary">No.
+                                                                                                        Identitas</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="identity_number"
+                                                                                                        value="{{ $custome->identity_number }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="phone_number"
+                                                                                                        class="form-label text-secondary">No.
+                                                                                                        HP/WA yang
+                                                                                                        aktif</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="phone_number"
+                                                                                                        value="{{ $custome->phone_number }}">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @if ($item == 'Bussiness')
+                                                                                                <div class="col-sm-6">
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="company_name"
+                                                                                                            class="form-label text-secondary">Nama
+                                                                                                            Perusahaan</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control text-secondary"
+                                                                                                            id="company_name"
+                                                                                                            value="{{ $custome->company_name }}">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="company_address"
+                                                                                                            class="form-label text-secondary">Alamat
+                                                                                                            Perusahaan</label>
+                                                                                                        <blade
+                                                                                                            ___html_tags_1___ />
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="company_npwp"
+                                                                                                            class="form-label text-secondary">No.
+                                                                                                            NPWP
+                                                                                                            Perusahaan</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control text-secondary"
+                                                                                                            id="company_npwp"
+                                                                                                            value="{{ $custome->company_npwp }}">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="company_phone_number"
+                                                                                                            class="form-label text-secondary">No.
+                                                                                                            Telepon
+                                                                                                            Perusahaan</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control text-secondary"
+                                                                                                            id="company_phone_number"
+                                                                                                            value="{{ $custome->company_phone_number }}">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="company_employees"
+                                                                                                            class="form-label text-secondary">Jumlah
+                                                                                                            Karyawan
+                                                                                                            Perusahaan</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control text-secondary"
+                                                                                                            id="company_employees"
+                                                                                                            value="{{ $custome->company_employees }}">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Data Billing
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="billing_name"
+                                                                                                    class="form-label text-secondary">Nama
+                                                                                                    Billing</label>
+                                                                                                <input type="text"
+                                                                                                    readonly
+                                                                                                    class="form-control text-secondary"
+                                                                                                    id="billing_name"
+                                                                                                    value="{{ $custome->billing->billing_name }}">
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="billing_contact"
+                                                                                                    class="form-label text-secondary">Kontak
+                                                                                                    Billing</label>
+                                                                                                <input type="text"
+                                                                                                    readonly
+                                                                                                    class="form-control text-secondary"
+                                                                                                    id="billing_contact"
+                                                                                                    value="{{ $custome->billing->billing_contact }}">
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $bil = 1;
+                                                                                            @endphp
+                                                                                            @foreach (json_decode($custome->billing->billing_email) as $billingEmail)
+                                                                                                @if ($bil == 1)
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="billing_email_{{ $bil }}"
+                                                                                                            class="form-label text-secondary">Email
+                                                                                                            Billing</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control text-secondary"
+                                                                                                            id="billing_email_{{ $bil }}"
+                                                                                                            value="{{ $billingEmail }}">
+                                                                                                    </div>
+                                                                                                @else
+                                                                                                    <div
+                                                                                                        class="mb-3">
+                                                                                                        <label
+                                                                                                            for="alternate_billing_email_{{ $bil }}"
+                                                                                                            class="form-label text-secondary">Alternatif
+                                                                                                            Email
+                                                                                                            Billing
+                                                                                                            {{ $bil - 1 }}</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control text-secondary"
+                                                                                                            id="alternate_billing_email_{{ $bil }}"
+                                                                                                            value="{{ $billingEmail }}">
+                                                                                                    </div>
+                                                                                                @endif
+                                                                                                @php
+                                                                                                    $bil++;
+                                                                                                @endphp
+                                                                                            @endforeach
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Data Technical
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="billing_name"
+                                                                                                    class="form-label text-secondary">Nama
+                                                                                                    Teknikal</label>
+                                                                                                <input type="text"
+                                                                                                    readonly
+                                                                                                    class="form-control text-secondary"
+                                                                                                    id="billing_name"
+                                                                                                    value="{{ $custome->technical->technical_name }}">
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="billing_contact"
+                                                                                                    class="form-label text-secondary">Kontak
+                                                                                                    Teknikal</label>
+                                                                                                <input type="text"
+                                                                                                    readonly
+                                                                                                    class="form-control text-secondary"
+                                                                                                    id="billing_contact"
+                                                                                                    value="{{ $custome->technical->technical_contact }}">
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="billing_email"
+                                                                                                    class="form-label text-secondary">Email
+                                                                                                    Teknikal</label>
+                                                                                                <input type="text"
+                                                                                                    readonly
+                                                                                                    class="form-control text-secondary"
+                                                                                                    id="billing_email"
+                                                                                                    value="{{ $custome->technical->technical_email }}">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Data Service
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                            @php
+                                                                                                $servicePackage = json_decode($custome->service->service_package);
+                                                                                            @endphp
+                                                                                            <ol>
+                                                                                                @for ($i = 0; $i < count($servicePackage); $i++)
+                                                                                                    <li>
+                                                                                                        @foreach ($servicePackage[$i] as $key => $value)
+                                                                                                            @if ($key == 'service_name')
+                                                                                                                <p
+                                                                                                                    class="fw-bold">
+                                                                                                                    Nama
+                                                                                                                    Layanan
+                                                                                                                    :
+                                                                                                                    <span
+                                                                                                                        class="fw-normal">{{ $value }}</span>
+                                                                                                                </p>
+                                                                                                            @elseif($key == 'service_price')
+                                                                                                                <p
+                                                                                                                    class="fw-bold">
+                                                                                                                    Harga
+                                                                                                                    Layanan
+                                                                                                                    :
+                                                                                                                    <span
+                                                                                                                        class="fw-normal">{{ $value }}</span>
+                                                                                                                </p>
+                                                                                                            @elseif($key == 'termofpaymentDeals')
+                                                                                                                <p
+                                                                                                                    class="fw-bold">
+                                                                                                                    Jangka
+                                                                                                                    Waktu
+                                                                                                                    Pembayaran
+                                                                                                                    :
+                                                                                                                    <span
+                                                                                                                        class="fw-normal">{{ $value }}</span>
+                                                                                                                </p>
+                                                                                                            @endif
+                                                                                                        @endforeach
+                                                                                                    </li>
+                                                                                                @endfor
+                                                                                            </ol>
+                                                                                            <div class="col-sm-6">
+                                                                                                <label for="photo_url"
+                                                                                                    class="mb-1 fw-bold">Foto
+                                                                                                    Identitas
+                                                                                                    KTP</label>
+                                                                                                <img class="img-fluid mb-3"
+                                                                                                    src="{{ $custome->service->id_photo_url }}"
+                                                                                                    alt="">
+                                                                                                <a class="btn btn-primary text-white"
+                                                                                                    target="_blank"
+                                                                                                    role="button"
+                                                                                                    href="{{ $custome->service->id_photo_url }}">
+                                                                                                    Tampilkan Gambar
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    @if ($custome->reference_id != null)
+                                                                                        <div
+                                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                            <p
+                                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                                *) Catatan Tambahan
+                                                                                            </p>
+                                                                                            <div
+                                                                                                class="row px-2 border rounded p-3 mx-2 bg-light">
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="exampleInputPassword1"
+                                                                                                        class="form-label">ID
+                                                                                                        Survey</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        value="{{ $custome->survey_id }}"
+                                                                                                        readonly>
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="catatan_lain"
+                                                                                                        class="form-label">Catatan</label>
+                                                                                                    @php
+                                                                                                        echo "<textarea class='form-control' cols='30' rows='10' style='height: 300px;' readonly>" . $custome->extend_note . '</textarea>';
+                                                                                                    @endphp
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                            <p
+                                                                                                class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                                *) Data Sales
+                                                                                            </p>
+                                                                                            <div
+                                                                                                class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                                <p>
+                                                                                                    <span
+                                                                                                        class="fw-bold">ID
+                                                                                                        Sales :</span>
+                                                                                                    {{ $custome->id_sales }}
+                                                                                                </p>
+                                                                                                <p>
+                                                                                                    <span
+                                                                                                        class="fw-bold">Nama
+                                                                                                        Sales :</span>
+                                                                                                    {{ $custome->nama_sales }}
+                                                                                                </p>
+                                                                                                <p>
+                                                                                                    <span
+                                                                                                        class="fw-bold">Email
+                                                                                                        Sales :</span>
+                                                                                                    {{ $custome->email_sales }}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Data Approval
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                            @if ($custome->approval->isApproved)
+                                                                                                <span
+                                                                                                    class="badge text-bg-primary text-white fs-5">Data
+                                                                                                    Telah
+                                                                                                    Disetujui</span>
+                                                                                            @elseif($custome->approval->isRejected)
+                                                                                                <span
+                                                                                                    class="badge text-white fs-5"
+                                                                                                    style="background-color:#FF0000;">Data
+                                                                                                    Belum
+                                                                                                    Disetujui</span>
+                                                                                            @else
+                                                                                                <span
+                                                                                                    class="badge text-bg-warning text-white fs-5">Menunggu
+                                                                                                    Persetujuan</span>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    @php
+                                                                        $id++;
+                                                                    @endphp
+                                                                @endif
+                                                            @else
+                                                                <tr class="text-light">
+                                                                    <td
+                                                                        class="align-middle text-center text-secondary">
+                                                                        {{ $id }}
+                                                                    </td>
+                                                                    <td class="align-middle text-center text-secondary"
+                                                                        style="cursor: pointer;"
+                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                        {{ $custome->name }}
+                                                                    </td>
+                                                                    <td class="align-middle text-center text-secondary"
+                                                                        style="cursor: pointer;"
+                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                        {{ $custome->email }}
+                                                                    </td>
+                                                                    <td class="align-middle text-secondary"
+                                                                        style="cursor: pointer;"
+                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                        <ul>
+                                                                            @foreach (json_decode($custome->address) as $addr)
+                                                                                <li style="text-align: justify;">
+                                                                                    {{ $addr }}</li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </td>
+                                                                    <td class="align-middle text-center text-secondary"
+                                                                        style="cursor: pointer;"
+                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                        {{ $custome->created_at }}
+                                                                    </td>
+                                                                    <td class="align-middle text-center"
+                                                                        style="cursor: pointer;"
+                                                                        wire:click="{{ $custome->id ? null : $custome->id }}"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
+                                                                        @if ($custome->approval->isApproved)
+                                                                            <span class="badge bg-primary text-white">
+                                                                                Approved
+                                                                            </span>
+                                                                        @elseif ($custome->approval->isRejected)
+                                                                            <span class="badge text-white"
+                                                                                style="background-color:#FF0000;">
+                                                                                Rejected
+                                                                            </span>
+                                                                        @else
+                                                                            <span class="badge bg-warning text-white">
+                                                                                Pending
+                                                                            </span>
+                                                                        @endif
+                                                                    </td>
+
+                                                                    <td
+                                                                        class="align-middle text-center text-secondary">
+                                                                        <div class="btn-group" role="group"
+                                                                            aria-label="Basic example">
+                                                                            {{-- <button type="button"
                                                                             wire:click="{{ $custome->id ? null : $custome->id }}"
                                                                             class="btn btn-md btn-success"
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#detail-data{{ $item }}-modal{{ $id }}">
                                                                             <i class="fa-solid fa-eye text-white"></i>
                                                                         </button> --}}
-                                                                        @if ($custome->approval->isApproved)
-                                                                            <button type="button" disabled
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Approved"
-                                                                                wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md btn-primary text-white">
-                                                                                <i
-                                                                                    class="fa-solid fa-circle-check"></i>
-                                                                            </button>
-                                                                            <button type="button" disabled
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Rejected"
-                                                                                wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md text-white"
-                                                                                style="background-color:#ff00008f;">
-                                                                                <i class="fa-solid fa-ban"></i>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="ExportPDF"
-                                                                                wire:click="exportPDF(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md text-white"
-                                                                                style="background-color:#0062ff;">
-                                                                                <i class="fa-solid fa-print"></i>
-                                                                            </button>
-                                                                        @elseif ($custome->approval->isRejected)
-                                                                            <button type="button"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Approved"
-                                                                                wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md btn-primary text-white">
-                                                                                <i
-                                                                                    class="fa-solid fa-circle-check"></i>
-                                                                            </button>
-                                                                            <button type="button" disabled
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Rejected"
-                                                                                wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md text-white"
-                                                                                style="background-color:#ff00008f;">
-                                                                                <i class="fa-solid fa-ban"></i>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="ExportPDF"
-                                                                                wire:click="exportPDF(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md text-white"
-                                                                                style="background-color:#0062ff;">
-                                                                                <i class="fa-solid fa-print"></i>
-                                                                            </button>
-                                                                        @else
-                                                                            <button type="button"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Approved"
-                                                                                wire:click="approved_status(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md btn-primary text-white">
-                                                                                <i
-                                                                                    class="fa-solid fa-circle-check"></i>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Rejected"
-                                                                                wire:click="rejected_status(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md text-white"
-                                                                                style="background-color:#FF0000;">
-                                                                                <i class="fa-solid fa-ban"></i>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="ExportPDF"
-                                                                                wire:click="exportPDF(`{{ $custome->id }}`)"
-                                                                                class="btn btn-md text-white"
-                                                                                style="background-color:#0062ff;">
-                                                                                <i class="fa-solid fa-print"></i>
-                                                                            </button>
-                                                                        @endif
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-
-                                                            <!-- Modal view -->
-                                                            <div wire:ignore.self class="modal fade"
-                                                                id="detail-data{{ $item }}-modal{{ $id }}"
-                                                                tabindex="-1" role="dialog"
-                                                                aria-labelledby="exampleModalCenterTitle"
-                                                                aria-hidden="true">
-                                                                <div
-                                                                    class="modal-dialog modal-dialog-scrollable modal-lg">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title text-success"
-                                                                                id="exampleModalLongTitle">Informasi
-                                                                                Data
-                                                                                {{ $item == 'Personal' ? 'Personal' : 'Bussiness' }}
-                                                                            </h5>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
+                                                                            @if ($custome->approval->isApproved)
+                                                                                <button type="button" disabled
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Approved"
+                                                                                    wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md btn-primary text-white">
+                                                                                    <i
+                                                                                        class="fa-solid fa-circle-check"></i>
+                                                                                </button>
+                                                                                <button type="button" disabled
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Rejected"
+                                                                                    wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md text-white"
+                                                                                    style="background-color:#ff00008f;">
+                                                                                    <i class="fa-solid fa-ban"></i>
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="ExportPDF"
+                                                                                    wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md text-white"
+                                                                                    style="background-color:#0062ff;">
+                                                                                    <i class="fa-solid fa-print"></i>
+                                                                                </button>
+                                                                            @elseif ($custome->approval->isRejected)
+                                                                                <button type="button"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Approved"
+                                                                                    wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md btn-primary text-white">
+                                                                                    <i
+                                                                                        class="fa-solid fa-circle-check"></i>
+                                                                                </button>
+                                                                                <button type="button" disabled
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Rejected"
+                                                                                    wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md text-white"
+                                                                                    style="background-color:#ff00008f;">
+                                                                                    <i class="fa-solid fa-ban"></i>
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="ExportPDF"
+                                                                                    wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md text-white"
+                                                                                    style="background-color:#0062ff;">
+                                                                                    <i class="fa-solid fa-print"></i>
+                                                                                </button>
+                                                                            @else
+                                                                                <button type="button"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Approved"
+                                                                                    wire:click="approved_status(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md btn-primary text-white">
+                                                                                    <i
+                                                                                        class="fa-solid fa-circle-check"></i>
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Rejected"
+                                                                                    wire:click="rejected_status(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md text-white"
+                                                                                    style="background-color:#FF0000;">
+                                                                                    <i class="fa-solid fa-ban"></i>
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="ExportPDF"
+                                                                                    wire:click="exportPDF(`{{ $custome->id }}`)"
+                                                                                    class="btn btn-md text-white"
+                                                                                    style="background-color:#0062ff;">
+                                                                                    <i class="fa-solid fa-print"></i>
+                                                                                </button>
+                                                                            @endif
                                                                         </div>
-                                                                        <div class="modal-body p-3">
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data
-                                                                                    {{ $item == 'Personal' ? 'Personal' : 'Penanggung Jawab' }}
-                                                                                </p>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <!-- Modal view -->
+                                                                <div wire:ignore.self class="modal fade"
+                                                                    id="detail-data{{ $item }}-modal{{ $id }}"
+                                                                    tabindex="-1" role="dialog"
+                                                                    aria-labelledby="exampleModalCenterTitle"
+                                                                    aria-hidden="true">
+                                                                    <div
+                                                                        class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title text-success"
+                                                                                    id="exampleModalLongTitle">
+                                                                                    Informasi
+                                                                                    Data
+                                                                                    {{ $item == 'Personal' ? 'Personal' : 'Bussiness' }}
+                                                                                </h5>
+                                                                                <button type="button"
+                                                                                    class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body p-3">
                                                                                 <div
-                                                                                    class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Data
+                                                                                        {{ $item == 'Personal' ? 'Personal' : 'Penanggung Jawab' }}
+                                                                                    </p>
                                                                                     <div
-                                                                                        class="{{ $item == 'Personal' ? 'col-sm-12' : 'col-sm-6' }}">
-                                                                                        <div class="mb-3">
-                                                                                            <label for="customer_id"
-                                                                                                class="form-label text-secondary">No.
-                                                                                                ID Pelanggan</label>
-                                                                                            <input type="text"
-                                                                                                readonly
-                                                                                                class="form-control text-secondary"
-                                                                                                id="customer_id"
-                                                                                                value="{{ $custome->customer_id }}">
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="customer_name"
-                                                                                                class="form-label text-secondary">Nama
-                                                                                                Lengkap</label>
-                                                                                            <input type="text"
-                                                                                                readonly
-                                                                                                class="form-control text-secondary"
-                                                                                                id="customer_name"
-                                                                                                value="{{ $custome->name }}">
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="address"
-                                                                                                class="form-label text-secondary">Alamat
-                                                                                                Lengkap</label>
-                                                                                            <textarea class="form-control text-secondary" name="address" id="address" rows="3"
-                                                                                                style="text-align: justify; height:100%;" readonly>{{ $custome->address }}
-                                                                                            </textarea>
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="email_address"
-                                                                                                class="form-label text-secondary">Email</label>
-                                                                                            <input type="email"
-                                                                                                readonly
-                                                                                                class="form-control text-secondary"
-                                                                                                id="email_address"
-                                                                                                value="{{ $custome->email }}">
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label
-                                                                                                for="identity_number"
-                                                                                                class="form-label text-secondary">No.
-                                                                                                Identitas</label>
-                                                                                            <input type="text"
-                                                                                                readonly
-                                                                                                class="form-control text-secondary"
-                                                                                                id="identity_number"
-                                                                                                value="{{ $custome->identity_number }}">
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="phone_number"
-                                                                                                class="form-label text-secondary">No.
-                                                                                                HP/WA yang aktif</label>
-                                                                                            <input type="text"
-                                                                                                readonly
-                                                                                                class="form-control text-secondary"
-                                                                                                id="phone_number"
-                                                                                                value="{{ $custome->phone_number }}">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    @if ($item == 'Bussiness')
-                                                                                        <div class="col-sm-6">
+                                                                                        class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                        <div
+                                                                                            class="{{ $item == 'Personal' ? 'col-sm-12' : 'col-sm-6' }}">
                                                                                             <div class="mb-3">
                                                                                                 <label
-                                                                                                    for="company_name"
-                                                                                                    class="form-label text-secondary">Nama
-                                                                                                    Perusahaan</label>
+                                                                                                    for="customer_id"
+                                                                                                    class="form-label text-secondary">No.
+                                                                                                    ID Pelanggan</label>
                                                                                                 <input type="text"
                                                                                                     readonly
                                                                                                     class="form-control text-secondary"
-                                                                                                    id="company_name"
-                                                                                                    value="{{ $custome->company_name }}">
+                                                                                                    id="customer_id"
+                                                                                                    value="{{ $custome->customer_id }}">
                                                                                             </div>
                                                                                             <div class="mb-3">
                                                                                                 <label
-                                                                                                    for="company_address"
+                                                                                                    for="customer_name"
+                                                                                                    class="form-label text-secondary">Nama
+                                                                                                    Lengkap</label>
+                                                                                                <input type="text"
+                                                                                                    readonly
+                                                                                                    class="form-control text-secondary"
+                                                                                                    id="customer_name"
+                                                                                                    value="{{ $custome->name }}">
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label for="address"
                                                                                                     class="form-label text-secondary">Alamat
-                                                                                                    Perusahaan</label>
+                                                                                                    Lengkap</label>
                                                                                                 <blade
                                                                                                     ___html_tags_1___ />
                                                                                             </div>
                                                                                             <div class="mb-3">
                                                                                                 <label
-                                                                                                    for="company_npwp"
-                                                                                                    class="form-label text-secondary">No.
-                                                                                                    NPWP
-                                                                                                    Perusahaan</label>
-                                                                                                <input type="text"
+                                                                                                    for="email_address"
+                                                                                                    class="form-label text-secondary">Email</label>
+                                                                                                <input type="email"
                                                                                                     readonly
                                                                                                     class="form-control text-secondary"
-                                                                                                    id="company_npwp"
-                                                                                                    value="{{ $custome->company_npwp }}">
+                                                                                                    id="email_address"
+                                                                                                    value="{{ $custome->email }}">
                                                                                             </div>
                                                                                             <div class="mb-3">
                                                                                                 <label
-                                                                                                    for="company_phone_number"
+                                                                                                    for="identity_number"
                                                                                                     class="form-label text-secondary">No.
-                                                                                                    Telepon
-                                                                                                    Perusahaan</label>
+                                                                                                    Identitas</label>
                                                                                                 <input type="text"
                                                                                                     readonly
                                                                                                     class="form-control text-secondary"
-                                                                                                    id="company_phone_number"
-                                                                                                    value="{{ $custome->company_phone_number }}">
+                                                                                                    id="identity_number"
+                                                                                                    value="{{ $custome->identity_number }}">
                                                                                             </div>
                                                                                             <div class="mb-3">
                                                                                                 <label
-                                                                                                    for="company_employees"
-                                                                                                    class="form-label text-secondary">Jumlah
-                                                                                                    Karyawan
-                                                                                                    Perusahaan</label>
+                                                                                                    for="phone_number"
+                                                                                                    class="form-label text-secondary">No.
+                                                                                                    HP/WA yang
+                                                                                                    aktif</label>
                                                                                                 <input type="text"
                                                                                                     readonly
                                                                                                     class="form-control text-secondary"
-                                                                                                    id="company_employees"
-                                                                                                    value="{{ $custome->company_employees }}">
+                                                                                                    id="phone_number"
+                                                                                                    value="{{ $custome->phone_number }}">
                                                                                             </div>
                                                                                         </div>
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data Billing
-                                                                                </p>
-                                                                                <div
-                                                                                    class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
-                                                                                    <div class="mb-3">
-                                                                                        <label for="billing_name"
-                                                                                            class="form-label text-secondary">Nama
-                                                                                            Billing</label>
-                                                                                        <input type="text" readonly
-                                                                                            class="form-control text-secondary"
-                                                                                            id="billing_name"
-                                                                                            value="{{ $custome->billing->billing_name }}">
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="billing_contact"
-                                                                                            class="form-label text-secondary">Kontak
-                                                                                            Billing</label>
-                                                                                        <input type="text" readonly
-                                                                                            class="form-control text-secondary"
-                                                                                            id="billing_contact"
-                                                                                            value="{{ $custome->billing->billing_contact }}">
-                                                                                    </div>
-                                                                                    @php
-                                                                                        $bil = 1;
-                                                                                    @endphp
-                                                                                    @foreach (json_decode($custome->billing->billing_email) as $billingEmail)
-                                                                                        @if ($bil == 1)
-                                                                                            <div class="mb-3">
-                                                                                                <label
-                                                                                                    for="billing_email_{{ $bil }}"
-                                                                                                    class="form-label text-secondary">Email
-                                                                                                    Billing</label>
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control text-secondary"
-                                                                                                    id="billing_email_{{ $bil }}"
-                                                                                                    value="{{ $billingEmail }}">
-                                                                                            </div>
-                                                                                        @else
-                                                                                            <div class="mb-3">
-                                                                                                <label
-                                                                                                    for="alternate_billing_email_{{ $bil }}"
-                                                                                                    class="form-label text-secondary">Alternatif
-                                                                                                    Email
-                                                                                                    Billing
-                                                                                                    {{ $bil - 1 }}</label>
-                                                                                                <input type="text"
-                                                                                                    readonly
-                                                                                                    class="form-control text-secondary"
-                                                                                                    id="alternate_billing_email_{{ $bil }}"
-                                                                                                    value="{{ $billingEmail }}">
+                                                                                        @if ($item == 'Bussiness')
+                                                                                            <div class="col-sm-6">
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="company_name"
+                                                                                                        class="form-label text-secondary">Nama
+                                                                                                        Perusahaan</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="company_name"
+                                                                                                        value="{{ $custome->company_name }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="company_address"
+                                                                                                        class="form-label text-secondary">Alamat
+                                                                                                        Perusahaan</label>
+                                                                                                    <blade
+                                                                                                        ___html_tags_1___ />
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="company_npwp"
+                                                                                                        class="form-label text-secondary">No.
+                                                                                                        NPWP
+                                                                                                        Perusahaan</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="company_npwp"
+                                                                                                        value="{{ $custome->company_npwp }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="company_phone_number"
+                                                                                                        class="form-label text-secondary">No.
+                                                                                                        Telepon
+                                                                                                        Perusahaan</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="company_phone_number"
+                                                                                                        value="{{ $custome->company_phone_number }}">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="company_employees"
+                                                                                                        class="form-label text-secondary">Jumlah
+                                                                                                        Karyawan
+                                                                                                        Perusahaan</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="company_employees"
+                                                                                                        value="{{ $custome->company_employees }}">
+                                                                                                </div>
                                                                                             </div>
                                                                                         @endif
-                                                                                        @php
-                                                                                            $bil++;
-                                                                                        @endphp
-                                                                                    @endforeach
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data Technical
-                                                                                </p>
-                                                                                <div
-                                                                                    class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
-                                                                                    <div class="mb-3">
-                                                                                        <label for="billing_name"
-                                                                                            class="form-label text-secondary">Nama
-                                                                                            Teknikal</label>
-                                                                                        <input type="text" readonly
-                                                                                            class="form-control text-secondary"
-                                                                                            id="billing_name"
-                                                                                            value="{{ $custome->technical->technical_name }}">
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="billing_contact"
-                                                                                            class="form-label text-secondary">Kontak
-                                                                                            Teknikal</label>
-                                                                                        <input type="text" readonly
-                                                                                            class="form-control text-secondary"
-                                                                                            id="billing_contact"
-                                                                                            value="{{ $custome->technical->technical_contact }}">
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="billing_email"
-                                                                                            class="form-label text-secondary">Email
-                                                                                            Teknikal</label>
-                                                                                        <input type="text" readonly
-                                                                                            class="form-control text-secondary"
-                                                                                            id="billing_email"
-                                                                                            value="{{ $custome->technical->technical_email }}">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data Service
-                                                                                </p>
-                                                                                <div
-                                                                                    class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
-                                                                                    @php
-                                                                                        $servicePackage = json_decode($custome->service->service_package);
-                                                                                    @endphp
-                                                                                    <ol>
-                                                                                        @for ($i = 0; $i < count($servicePackage); $i++)
-                                                                                            <li>
-                                                                                                @foreach ($servicePackage[$i] as $key => $value)
-                                                                                                    @if ($key == 'service_name')
-                                                                                                        <p
-                                                                                                            class="fw-bold">
-                                                                                                            Nama Layanan
-                                                                                                            :
-                                                                                                            <span
-                                                                                                                class="fw-normal">{{ $value }}</span>
-                                                                                                        </p>
-                                                                                                    @elseif($key == 'service_price')
-                                                                                                        <p
-                                                                                                            class="fw-bold">
-                                                                                                            Harga
-                                                                                                            Layanan :
-                                                                                                            <span
-                                                                                                                class="fw-normal">{{ $value }}</span>
-                                                                                                        </p>
-                                                                                                    @elseif($key == 'termofpaymentDeals')
-                                                                                                        <p
-                                                                                                            class="fw-bold">
-                                                                                                            Jangka Waktu
-                                                                                                            Pembayaran :
-                                                                                                            <span
-                                                                                                                class="fw-normal">{{ $value }}</span>
-                                                                                                        </p>
-                                                                                                    @endif
-                                                                                                @endforeach
-                                                                                            </li>
-                                                                                        @endfor
-                                                                                    </ol>
-                                                                                    <div class="col-sm-6">
-                                                                                        <label for="photo_url"
-                                                                                            class="mb-1 fw-bold">Foto
-                                                                                            Identitas KTP</label>
-                                                                                        <img class="img-fluid mb-3"
-                                                                                            src="{{ $custome->service->id_photo_url }}"
-                                                                                            alt="">
-                                                                                        <a class="btn btn-primary text-white"
-                                                                                            target="_blank"
-                                                                                            role="button"
-                                                                                            href="{{ $custome->service->id_photo_url }}">
-                                                                                            Tampilkan Gambar
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="col-sm-6">
-                                                                                        <label for="photo_selfie"
-                                                                                            class="mb-1 fw-bold">Foto
-                                                                                            Selfie</label>
-                                                                                        <img class="img-fluid mb-3"
-                                                                                            src="{{ $custome->service->selfie_id_photo_url }}"
-                                                                                            alt="">
-                                                                                        <a class="btn btn-primary text-white"
-                                                                                            target="_blank"
-                                                                                            role="button"
-                                                                                            href="{{ $custome->service->selfie_id_photo_url }}">
-                                                                                            Download Photos</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            @if ($custome->reference_id != null)
-                                                                                <div
-                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                    <p
-                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                        *) Catatan Tambahan
-                                                                                    </p>
-                                                                                    <div
-                                                                                        class="row px-2 border rounded p-3 mx-2 bg-light">
-                                                                                        <div class="mb-3">
-                                                                                            <label
-                                                                                                for="exampleInputPassword1"
-                                                                                                class="form-label">ID
-                                                                                                Survey</label>
-                                                                                            <input type="text"
-                                                                                                class="form-control"
-                                                                                                value="{{ $custome->survey_id }}"
-                                                                                                readonly>
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="catatan_lain"
-                                                                                                class="form-label">Catatan</label>
-                                                                                            @php
-                                                                                                echo "<textarea class='form-control' cols='30' rows='10' style='height: 300px;' readonly>" . $custome->extend_note . '</textarea>';
-                                                                                            @endphp
-                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="border rounded p-3 bg-primary bg-gradient mb-3">
                                                                                     <p
                                                                                         class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                        *) Data Sales
+                                                                                        *) Data Billing
                                                                                     </p>
                                                                                     <div
                                                                                         class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
-                                                                                        <p>
-                                                                                            <span class="fw-bold">ID
-                                                                                                Sales :</span>
-                                                                                            {{ $custome->id_sales }}
-                                                                                        </p>
-                                                                                        <p>
-                                                                                            <span class="fw-bold">Nama
-                                                                                                Sales :</span>
-                                                                                            {{ $custome->nama_sales }}
-                                                                                        </p>
-                                                                                        <p>
-                                                                                            <span class="fw-bold">Email
-                                                                                                Sales :</span>
-                                                                                            {{ $custome->email_sales }}
-                                                                                        </p>
+                                                                                        <div class="mb-3">
+                                                                                            <label for="billing_name"
+                                                                                                class="form-label text-secondary">Nama
+                                                                                                Billing</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="billing_name"
+                                                                                                value="{{ $custome->billing->billing_name }}">
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="billing_contact"
+                                                                                                class="form-label text-secondary">Kontak
+                                                                                                Billing</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="billing_contact"
+                                                                                                value="{{ $custome->billing->billing_contact }}">
+                                                                                        </div>
+                                                                                        @php
+                                                                                            $bil = 1;
+                                                                                        @endphp
+                                                                                        @foreach (json_decode($custome->billing->billing_email) as $billingEmail)
+                                                                                            @if ($bil == 1)
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="billing_email_{{ $bil }}"
+                                                                                                        class="form-label text-secondary">Email
+                                                                                                        Billing</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="billing_email_{{ $bil }}"
+                                                                                                        value="{{ $billingEmail }}">
+                                                                                                </div>
+                                                                                            @else
+                                                                                                <div class="mb-3">
+                                                                                                    <label
+                                                                                                        for="alternate_billing_email_{{ $bil }}"
+                                                                                                        class="form-label text-secondary">Alternatif
+                                                                                                        Email
+                                                                                                        Billing
+                                                                                                        {{ $bil - 1 }}</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        readonly
+                                                                                                        class="form-control text-secondary"
+                                                                                                        id="alternate_billing_email_{{ $bil }}"
+                                                                                                        value="{{ $billingEmail }}">
+                                                                                                </div>
+                                                                                            @endif
+                                                                                            @php
+                                                                                                $bil++;
+                                                                                            @endphp
+                                                                                        @endforeach
                                                                                     </div>
                                                                                 </div>
-                                                                            @endif
-                                                                            <div
-                                                                                class="border rounded p-3 bg-primary bg-gradient mb-3">
-                                                                                <p
-                                                                                    class="fw-bold h5 text-white text-gradient mb-3">
-                                                                                    *) Data Approval
-                                                                                </p>
                                                                                 <div
-                                                                                    class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
-                                                                                    @if ($custome->approval->isApproved)
-                                                                                        <span
-                                                                                            class="badge text-bg-primary text-white fs-5">Data
-                                                                                            Telah Disetujui</span>
-                                                                                    @elseif($custome->approval->isRejected)
-                                                                                        <span
-                                                                                            class="badge text-white fs-5"
-                                                                                            style="background-color:#FF0000;">Data
-                                                                                            Belum Disetujui</span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge text-bg-warning text-white fs-5">Menunggu
-                                                                                            Persetujuan</span>
-                                                                                    @endif
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Data Technical
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                        <div class="mb-3">
+                                                                                            <label for="billing_name"
+                                                                                                class="form-label text-secondary">Nama
+                                                                                                Teknikal</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="billing_name"
+                                                                                                value="{{ $custome->technical->technical_name }}">
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label
+                                                                                                for="billing_contact"
+                                                                                                class="form-label text-secondary">Kontak
+                                                                                                Teknikal</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="billing_contact"
+                                                                                                value="{{ $custome->technical->technical_contact }}">
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label for="billing_email"
+                                                                                                class="form-label text-secondary">Email
+                                                                                                Teknikal</label>
+                                                                                            <input type="text"
+                                                                                                readonly
+                                                                                                class="form-control text-secondary"
+                                                                                                id="billing_email"
+                                                                                                value="{{ $custome->technical->technical_email }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Data Service
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                        @php
+                                                                                            $servicePackage = json_decode($custome->service->service_package);
+                                                                                        @endphp
+                                                                                        <ol>
+                                                                                            @for ($i = 0; $i < count($servicePackage); $i++)
+                                                                                                <li>
+                                                                                                    @foreach ($servicePackage[$i] as $key => $value)
+                                                                                                        @if ($key == 'service_name')
+                                                                                                            <p
+                                                                                                                class="fw-bold">
+                                                                                                                Nama
+                                                                                                                Layanan
+                                                                                                                :
+                                                                                                                <span
+                                                                                                                    class="fw-normal">{{ $value }}</span>
+                                                                                                            </p>
+                                                                                                        @elseif($key == 'service_price')
+                                                                                                            <p
+                                                                                                                class="fw-bold">
+                                                                                                                Harga
+                                                                                                                Layanan
+                                                                                                                :
+                                                                                                                <span
+                                                                                                                    class="fw-normal">{{ $value }}</span>
+                                                                                                            </p>
+                                                                                                        @elseif($key == 'termofpaymentDeals')
+                                                                                                            <p
+                                                                                                                class="fw-bold">
+                                                                                                                Jangka
+                                                                                                                Waktu
+                                                                                                                Pembayaran
+                                                                                                                :
+                                                                                                                <span
+                                                                                                                    class="fw-normal">{{ $value }}</span>
+                                                                                                            </p>
+                                                                                                        @endif
+                                                                                                    @endforeach
+                                                                                                </li>
+                                                                                            @endfor
+                                                                                        </ol>
+                                                                                        <div class="col-sm-6">
+                                                                                            <label for="photo_url"
+                                                                                                class="mb-1 fw-bold">Foto
+                                                                                                Identitas KTP</label>
+                                                                                            <img class="img-fluid mb-3"
+                                                                                                src="{{ $custome->service->id_photo_url }}"
+                                                                                                alt="">
+                                                                                            <a class="btn btn-primary text-white"
+                                                                                                target="_blank"
+                                                                                                role="button"
+                                                                                                href="{{ $custome->service->id_photo_url }}">
+                                                                                                Tampilkan Gambar
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @if ($custome->reference_id != null)
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Catatan Tambahan
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row px-2 border rounded p-3 mx-2 bg-light">
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="exampleInputPassword1"
+                                                                                                    class="form-label">ID
+                                                                                                    Survey</label>
+                                                                                                <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    value="{{ $custome->survey_id }}"
+                                                                                                    readonly>
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="catatan_lain"
+                                                                                                    class="form-label">Catatan</label>
+                                                                                                @php
+                                                                                                    echo "<textarea class='form-control' cols='30' rows='10' style='height: 300px;' readonly>" . $custome->extend_note . '</textarea>';
+                                                                                                @endphp
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                        <p
+                                                                                            class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                            *) Data Sales
+                                                                                        </p>
+                                                                                        <div
+                                                                                            class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                            <p>
+                                                                                                <span
+                                                                                                    class="fw-bold">ID
+                                                                                                    Sales :</span>
+                                                                                                {{ $custome->id_sales }}
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <span
+                                                                                                    class="fw-bold">Nama
+                                                                                                    Sales :</span>
+                                                                                                {{ $custome->nama_sales }}
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <span
+                                                                                                    class="fw-bold">Email
+                                                                                                    Sales :</span>
+                                                                                                {{ $custome->email_sales }}
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                                <div
+                                                                                    class="border rounded p-3 bg-primary bg-gradient mb-3">
+                                                                                    <p
+                                                                                        class="fw-bold h5 text-white text-gradient mb-3">
+                                                                                        *) Data Approval
+                                                                                    </p>
+                                                                                    <div
+                                                                                        class="row bordered bg-light bg-gradient rounded mx-1 p-3 mb-3">
+                                                                                        @if ($custome->approval->isApproved)
+                                                                                            <span
+                                                                                                class="badge text-bg-primary text-white fs-5">Data
+                                                                                                Telah Disetujui</span>
+                                                                                        @elseif($custome->approval->isRejected)
+                                                                                            <span
+                                                                                                class="badge text-white fs-5"
+                                                                                                style="background-color:#FF0000;">Data
+                                                                                                Belum Disetujui</span>
+                                                                                        @else
+                                                                                            <span
+                                                                                                class="badge text-bg-warning text-white fs-5">Menunggu
+                                                                                                Persetujuan</span>
+                                                                                        @endif
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            @php
-                                                                $id++;
-                                                            @endphp
+                                                                @php
+                                                                    $id++;
+                                                                @endphp
+                                                            @endif
                                                         @endif
                                                     @endforeach
                                                 </tbody>

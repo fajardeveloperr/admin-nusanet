@@ -122,44 +122,20 @@ class CustomersComponent extends Component
 
     public function render()
     {
-        if ($this->date_picker) {
-            $customersAdmin = Customer::where('survey_id', '<>', '')
-                ->where('extend_note', '<>', '')
-                ->where('name', 'like', '%' . $this->date_picker . '%')
-                ->paginate(10);
+        $customersAdmin = Customer::all();
 
-            foreach ($customersAdmin as $key => $value) {
-                if ($value->reference_id != null) {
-                    $response = Http::withHeaders([
-                        'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
-                    ])->get('https://legacy.is5.nusa.net.id/employees/' . $value->reference_id);
+        foreach ($customersAdmin as $key => $value) {
+            if ($value->reference_id != null) {
+                $response = Http::withHeaders([
+                    'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
+                ])->get('https://legacy.is5.nusa.net.id/employees/' . $value->reference_id);
 
-                    if ($response->successful()) {
-                        $decodeResponse = json_decode($response->body());
+                if ($response->successful()) {
+                    $decodeResponse = json_decode($response->body());
 
-                        $value->id_sales = $decodeResponse->id;
-                        $value->nama_sales = $decodeResponse->name;
-                        $value->email_sales = $decodeResponse->email;
-                    }
-                }
-            }
-        } else {
-            $customersAdmin = Customer::where('survey_id', '<>', '')
-                ->where('extend_note', '<>', '')->get();
-
-            foreach ($customersAdmin as $key => $value) {
-                if ($value->reference_id != null) {
-                    $response = Http::withHeaders([
-                        'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
-                    ])->get('https://legacy.is5.nusa.net.id/employees/' . $value->reference_id);
-
-                    if ($response->successful()) {
-                        $decodeResponse = json_decode($response->body());
-
-                        $value->id_sales = $decodeResponse->id;
-                        $value->nama_sales = $decodeResponse->name;
-                        $value->email_sales = $decodeResponse->email;
-                    }
+                    $value->id_sales = $decodeResponse->id;
+                    $value->nama_sales = $decodeResponse->name;
+                    $value->email_sales = $decodeResponse->email;
                 }
             }
         }

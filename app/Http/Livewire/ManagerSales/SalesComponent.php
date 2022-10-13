@@ -19,6 +19,7 @@ class SalesComponent extends Component
     public $search;
     public $id_survey;
     public $catatan_lain;
+    public $date_picker;
 
     public function add_extend_note($id)
     {
@@ -79,15 +80,8 @@ class SalesComponent extends Component
 
     public function render()
     {
-        if ($this->search) {
-            $customers = Customer::where('reference_id', 'like', '%' . $this->search . '%')
-                ->orwhere('customer_id', 'like', '%' . $this->search . '%')
-                ->orwhere('name', 'like', '%' . $this->search . '%')
-                ->orwhere('class', 'like', '%' . $this->search . '%')
-                ->orwhere('reference_id', 'like', '%' . $this->search . '%');
-        } else {
-            $customers = Customer::where('reference_id', Auth()->user()->employee_id)->get();
-        }
+        $customers = Customer::where('reference_id', Auth()->user()->employee_id)
+            ->get();
 
         return view('livewire.manager-sales.sales-component', compact('customers'))->layout('layouts.default');
     }

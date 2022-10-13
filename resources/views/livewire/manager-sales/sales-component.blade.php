@@ -31,8 +31,8 @@
                                 </div>
 
                                 <div class="col-auto">
-                                    <input wire:model="date_picker" type="date" class="form-control text-center "
-                                        name="start_date" width="100%">
+                                    <input type="date" class="form-control text-center " name="start_date"
+                                        width="100%" id="filter-date">
 
                                 </div>
                             </div>
@@ -603,12 +603,21 @@
         className.forEach(element => {
             tableInit[element] = $(`#datatables-${element}`).DataTable();
         });
+
         $('#filter-status').on('change', function() {
-            let val = $(this).val();
-            console.log(val)
+            let valStatus = $(this).val();
             className.forEach(element => {
                 tableInit[element].column(5)
-                    .search(val)
+                    .search(valStatus)
+                    .draw();
+            });
+        });
+
+        $('#filter-date').on('change', function() {
+            let valDate = $(this).val();
+            className.forEach(element => {
+                tableInit[element].column(4)
+                    .search(valDate)
                     .draw();
             });
         });
