@@ -464,6 +464,21 @@
                                                                                             </li>
                                                                                         @endfor
                                                                                     </ol>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label for="photo_url"
+                                                                                            class="mb-1 fw-bold">Foto
+                                                                                            Identitas
+                                                                                            KTP</label>
+                                                                                        <img class="img-fluid mb-3"
+                                                                                            src="{{ $custome->service->id_photo_url }}"
+                                                                                            alt="">
+                                                                                        <a class="btn btn-primary text-white"
+                                                                                            target="_blank"
+                                                                                            role="button"
+                                                                                            href="{{ $custome->service->id_photo_url }}">
+                                                                                            Tampilkan Gambar
+                                                                                        </a>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             @if (empty($custome->extend_note) && empty($custome->survey_id))
