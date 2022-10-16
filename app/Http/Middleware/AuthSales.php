@@ -16,12 +16,9 @@ class AuthSales
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->utype === 'AuthSales')
-        {
+        if (auth()->user()->utype === 'AuthSales' && auth()->user()->isApprovedByAdmin === 1) {
             return $next($request);
-        }
-        else
-        {
+        } else {
             session()->flush();
             return redirect()->route('login');
         }

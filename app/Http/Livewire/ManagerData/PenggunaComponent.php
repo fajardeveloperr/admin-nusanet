@@ -17,28 +17,35 @@ class PenggunaComponent extends Component
     public $pengguna_search;
 
     public $nama_pengguna_create,
-           $email_pengguna_create,
-           $password_pengguna_create,
-           $konfirmasi_password_pengguna_create,
-           $utype_pengguna_create;
+        $email_pengguna_create,
+        $password_pengguna_create,
+        $konfirmasi_password_pengguna_create,
+        $utype_pengguna_create;
 
     public $nama_pengguna_set,
-           $email_pengguna_set,
-           $password_pengguna_set,
-           $konfirmasi_password_pengguna_set,
-           $utype_pengguna_set,
-           $id_pengguna_set;
+        $email_pengguna_set,
+        $password_pengguna_set,
+        $konfirmasi_password_pengguna_set,
+        $utype_pengguna_set,
+        $id_pengguna_set;
 
     public $nama_pengguna_delete,
-           $email_pengguna_delete,
-           $password_pengguna_delete,
-           $konfirmasi_password_pengguna_delete,
-           $utype_pengguna_delete,
-           $id_pengguna_delete;
+        $email_pengguna_delete,
+        $password_pengguna_delete,
+        $konfirmasi_password_pengguna_delete,
+        $utype_pengguna_delete,
+        $id_pengguna_delete;
 
     public $password_pengguna_reset,
-           $konfirmasi_password_pengguna_reset,
-           $id_pengguna_reset;
+        $konfirmasi_password_pengguna_reset,
+        $id_pengguna_reset;
+
+    public function approved_status($id)
+    {
+        $userSearch = User::find($id);
+        $userSearch->isApprovedByAdmin = true;
+        $userSearch->save();
+    }
 
     // Create User//
     public function create_pengguna()
@@ -58,6 +65,7 @@ class PenggunaComponent extends Component
             $create_pengguna->email = $this->email_pengguna_create;
             $create_pengguna->password = Hash::make($this->password_pengguna_create);
             $create_pengguna->utype = $this->utype_pengguna_create;
+            $create_pengguna->isApprovedByAdmin = true;
             $create_pengguna->save();
 
             //sweatalert//
@@ -98,7 +106,6 @@ class PenggunaComponent extends Component
         $this->konfirmasi_password_pengguna_set = $pengguna_edit->password;
         $this->utype_pengguna_set = $pengguna_edit->utype;
         $this->id_pengguna_set = $pengguna_edit->id;
-
     }
 
     public function set_pengguna()
@@ -150,29 +157,28 @@ class PenggunaComponent extends Component
     {
         try {
             $this->validate([
-                'password_pengguna_reset'=>'min:6|required_with:konfirmasi_password_pengguna_reset|same:konfirmasi_password_pengguna_reset',
-                'konfirmasi_password_pengguna_reset'=>'min:6',
+                'password_pengguna_reset' => 'min:6|required_with:konfirmasi_password_pengguna_reset|same:konfirmasi_password_pengguna_reset',
+                'konfirmasi_password_pengguna_reset' => 'min:6',
             ]);
 
-            $reset_password_pengguna = User::where('id',$this->id_pengguna_reset)->first();
+            $reset_password_pengguna = User::where('id', $this->id_pengguna_reset)->first();
             $reset_password_pengguna->password = Hash::make($this->password_pengguna_reset);
             $reset_password_pengguna->save();
 
-            $this->dispatchBrowserEvent('swal',[
-                'position'=> 'centered',
-                'icon'=> 'success',
-                'title'=> 'Password berhasil tereset!',
-                'showConfirmButton'=> false,
-                'timer'=> 1500
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'success',
+                'title' => 'Password berhasil tereset!',
+                'showConfirmButton' => false,
+                'timer' => 1500
             ]);
-
         } catch (\Throwable) {
-            $this->dispatchBrowserEvent('swal',[
-                'position'=> 'centered',
-                'icon'=> 'error',
-                'title'=> 'Password gagal tereset!',
-                'showConfirmButton'=> false,
-                'timer'=> 1500
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'error',
+                'title' => 'Password gagal tereset!',
+                'showConfirmButton' => false,
+                'timer' => 1500
             ]);
         }
     }
@@ -187,7 +193,6 @@ class PenggunaComponent extends Component
         $this->konfirmasi_password_pengguna_delete = $pengguna_destroy->password;
         $this->utype_pengguna_delete = $pengguna_destroy->utype;
         $this->id_pengguna_delete = $pengguna_destroy->id;
-
     }
 
     public function delete_pengguna()

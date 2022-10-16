@@ -427,20 +427,6 @@
                                                                                                             id="company_phone_number"
                                                                                                             value="{{ $custome->company_phone_number }}">
                                                                                                     </div>
-                                                                                                    <div
-                                                                                                        class="mb-3">
-                                                                                                        <label
-                                                                                                            for="company_employees"
-                                                                                                            class="form-label text-secondary">Jumlah
-                                                                                                            Karyawan
-                                                                                                            Perusahaan</label>
-                                                                                                        <input
-                                                                                                            type="text"
-                                                                                                            readonly
-                                                                                                            class="form-control text-secondary"
-                                                                                                            id="company_employees"
-                                                                                                            value="{{ $custome->company_employees }}">
-                                                                                                    </div>
                                                                                                 </div>
                                                                                             @endif
                                                                                         </div>

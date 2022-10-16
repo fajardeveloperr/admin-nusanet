@@ -134,6 +134,21 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
+                        @else
+                            @if (session()->has('errorMessage'))
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center"
+                                    role="alert">
+                                    <svg class="bi flex-shrink-0 me-3" role="img" aria-label="Danger:"
+                                        style="width: 20px; height: 20px; filter: invert(41%) sepia(34%) saturate(7495%) hue-rotate(333deg) brightness(87%) contrast(99%);">
+                                        <use xlink:href="#exclamation-triangle-fill" />
+                                    </svg>
+                                    <div style="text-align: justify;">
+                                        {{ session('errorMessage') }}
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
                         @enderror
 
                         <form method="POST" action="{{ route('login') }}">
@@ -159,7 +174,8 @@
                                 </div>
                                 @if (Route::has('password.request'))
                                     <div class="col-6">
-                                        <div class="forgot-password"><a href="{{ route('password.request') }}">LupaPassword ?</a>
+                                        <div class="forgot-password"><a
+                                                href="{{ route('password.request') }}">LupaPassword ?</a>
                                         </div>
                                     </div>
                                 @endif
@@ -168,9 +184,9 @@
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0 flex justify-content-center">
                                         {{-- <a href="{{ route('register') }}">Belum punya akun?</a> --}}
-                                    <button type="submit"
-                                        class="btn btn-success btn-md btn-block rounded text-center">Masuk
-                                    </button>
+                                        <button type="submit"
+                                            class="btn btn-success btn-md btn-block rounded text-center">Masuk
+                                        </button>
                                     </div>
                                 </div>
                             </div>

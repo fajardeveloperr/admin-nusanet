@@ -42,11 +42,9 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'authorization', 'verified'])->group(function () {
     Route::get('/home', HomeComponent::class)->name('home');
 });
-
-
 
 Route::middleware(['auth:sanctum', 'auth.master', 'verified'])->group(function () {
     Route::prefix('master')->group(function () {
@@ -59,6 +57,5 @@ Route::middleware(['auth:sanctum', 'auth.master', 'verified'])->group(function (
 });
 
 Route::middleware(['auth:sanctum', 'auth.sales', 'verified'])->group(function () {
-    // Route::get('/manager-data-pengguna',PenggunaComponent::class)->name('manager.data.pengguna');
     Route::get('/manager-data-sales', SalesComponent::class)->name('manager.data.sales');
 });
