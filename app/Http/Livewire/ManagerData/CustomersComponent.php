@@ -78,8 +78,7 @@ class CustomersComponent extends Component
                     $message->attachData($pdf->output(), $id . '-form.pdf');
                 });
             } catch (\Throwable $th) {
-                print_r($th->getMessage());
-                dd('Debugging');
+                dd($th->getMessage());
             }
 
 
