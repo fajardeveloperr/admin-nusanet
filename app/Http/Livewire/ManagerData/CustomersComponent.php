@@ -78,7 +78,7 @@ class CustomersComponent extends Component
                     $message->attachData($pdf->output(), $id . '-form.pdf');
                 });
             } catch (\Throwable $th) {
-                dd($th->getMessage());
+                dd($th->getMessage(), $to_email);
             }
 
 
