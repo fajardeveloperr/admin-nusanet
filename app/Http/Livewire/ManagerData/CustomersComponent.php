@@ -69,12 +69,19 @@ class CustomersComponent extends Component
             }
 
             $textingEmail = "Data Formulir Digital Registrasi Anda Telah Disetujui";
-            Mail::raw($textingEmail, function ($message) use ($to_email, $to_emailSales, $data, $id) {
-                $message->to([$to_email, ($to_emailSales != "" ? $to_emailSales : null)])->subject('Persetujuan Formulir Registrasi Internet');
-                $message->from('reg@nusa.net.id', 'Nusanet Medan');
-                $pdf = Pdf::loadView('report', $data);
-                $message->attachData($pdf->output(), $id . '-form.pdf');
-            });
+
+            try {
+                Mail::raw($textingEmail, function ($message) use ($to_email, $to_emailSales, $data, $id) {
+                    $message->to([$to_email, ($to_emailSales != "" ? $to_emailSales : null)])->subject('Persetujuan Formulir Registrasi Internet');
+                    $message->from('reg@nusa.net.id', 'Nusanet Medan');
+                    $pdf = Pdf::loadView('report', $data);
+                    $message->attachData($pdf->output(), $id . '-form.pdf');
+                });
+            } catch (\Throwable $th) {
+                print_r($th->getMessage());
+                dd('Debugging');
+            }
+
 
             $canSavedData = true;
         } catch (\Throwable $th) {
