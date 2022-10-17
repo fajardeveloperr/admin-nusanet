@@ -96,7 +96,13 @@ class CustomersComponent extends Component
                 'timer' => 1500
             ]);
         } else {
-            return redirect()->back();
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'error',
+                'title' => 'Approved Customer gagal!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
         }
     }
 
