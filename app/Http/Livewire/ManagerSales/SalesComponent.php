@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ManagerSales;
 use App\Models\Customer;
 use Livewire\WithPagination;
 use App\Exports\ManagerData\ExportCustomer;
+use App\Models\PromoList;
 use Excel;
 use Livewire\Component;
 
@@ -20,6 +21,15 @@ class SalesComponent extends Component
     public $id_survey;
     public $catatan_lain;
     public $date_picker;
+    public $promoCode;
+
+    public function setKodePromo($id)
+    {
+        $CustomerDataFetch = Customer::where('customer_id', $id)->first();
+        $ServicePackage = json_decode($CustomerDataFetch->service->service_package)[0];
+        $ServicePackage->kode_promo = $this->promoCode;
+        dd($ServicePackage);
+    }
 
     public function add_extend_note($id)
     {

@@ -28,6 +28,17 @@ class UsersTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'employee_id' => '0202241',
+                'name'      => 'Muhammad Fajar Harahap',
+                'email'     => 'fajar@nusa.net.id',
+                'password'  => bcrypt('12345678'),
+                'utype'     => 'AuthSales',
+                'isApprovedByAdmin'     => 1,
+                'email_verified_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
 
         // User::create([

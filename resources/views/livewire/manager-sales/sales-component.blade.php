@@ -452,6 +452,19 @@
                                                                                             </li>
                                                                                         @endfor
                                                                                     </ol>
+                                                                                    <div class="input-group mb-3">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder="Masukkan kode promo disini..."
+                                                                                            aria-describedby="btnAmbilPromo"
+                                                                                            wire:model='promoCode'>
+                                                                                        <button
+                                                                                            class="btn btn-success text-white"
+                                                                                            type="button"
+                                                                                            id="btnAmbilPromo"
+                                                                                            wire:click="setKodePromo({{ json_encode($custome->customer_id) }})">Ambil
+                                                                                            Promo</button>
+                                                                                    </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label for="photo_url"
                                                                                             class="mb-1 fw-bold">Foto

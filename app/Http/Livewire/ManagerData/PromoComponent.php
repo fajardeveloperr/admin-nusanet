@@ -38,6 +38,7 @@ class PromoComponent extends Component
                 'package_name_admin' => 'required',
                 'package_top_admin' => 'required',
                 'monthly_discount_admin' => 'required|min:1|max:12',
+                'monthly_discount_status_admin' => 'required',
                 'discount_admin' => 'required|min:1|max:100',
                 'start_promo_period_datetime' => 'required',
                 'end_promo_period_datetime' => 'required'
@@ -49,6 +50,7 @@ class PromoComponent extends Component
                 'monthly_discount_admin.required' => 'Field Potongan Bulanan Wajib Diisi',
                 'monthly_discount_admin.min' => 'Minimal Potongan Bulanan Adalah 1',
                 'monthly_discount_admin.max' => 'Maksimal Potongan Bulanan adalah 12',
+                'monthly_discount_status_admin.required' => 'Field Status Potongan Bulanan Wajib Diisi',
                 'discount_admin.required' => 'Field Potongan Diskon Wajib Diisi',
                 'discount_admin.min' => 'Minimal Potongan Diskon Adalah 1',
                 'discount_admin.max' => 'Maksimal Potongan Diskon Adalah 100',
@@ -64,6 +66,7 @@ class PromoComponent extends Component
             $newPromo->package_top = $this->package_top_admin;
             $newPromo->discount_cut = $this->discount_admin;
             $newPromo->monthly_cut = $this->monthly_discount_admin;
+            $newPromo->monthly_cut_status = $this->monthly_discount_status_admin;
             $newPromo->activate_date = $this->start_promo_period_datetime;
             $newPromo->expired_date = $this->end_promo_period_datetime;
             $newPromo->save();
@@ -81,6 +84,7 @@ class PromoComponent extends Component
                 'package_name_admin',
                 'package_top_admin',
                 'monthly_discount_admin',
+                'monthly_discount_status_admin',
                 'discount_admin',
                 'start_promo_period_datetime',
                 'end_promo_period_datetime',
@@ -104,6 +108,7 @@ class PromoComponent extends Component
         $this->package_name_admin = $promo_edit->package_name;
         $this->package_top_admin = $promo_edit->package_top;
         $this->setmonthly_discount_admin = $promo_edit->monthly_cut;
+        $this->setmonthly_discount_status_admin = $promo_edit->monthly_cut_status;
         $this->setdiscount_admin = $promo_edit->discount_cut;
         $this->setstart_promo_period_datetime = $promo_edit->activate_date;
         $this->setend_promo_period_datetime = $promo_edit->expired_date;
@@ -119,23 +124,25 @@ class PromoComponent extends Component
                 'setkode_promo_admin' => 'required',
                 'package_name_admin' => 'required',
                 'package_top_admin' => 'required',
-                'setmonthly_discount_admin' => 'required|min:1|max:12',
-                'setdiscount_admin' => 'required|min:1|max:100',
-                'setstart_promo_period_datetime' => 'required',
-                'setend_promo_period_datetime' => 'required'
+                'monthly_discount_admin' => 'required|min:1|max:12',
+                'monthly_discount_status_admin' => 'required',
+                'discount_admin' => 'required|min:1|max:100',
+                'start_promo_period_datetime' => 'required',
+                'end_promo_period_datetime' => 'required'
             ],
             [
                 'setkode_promo_admin.required' => 'Field Kode Promo Wajib Diisi',
                 'package_name_admin.required' => 'Field Nama Paket Wajib Diisi',
                 'package_top_admin.required' => 'Field TOP Paket Wajib Diisi',
-                'setmonthly_discount_admin.required' => 'Field Potongan Bulanan Wajib Diisi',
-                'setmonthly_discount_admin.min' => 'Minimal Potongan Bulanan Adalah 1',
-                'setmonthly_discount_admin.max' => 'Maksimal Potongan Bulanan adalah 12',
-                'setdiscount_admin.required' => 'Field Potongan Diskon Wajib Diisi',
-                'setdiscount_admin.min' => 'Minimal Potongan Diskon Adalah 1',
-                'setdiscount_admin.max' => 'Maksimal Potongan Diskon Adalah 100',
-                'setstart_promo_period_datetime.required' => 'Field Periode Masa Awal Promo Wajib Diisi',
-                'setend_promo_period_datetime.required' => 'Field Periode Masa Akhir Promo Wajib Diisi'
+                'monthly_discount_admin.required' => 'Field Potongan Bulanan Wajib Diisi',
+                'monthly_discount_admin.min' => 'Minimal Potongan Bulanan Adalah 1',
+                'monthly_discount_admin.max' => 'Maksimal Potongan Bulanan adalah 12',
+                'monthly_discount_status_admin.required' => 'Field Status Potongan Bulanan Wajib Diisi',
+                'discount_admin.required' => 'Field Potongan Diskon Wajib Diisi',
+                'discount_admin.min' => 'Minimal Potongan Diskon Adalah 1',
+                'discount_admin.max' => 'Maksimal Potongan Diskon Adalah 100',
+                'start_promo_period_datetime.required' => 'Field Periode Masa Awal Promo Wajib Diisi',
+                'end_promo_period_datetime.required' => 'Field Periode Masa Akhir Promo Wajib Diisi'
             ]
         );
 
@@ -146,6 +153,7 @@ class PromoComponent extends Component
             $set_promo->package_top = $this->package_top_admin;
             $set_promo->discount_cut = $this->setdiscount_admin;
             $set_promo->monthly_cut = $this->setmonthly_discount_admin;
+            $set_promo->monthly_cut_status = $this->setmonthly_discount_status_admin;
             $set_promo->activate_date = $this->setstart_promo_period_datetime;
             $set_promo->expired_date = $this->setend_promo_period_datetime;
             $set_promo->save();

@@ -42,50 +42,62 @@ class CustomersComponent extends Component
 
     public function approved_status($id)
     {
-        $approved_status = Approval::find($id);
-        $approved_status->isApproved = true;
-        $approved_status->isRejected = false;
-        $approved_status->save();
+        $canSavedData = false;
+        try {
+            $customerFindByID = Customer::find($id);
 
-        $customerFindByID = Customer::find($id);
+            $fileName = URL::to('assets/pdf/' . $id . '-form.pdf');
 
-        $fileName = URL::to('assets/pdf/' . $id . '-form.pdf');
+            // Download PDF
+            $data = [
+                'customer' => $customerFindByID
+            ];
 
-        // Download PDF
-        $data = [
-            'customer' => $customerFindByID
-        ];
+            // Send Email to Customer
+            $to_email = $customerFindByID->email;
+            $to_emailSales = "";
+            if ($customerFindByID->reference_id != null) {
+                $response = Http::withHeaders([
+                    'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
+                ])->get('https://legacy.is5.nusa.net.id/employees/' . $customerFindByID->reference_id);
 
-        // Send Email to Customer
-        $to_email = $customerFindByID->email;
-        $to_emailSales = "";
-        if ($customerFindByID->reference_id != null) {
-            $response = Http::withHeaders([
-                'X-Api-Key' => 'lfHvJBMHkoqp93YR:4d059474ecb431eefb25c23383ea65fc'
-            ])->get('https://legacy.is5.nusa.net.id/employees/' . $customerFindByID->reference_id);
+                if ($response->successful()) {
+                    $decodeResponse = json_decode($response->body());
 
-            if ($response->successful()) {
-                $decodeResponse = json_decode($response->body());
-
-                $to_emailSales = $decodeResponse->email;
+                    $to_emailSales = $decodeResponse->email;
+                }
             }
+
+            $textingEmail = "Data Formulir Digital Registrasi Anda Telah Disetujui";
+            Mail::raw($textingEmail, function ($message) use ($to_email, $to_emailSales, $data, $id) {
+                $message->to([$to_email, ($to_emailSales != "" ? $to_emailSales : null)])->subject('Persetujuan Formulir Registrasi Internet');
+                $message->from('reg@nusa.net.id', 'Nusanet Medan');
+                $pdf = Pdf::loadView('report', $data);
+                $message->attachData($pdf->output(), $id . '-form.pdf');
+            });
+
+            $canSavedData = true;
+        } catch (\Throwable $th) {
+            $canSavedData = false;
         }
 
-        $textingEmail = "Data Formulir Digital Registrasi Anda Telah Disetujui";
-        Mail::raw($textingEmail, function ($message) use ($to_email, $to_emailSales, $data, $id) {
-            $message->to([$to_email, ($to_emailSales != "" ? $to_emailSales : null)])->subject('Persetujuan Formulir Registrasi Internet');
-            $message->from('reg@nusa.net.id', 'Nusanet Medan');
-            $pdf = Pdf::loadView('report', $data);
-            $message->attachData($pdf->output(), $id . '-form.pdf');
-        });
+        if ($canSavedData) {
+            $approved_status = Approval::find($id);
+            $approved_status->isApproved = true;
+            $approved_status->isRejected = false;
+            $approved_status->save();
 
-        $this->dispatchBrowserEvent('swal', [
-            'position' => 'centered',
-            'icon' => 'success',
-            'title' => 'Approved Customer telah berhasil!',
-            'showConfirmButton' => false,
-            'timer' => 1500
-        ]);
+
+            $this->dispatchBrowserEvent('swal', [
+                'position' => 'centered',
+                'icon' => 'success',
+                'title' => 'Approved Customer telah berhasil!',
+                'showConfirmButton' => false,
+                'timer' => 1500
+            ]);
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function rejected_status($id)

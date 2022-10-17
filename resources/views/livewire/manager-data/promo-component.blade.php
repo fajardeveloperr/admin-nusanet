@@ -129,6 +129,31 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
+                                            <label for="monthly_discount_status_admin"
+                                                class="form-label text-primary fw-bold">
+                                                Status Potongan Bulan
+                                            </label>
+                                            <select
+                                                class="form-select text-primary border-primary @error('monthly_discount_status_admin') is-invalid border-danger @enderror"
+                                                id="monthly_discount_status_admin"
+                                                wire:model='monthly_discount_status_admin'>
+                                                <option value="">
+                                                    Pilih Status Potongan Bulan...
+                                                </option>
+                                                @php
+                                                    $pilihStatusPotBulan = ['Penambahan', 'Pengurangan'];
+                                                @endphp
+                                                @foreach ($pilihStatusPotBulan as $key => $value)
+                                                    <option value="{{ $value }}">{{ $value }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('monthly_discount_status_admin')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="discount_admin" class="form-label text-primary fw-bold">
                                                 Potongan Diskon
                                             </label>
@@ -368,6 +393,33 @@
                                                                             class="input-group-text bg-primary text-white"
                                                                             id="monthly_discount_admin_addons">Bulan</span>
                                                                     </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div for="setmonthly_discount_status_admin"
+                                                                        class="form-label text-primary fw-bold"
+                                                                        style="text-align: start;">
+                                                                        Status Potongan Bulan
+                                                                    </div>
+                                                                    <select
+                                                                        class="form-select text-primary border-primary @error('setmonthly_discount_status_admin') is-invalid border-danger @enderror"
+                                                                        id="setmonthly_discount_status_admin"
+                                                                        wire:model='setmonthly_discount_status_admin'>
+                                                                        <option value="">
+                                                                            Pilih Status Potongan Bulan...
+                                                                        </option>
+                                                                        @php
+                                                                            $pilihStatusPotBulan = ['Penambahan', 'Pengurangan'];
+                                                                        @endphp
+                                                                        @foreach ($pilihStatusPotBulan as $key => $value)
+                                                                            <option value="{{ $value }}">
+                                                                                {{ $value }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('setmonthly_discount_status_admin')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <div style="text-align: start;"
