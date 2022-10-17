@@ -124,25 +124,25 @@ class PromoComponent extends Component
                 'setkode_promo_admin' => 'required',
                 'package_name_admin' => 'required',
                 'package_top_admin' => 'required',
-                'monthly_discount_admin' => 'required|min:1|max:12',
-                'monthly_discount_status_admin' => 'required',
-                'discount_admin' => 'required|min:1|max:100',
-                'start_promo_period_datetime' => 'required',
-                'end_promo_period_datetime' => 'required'
+                'setmonthly_discount_admin' => 'required|min:1|max:12',
+                'setmonthly_discount_status_admin' => 'required',
+                'setdiscount_admin' => 'required|min:1|max:100',
+                'setstart_promo_period_datetime' => 'required',
+                'setend_promo_period_datetime' => 'required'
             ],
             [
                 'setkode_promo_admin.required' => 'Field Kode Promo Wajib Diisi',
                 'package_name_admin.required' => 'Field Nama Paket Wajib Diisi',
                 'package_top_admin.required' => 'Field TOP Paket Wajib Diisi',
-                'monthly_discount_admin.required' => 'Field Potongan Bulanan Wajib Diisi',
-                'monthly_discount_admin.min' => 'Minimal Potongan Bulanan Adalah 1',
-                'monthly_discount_admin.max' => 'Maksimal Potongan Bulanan adalah 12',
-                'monthly_discount_status_admin.required' => 'Field Status Potongan Bulanan Wajib Diisi',
-                'discount_admin.required' => 'Field Potongan Diskon Wajib Diisi',
-                'discount_admin.min' => 'Minimal Potongan Diskon Adalah 1',
-                'discount_admin.max' => 'Maksimal Potongan Diskon Adalah 100',
-                'start_promo_period_datetime.required' => 'Field Periode Masa Awal Promo Wajib Diisi',
-                'end_promo_period_datetime.required' => 'Field Periode Masa Akhir Promo Wajib Diisi'
+                'setmonthly_discount_admin.required' => 'Field Potongan Bulanan Wajib Diisi',
+                'setmonthly_discount_admin.min' => 'Minimal Potongan Bulanan Adalah 1',
+                'setmonthly_discount_admin.max' => 'Maksimal Potongan Bulanan adalah 12',
+                'setmonthly_discount_status_admin.required' => 'Field Status Potongan Bulanan Wajib Diisi',
+                'setdiscount_admin.required' => 'Field Potongan Diskon Wajib Diisi',
+                'setdiscount_admin.min' => 'Minimal Potongan Diskon Adalah 1',
+                'setdiscount_admin.max' => 'Maksimal Potongan Diskon Adalah 100',
+                'setstart_promo_period_datetime.required' => 'Field Periode Masa Awal Promo Wajib Diisi',
+                'setend_promo_period_datetime.required' => 'Field Periode Masa Akhir Promo Wajib Diisi'
             ]
         );
 
