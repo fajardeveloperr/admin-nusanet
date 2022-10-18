@@ -6,6 +6,8 @@ use App\Http\Livewire\ManagerData\ServiceComponent;
 use App\Http\Livewire\ManagerData\CustomersComponent;
 use App\Http\Livewire\ManagerSales\SalesComponent;
 use App\Http\Livewire\ManagerData\PromoComponent;
+use App\Models\Customer;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -59,3 +61,13 @@ Route::middleware(['auth:sanctum', 'auth.master', 'verified'])->group(function (
 Route::middleware(['auth:sanctum', 'auth.sales', 'verified'])->group(function () {
     Route::get('/manager-data-sales', SalesComponent::class)->name('manager.data.sales');
 });
+
+// Route::get('/print-pdf/{uuid}', function ($id) {
+//     $customerFindByID = Customer::find($id);
+//     $data = [
+//         'customer' => $customerFindByID
+//     ];
+
+//     $pdf = Pdf::loadView('report', $data);
+//     return $pdf->stream();
+// });
