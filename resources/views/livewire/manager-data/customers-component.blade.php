@@ -236,7 +236,7 @@
                                                                                         class="btn btn-md text-white"
                                                                                         style="background-color:#0062ff;">
                                                                                         <i
-                                                                                            class="fa-solid fa-print"></i>
+                                                                                            class="fa-solid fa-download"></i>
                                                                                     </button>
                                                                                 @else
                                                                                     <button type="button"
@@ -265,7 +265,7 @@
                                                                                         class="btn btn-md text-white"
                                                                                         style="background-color:#0062ff;">
                                                                                         <i
-                                                                                            class="fa-solid fa-print"></i>
+                                                                                            class="fa-solid fa-download"></i>
                                                                                     </button>
                                                                                 @endif
                                                                             </div>
