@@ -452,19 +452,38 @@
                                                                                             </li>
                                                                                         @endfor
                                                                                     </ol>
-                                                                                    <div class="input-group mb-3">
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            placeholder="Masukkan kode promo disini..."
-                                                                                            aria-describedby="btnAmbilPromo"
-                                                                                            wire:model='promoCode'>
-                                                                                        <button
-                                                                                            class="btn btn-success text-white"
-                                                                                            type="button"
-                                                                                            id="btnAmbilPromo"
-                                                                                            wire:click="setKodePromo({{ json_encode($custome->customer_id) }})">Ambil
-                                                                                            Promo</button>
-                                                                                    </div>
+
+                                                                                    @if (!isset($servicePackage[0]->{'isPromo'}))
+                                                                                        <div class="mb-1">
+                                                                                            @if (session()->has('promoErrMessage'))
+                                                                                                <div class="alert alert-danger"
+                                                                                                    role="alert">
+                                                                                                    {{ session('promoErrMessage') }}
+                                                                                                </div>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="text"
+                                                                                                class="form-control @error('promoCode') is-invalid @enderror"
+                                                                                                placeholder="Masukkan kode promo disini..."
+                                                                                                aria-describedby="btnAmbilPromo"
+                                                                                                wire:model='promoCode'>
+                                                                                            <button
+                                                                                                class="btn btn-primary text-white"
+                                                                                                type="button"
+                                                                                                id="btnAmbilPromo"
+                                                                                                wire:click="setKodePromo({{ json_encode($custome->customer_id) }})"
+                                                                                                style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;">Ambil
+                                                                                                Promo</button>
+                                                                                            @error('promoCode')
+                                                                                                <div
+                                                                                                    class="invalid-feedback">
+                                                                                                    {{ $message }}
+                                                                                                </div>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    @endif
+
                                                                                     <div class="col-sm-6">
                                                                                         <label for="photo_url"
                                                                                             class="mb-1 fw-bold">Foto
