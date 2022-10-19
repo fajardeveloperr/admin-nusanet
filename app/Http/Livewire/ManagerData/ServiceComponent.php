@@ -80,7 +80,7 @@ class ServiceComponent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Maaf Ada Yang Duplicate!',
+                'title' => 'Maaf, Layanan ' . $this->nama_service_create . ' telah terdaftar!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);

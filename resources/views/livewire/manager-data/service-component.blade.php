@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <!-- Modal Edit -->
-                        {{-- <div wire:ignore.self class="modal fade" id="update-data-modal" tabindex="-1"
+                        <div wire:ignore.self class="modal fade" id="update-data-modal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -246,7 +246,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         {{-- <!-- Modal Delete -->
                         <div wire:ignore.self class="modal fade" id="delete-data-modal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -800,7 +800,8 @@
                                                                                     wire:click="exportPDF(`{{ $custome->id }}`)"
                                                                                     class="btn btn-md text-white"
                                                                                     style="background-color:#0062ff;">
-                                                                                    <i class="fa-solid fa-print"></i>
+                                                                                    <i
+                                                                                        class="fa-solid fa-download"></i>
                                                                                 </button>
                                                                             @elseif ($custome->approval->isRejected)
                                                                                 <button type="button"
@@ -828,7 +829,8 @@
                                                                                     wire:click="exportPDF(`{{ $custome->id }}`)"
                                                                                     class="btn btn-md text-white"
                                                                                     style="background-color:#0062ff;">
-                                                                                    <i class="fa-solid fa-print"></i>
+                                                                                    <i
+                                                                                        class="fa-solid fa-download"></i>
                                                                                 </button>
                                                                             @else
                                                                                 <button type="button"
@@ -856,7 +858,8 @@
                                                                                     wire:click="exportPDF(`{{ $custome->id }}`)"
                                                                                     class="btn btn-md text-white"
                                                                                     style="background-color:#0062ff;">
-                                                                                    <i class="fa-solid fa-print"></i>
+                                                                                    <i
+                                                                                        class="fa-solid fa-download"></i>
                                                                                 </button>
                                                                             @endif
                                                                         </div>
