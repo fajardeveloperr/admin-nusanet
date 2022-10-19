@@ -53,7 +53,7 @@
                                                     @enderror
                                                 </div>
                                                 @php
-                                                    $types = ['Fiber Optik', 'Wireless'];
+                                                    $types = ['Fiber Optic', 'Wireless'];
                                                 @endphp
                                                 <div class="mb-3">
                                                     <label for="setting-input-2" class="form-label">Tipe Paket
@@ -295,8 +295,8 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <!-- Modal Delete -->
-                        <div wire:ignore.self class="modal fade" id="delete-data-modal" tabindex="-1"
+                        <!-- Modal Delete -->
+                        {{-- <div wire:ignore.self class="modal fade" id="delete-data-modal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -479,8 +479,7 @@
                                                         style="background-color:#1E90FF" href="#"><i
                                                             class="fa-solid fa-pen-clip"></i>
                                                     </a>
-                                                    <a data-bs-toggle="modal" data-bs-target="#delete-data-modal"
-                                                        data-bs-placement="top" title="Delete"
+                                                    <a data-bs-toggle="modal" title="Delete"
                                                         style="background-color:#FF0000"
                                                         wire:click="service_destroy({{ $service->id }})"
                                                         class="btn btn-md btn-danger mb-2" href="#"><i

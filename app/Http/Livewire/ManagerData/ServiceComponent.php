@@ -38,20 +38,21 @@ class ServiceComponent extends Component
     // Create Service//
     public function create_service()
     {
+        // dd($this);
+
         $this->validate(
             [
                 'nama_service_create' => 'required|unique:services_list,package_name',
                 'speed_service_create' => 'required|unique:services_list,package_speed',
                 'price_service_create' => 'required|unique:services_list,package_price',
                 'category_service_create' => 'required|unique:services_list,package_categories',
-                'type_service_create' => 'required|unique:services_list,package_type',
+                'type_service_create' => 'required',
             ],
             [
                 'nama_service_create.unique' => 'Nama Layanan ini sudah ada',
-                'speed_service_create.unique' => 'Nama Layanan ini sudah ada',
-                'price_service_create.unique' => 'Nama Layanan ini sudah ada',
-                'category_service_create.unique' => 'Nama Layanan ini sudah ada',
-                'type_service_create.unique' => 'Nama Layanan ini sudah ada',
+                'speed_service_create.unique' => 'Kecepatan Layanan ini sudah ada',
+                'price_service_create.unique' => 'Harga Layanan ini sudah ada',
+                'category_service_create.unique' => 'Kategori Layanan ini sudah ada'
             ]
         );
 
@@ -115,14 +116,15 @@ class ServiceComponent extends Component
 
     public function set_service()
     {
-        $this->validate([
-            'nama_service_set' => 'required|string',
-            'speed_service_set' => 'required|string',
-            'price_service_set' => 'required|string',
-            'category_service_set' => 'required|string',
-            'top_service_set' => 'required|string',
-            'type_service_set' => 'required|string',
-        ]);
+        $this->validate(
+            [
+                'nama_service_set' => 'required|string',
+                'speed_service_set' => 'required|string',
+                'price_service_set' => 'required|string',
+                'category_service_set' => 'required|string',
+                'type_service_set' => 'required',
+            ]
+        );
 
         try {
             $set_service = ServicesList::where('id', $this->id_service_set)->first();
@@ -130,7 +132,6 @@ class ServiceComponent extends Component
             $set_service->package_speed = $this->speed_service_set;
             $set_service->package_price = $this->price_service_set;
             $set_service->package_categories = $this->category_service_set;
-            $set_service->package_top = $this->top_service_set;
             $set_service->package_type = $this->type_service_set;
             $set_service->retail_package_price = $this->retail_service_set;
             $set_service->government_package_price = $this->government_service_set;
@@ -158,23 +159,8 @@ class ServiceComponent extends Component
     //Delete Service//
     public function service_destroy($id)
     {
-        $service_destroy = ServicesList::find($id);
-        $this->nama_service_delete = $service_destroy->package_name;
-        $this->speed_service_delete = $service_destroy->package_speed;
-        $this->price_service_delete = $service_destroy->package_price;
-        $this->category_service_delete = $service_destroy->package_categories;
-        $this->top_service_delete = $service_destroy->package_top;
-        $this->type_service_delete = $service_destroy->package_type;
-        $this->retail_service_delete = $service_destroy->retail_package_price;
-        $this->government_service_delete = $service_destroy->government_package_price;
-        $this->noted_service_delete = $service_destroy->noted_service;
-        $this->id_service_delete = $service_destroy->id;
-    }
-
-    public function delete_service()
-    {
         try {
-            $delete_service = ServicesList::where('id', $this->id_service_delete)->first();
+            $delete_service = ServicesList::find($id);
             $delete_service->delete();
 
             $this->dispatchBrowserEvent('swal', [
@@ -184,18 +170,8 @@ class ServiceComponent extends Component
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
-            $this->reset([
-                'nama_service_delete',
-                'speed_service_delete',
-                'price_service_delete',
-                'category_service_delete',
-                'top_service_delete',
-                'type_service_delete',
-                'retail_service_delete',
-                'government_service_delete',
-                'noted_service_delete'
-            ]);
-        } catch (\Throwable) {
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
@@ -205,6 +181,41 @@ class ServiceComponent extends Component
             ]);
         }
     }
+
+    // public function delete_service()
+    // {
+    //     try {
+    //         $delete_service = ServicesList::where('id', $this->id_service_delete)->first();
+    //         $delete_service->delete();
+
+    //         $this->dispatchBrowserEvent('swal', [
+    //             'position' => 'centered',
+    //             'icon' => 'success',
+    //             'title' => ' Delete Service berhasil terhapus!',
+    //             'showConfirmButton' => false,
+    //             'timer' => 1500
+    //         ]);
+    //         $this->reset([
+    //             'nama_service_delete',
+    //             'speed_service_delete',
+    //             'price_service_delete',
+    //             'category_service_delete',
+    //             'top_service_delete',
+    //             'type_service_delete',
+    //             'retail_service_delete',
+    //             'government_service_delete',
+    //             'noted_service_delete'
+    //         ]);
+    //     } catch (\Throwable) {
+    //         $this->dispatchBrowserEvent('swal', [
+    //             'position' => 'centered',
+    //             'icon' => 'error',
+    //             'title' => 'Delete Service gagal terhapus!',
+    //             'showConfirmButton' => false,
+    //             'timer' => 1500
+    //         ]);
+    //     }
+    // }
 
     public function render()
     {
