@@ -46,4 +46,28 @@
                 {{-- </div><!--//inner--> --}}
             </div>
         </div>
+
+        <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration bg-white" role="alert">
+            <div class="inner">
+                {{-- <img src="{{ asset('assets/images/animation_header.gif') }}" alt=""> --}}
+                <div class="app-card-body p-3 p-lg-4">
+                    <h6>Link khusus untuk pelanggan baru : </h6>
+                    </br>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="inputLinkNewCust"
+                            value="{{ 'https://reg.nusa.net.id/new-member?am=' . auth()->user()->employee_id }}"
+                            readonly>
+                        <button class="btn btn-primary text-white" type="button" id="button-addon2" value="copy"
+                            onclick="copyToClipboard('inputLinkNewCust')">
+                            <i class="fa-solid fa-paste"></i>
+                        </button>
+                    </div>
+                    <!--//row-->
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
+                </div>
+                <!--//app-card-body-->
+
+                {{-- </div><!--//inner--> --}}
+            </div>
+        </div>
     </div>

@@ -16,5 +16,13 @@
         Swal.fire(e.detail);
     });
 </script>
+<script>
+    function copyToClipboard(id) {
+        document.getElementById(id).select();
+        document.execCommand('copy');
+        alert('Anda berhasil menyalin link');
+    }
+</script>
+
 
 @livewireScripts
