@@ -43,8 +43,14 @@
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <input type="text" class="form-control" id="setting-input-1"
-                                                        wire:model='nama_service_create' required>
+                                                    <input type="text"
+                                                        class="form-control @error('nama_service_create') is-invalid @enderror"
+                                                        id="setting-input-1" wire:model='nama_service_create' required>
+                                                    @error('nama_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 @php
                                                     $types = ['Fiber Optik', 'Wireless'];
@@ -52,8 +58,9 @@
                                                 <div class="mb-3">
                                                     <label for="setting-input-2" class="form-label">Tipe Paket
                                                     </label>
-                                                    <select class="form-control" id="type"
-                                                        wire:model='type_service_create'>
+                                                    <select
+                                                        class="form-control @error('type_service_create') is-invalid @enderror"
+                                                        id="type" wire:model='type_service_create'>
                                                         <option value="">Pilih Tipe Paket...
                                                         </option>
                                                         @foreach ($types as $type)
@@ -61,6 +68,11 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('type_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="setting-input-1" class="form-label">Kategori Paket
@@ -69,8 +81,15 @@
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <input type="text" class="form-control" id="setting-input-1"
-                                                        wire:model='category_service_create' required>
+                                                    <input type="text"
+                                                        class="form-control @error('category_service_create') is-invalid @enderror"
+                                                        id="setting-input-1" wire:model='category_service_create'
+                                                        required>
+                                                    @error('category_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="setting-input-1" class="form-label">Kecepatan Internet
@@ -79,8 +98,14 @@
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <input type="text" class="form-control" id="setting-input-1"
-                                                        wire:model='speed_service_create' required>
+                                                    <input type="text"
+                                                        class="form-control @error('speed_service_create') is-invalid @enderror"
+                                                        id="setting-input-1" wire:model='speed_service_create' required>
+                                                    @error('speed_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="setting-input-1" class="form-label">Harga Paket
@@ -89,18 +114,30 @@
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <input type="number" class="form-control" id="setting-input-1"
-                                                        wire:model='price_service_create' required>
+                                                    <input type="number"
+                                                        class="form-control @error('price_service_create') is-invalid @enderror"
+                                                        id="setting-input-1" wire:model='price_service_create' required>
+                                                    @error('price_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="setting-input-1" class="form-label">Harga Ritel
-                                                        <span class="ms-2" data-container="body" data-trigger="hover"
-                                                            data-placement="top"
+                                                        <span class="ms-2" data-container="body"
+                                                            data-trigger="hover" data-placement="top"
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <input type="number" class="form-control" id="setting-input-1"
-                                                        wire:model='retail_service_create'>
+                                                    <input type="number"
+                                                        class="form-control @error('retail_service_create') is-invalid @enderror"
+                                                        id="setting-input-1" wire:model='retail_service_create'>
+                                                    @error('retail_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="setting-input-1" class="form-label">Harga Pemerintah
@@ -109,8 +146,14 @@
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <input type="number" class="form-control" id="setting-input-1"
-                                                        wire:model='government_service_create'>
+                                                    <input type="number"
+                                                        class="form-control @error('government_service_create') is-invalid @enderror"
+                                                        id="setting-input-1" wire:model='government_service_create'>
+                                                    @error('government_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlTextarea1"
@@ -120,8 +163,13 @@
                                                             data-content="This is a Bootstrap popover example. You can use popover to provide extra info.">
                                                         </span>
                                                     </label>
-                                                    <textarea style="height: 20%" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                        wire:model='noted_service_create'></textarea>
+                                                    <textarea style="height: 20%" class="form-control @error('noted_service_create') is-invalid @enderror"
+                                                        id="exampleFormControlTextarea1" rows="3" wire:model='noted_service_create'></textarea>
+                                                    @error('noted_service_create')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="d-flex justify-content-end ">
                                                     <button type="submit" class="btn app-btn-primary">Simpan</button>

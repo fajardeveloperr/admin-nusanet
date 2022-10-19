@@ -38,15 +38,24 @@ class ServiceComponent extends Component
     // Create Service//
     public function create_service()
     {
-        try {
-            $this->validate([
-                'nama_service_create' => 'required',
-                'speed_service_create' => 'required',
-                'price_service_create' => 'required',
-                'category_service_create' => 'required',
-                'type_service_create' => 'required',
-            ]);
+        $this->validate(
+            [
+                'nama_service_create' => 'required|unique:services_list,package_name',
+                'speed_service_create' => 'required|unique:services_list,package_speed',
+                'price_service_create' => 'required|unique:services_list,package_price',
+                'category_service_create' => 'required|unique:services_list,package_categories',
+                'type_service_create' => 'required|unique:services_list,package_type',
+            ],
+            [
+                'nama_service_create.unique' => 'Nama Layanan ini sudah ada',
+                'speed_service_create.unique' => 'Nama Layanan ini sudah ada',
+                'price_service_create.unique' => 'Nama Layanan ini sudah ada',
+                'category_service_create.unique' => 'Nama Layanan ini sudah ada',
+                'type_service_create.unique' => 'Nama Layanan ini sudah ada',
+            ]
+        );
 
+        try {
             $create_service = new ServicesList();
             $create_service->package_name = $this->nama_service_create;
             $create_service->package_speed = $this->speed_service_create;
@@ -76,11 +85,11 @@ class ServiceComponent extends Component
                 'government_service_create',
                 'noted_service_create'
             ]);
-        } catch (\Throwable) {
+        } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('swal', [
                 'position' => 'centered',
                 'icon' => 'error',
-                'title' => 'Maaf, Layanan ' . $this->nama_service_create . ' telah terdaftar!',
+                'title' => 'Maaf, Layanan telah terdaftar!',
                 'showConfirmButton' => false,
                 'timer' => 1500
             ]);
@@ -106,16 +115,16 @@ class ServiceComponent extends Component
 
     public function set_service()
     {
-        try {
-            $this->validate([
-                'nama_service_set' => 'required|string',
-                'speed_service_set' => 'required|string',
-                'price_service_set' => 'required|string',
-                'category_service_set' => 'required|string',
-                'top_service_set' => 'required|string',
-                'type_service_set' => 'required|string',
-            ]);
+        $this->validate([
+            'nama_service_set' => 'required|string',
+            'speed_service_set' => 'required|string',
+            'price_service_set' => 'required|string',
+            'category_service_set' => 'required|string',
+            'top_service_set' => 'required|string',
+            'type_service_set' => 'required|string',
+        ]);
 
+        try {
             $set_service = ServicesList::where('id', $this->id_service_set)->first();
             $set_service->package_name = $this->nama_service_set;
             $set_service->package_speed = $this->speed_service_set;
