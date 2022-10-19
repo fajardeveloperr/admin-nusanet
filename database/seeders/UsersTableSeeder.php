@@ -18,10 +18,10 @@ class UsersTableSeeder extends Seeder
     {
         User::insert([
             [
-                'employee_id' => '0202240',
-                'name'      => 'Samuel Adriel Romaito Manurung',
-                'email'     => 'samuel@nusa.net.id',
-                'password'  => bcrypt('12345678'),
+                'employee_id' => '0201826',
+                'name'      => 'Cut Amalia',
+                'email'     => 'cutamalia@nusa.net.id',
+                'password'  => bcrypt('Nusanet2022!'),
                 'utype'     => 'AuthMaster',
                 'isApprovedByAdmin'     => 1,
                 'email_verified_at' => Carbon::now(),
@@ -29,10 +29,10 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'employee_id' => '0202241',
-                'name'      => 'Muhammad Fajar Harahap',
-                'email'     => 'fajar@nusa.net.id',
-                'password'  => bcrypt('12345678'),
+                'employee_id' => '0202233',
+                'name'      => 'M. Fikri Pasaribu',
+                'email'     => 'fikri@nusa.net.id',
+                'password'  => bcrypt('Nusanet2022!'),
                 'utype'     => 'AuthSales',
                 'isApprovedByAdmin'     => 1,
                 'email_verified_at' => Carbon::now(),
