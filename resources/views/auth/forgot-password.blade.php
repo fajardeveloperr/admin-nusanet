@@ -69,13 +69,15 @@
                             <h2 class="text-center text-primary">Lupa Password</h2>
                         </div>
                         @if (session()->has('successMessage'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                style="text-align: justify;">
                                 {{ session('successMessage') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
                         @elseif (session()->has('errorMessage'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                style="text-align: justify;">
                                 {{ session('errorMessage') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>

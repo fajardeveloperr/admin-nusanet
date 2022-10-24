@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthCustom\ForgotPasswordController;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ManagerData\PenggunaComponent;
 use App\Http\Livewire\ManagerData\ServiceComponent;
@@ -11,7 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,12 +63,4 @@ Route::middleware(['auth:sanctum', 'auth.sales', 'verified'])->group(function ()
     Route::get('/manager-data-sales', SalesComponent::class)->name('manager.data.sales');
 });
 
-// Route::get('/print-pdf/{uuid}', function ($id) {
-//     $customerFindByID = Customer::find($id);
-//     $data = [
-//         'customer' => $customerFindByID
-//     ];
-
-//     $pdf = Pdf::loadView('report', $data);
-//     return $pdf->stream();
-// });
+Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
