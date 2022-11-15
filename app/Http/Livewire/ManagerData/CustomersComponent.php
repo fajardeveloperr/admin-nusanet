@@ -144,7 +144,17 @@ class CustomersComponent extends Component
 
     public function render()
     {
+        $utype = auth()->user()->utype;
+
         $customersAdmin = Customer::all();
+
+        if ($utype != "AuthMaster" || $utype != "AuthCRO") {
+            foreach ($customersAdmin as $key => $value) {
+                if ($value->approval->staging_area !== $utype) {
+                    unset($customersAdmin[$key]);
+                }
+            }
+        }
 
         foreach ($customersAdmin as $key => $value) {
             if ($value->reference_id != null) {

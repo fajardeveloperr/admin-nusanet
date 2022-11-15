@@ -25,6 +25,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('AuthMaster', function () {
+            return auth()->user()->utype == "AuthMaster";
+        });
+
+        Gate::define('AuthCRO', function () {
+            return auth()->user()->utype == "AuthCRO";
+        });
+
+        Gate::define('AuthSalesManager', function () {
+            return auth()->user()->utype == "AuthSalesManager";
+        });
+
+        Gate::define('AuthSales', function () {
+            return auth()->user()->utype == "AuthSales";
+        });
     }
 }

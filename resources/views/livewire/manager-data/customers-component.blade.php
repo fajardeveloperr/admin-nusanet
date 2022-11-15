@@ -106,7 +106,6 @@
                                                     @endphp
                                                     @foreach ($customers as $custome)
                                                         @if ($custome->class == $item)
-                                                            @if ($custome->reference_id != null)
                                                                 @if ($custome->survey_id != null && $custome->extend_note)
                                                                     <tr class="text-light">
                                                                         <td
@@ -1290,7 +1289,6 @@
                                                                     $id++;
                                                                 @endphp
                                                             @endif
-                                                        @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>
